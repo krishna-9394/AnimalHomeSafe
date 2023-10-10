@@ -4,10 +4,11 @@ const app = express()
 
 const pet_clinic = require('./routes/pet_clinic');
 const zoos = require('./routes/zoos');
-const connection = require('./db');
+const wildlife_sanctuary = require('./routes/wildlife_sanctuary');
 
 app.use('/routes/pet_clinic/',pet_clinic);
 app.use('/routes/zoos/',zoos);
+app.use('/routes/wildlife_sanctuary/',wildlife_sanctuary);
 
 app.get('/', (req,res) => {
     res.send("You have entered common url");
