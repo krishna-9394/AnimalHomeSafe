@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/signUpUser.css">
+    <script src="script.js" defer></script>
+    <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
+    <title>Gentle Guardians - Sign Up</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Gentle Guardians</h1>
+        <p>We're excited to have you join our community. Please fill in the details below to create your account.</p>
+        <form id="signupForm">
+            <!-- User Details -->
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <input type="tel" placeholder="Contact No." required>
+            <input type="text" placeholder="City" required>
+            <input type="text" placeholder="State" required>
+            <input type="text" placeholder="Country" required>
+
+            <!-- Pet Toggle -->
+            <div class="toggle-container">
+                <label>
+                    Do you have a pet?
+                    <label class="switch">
+                        <input type="checkbox" id="hasPetToggle">
+                        <span class="slider"></span>
+                    </label>
+                      
+                </label>
+            </div>
+
+            <!-- Pet Details -->
+            <div id="petDetails" class="hidden">
+                <input type="number" id="numPets" placeholder="How many pets?" min="1">
+                <div id="individualPets"></div>
+            </div>
+
+            <button type="submit" class="btn primary">Sign Up</button>
+            <button type="button" class="btn secondary" onclick="location.href='loginUser.html'">Log In</button>
+
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('hasPetToggle').addEventListener('change', function() {
+            const petDetails = document.getElementById('petDetails');
+            const individualPets = document.getElementById('individualPets');
+
+            if (this.checked) {
+                petDetails.classList.remove('hidden');
+            } else {
+                petDetails.classList.add('hidden');
+                individualPets.innerHTML = '';
+            }
+        });
+
+        document.getElementById('numPets').addEventListener('input', function() {
+            const individualPets = document.getElementById('individualPets');
+            individualPets.innerHTML = '';
+
+            for (let i = 0; i < this.value; i++) {
+                individualPets.innerHTML += `
+                    <h3>Pet ${i + 1} Details:</h3>
+                    <input type="text" placeholder="Animal Name">
+                    <input type="text" placeholder="Color">
+                    <input type="text" placeholder="Size">
+                    <input type="text" placeholder="Breed">
+                `;
+            }
+        });
+    </script>
+</body>
+
+</html>
