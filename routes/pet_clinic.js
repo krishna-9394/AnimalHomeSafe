@@ -3,7 +3,15 @@ const router = express.Router();
 const connection = require('../db');
 
 router.get('/', (req, res) => {
-    res.send('List of all pet clinic');
+    const sql_query = "select * from address;";
+    connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
 });
 
 router.get('/id', (req, res) => {
