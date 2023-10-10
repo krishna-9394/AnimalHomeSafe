@@ -1,10 +1,11 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
+const credentials = require('./credentials');
 
 const db = mysql.createConnection({
-    host: hostname,
-    user: username,
-    password: password,
-    database: databasename
+    host: credentials.hostname,
+    user: credentials.username,
+    password: credentials.password,
+    database: credentials.databasename
 });
 
 db.connect(err => {
