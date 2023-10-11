@@ -115,11 +115,9 @@ body {
     padding: 20px;
     z-index: 1000;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    
-    /* For horizontal layout */
     display: flex;
-    align-items: center; /* vertically aligns items in the center */
-    gap: 20px; /* creates space between the items */
+    align-items: center; 
+    gap: 20px; 
 }
 
 .overlay {
@@ -134,20 +132,19 @@ body {
 }
 
 .popup img {
-    margin-right: 20px;  /* adds some space between image and details */
-    flex-shrink: 0; /* prevents the image from shrinking */
+    margin-right: 20px; 
+    flex-shrink: 0;
 }
 
 .popup-details {
-    flex-grow: 1;  /* makes the details section take the remaining width */
+    flex-grow: 1;
     display: flex;
-    flex-direction: column; /* stacks the title and content vertically */
-    justify-content: center; /* centers them vertically within their container */
-    gap: 10px; /* space between title and content */
+    flex-direction: column;
+    justify-content: center; 
+    gap: 10px; 
 }
 
 .popup button {
-    align-self: flex-end;  /* aligns the close button to the end */
-    margin-left: auto; /* pushes the button to the right */
+    align-self: flex-end;  
+    margin-left: auto; 
 }
-
