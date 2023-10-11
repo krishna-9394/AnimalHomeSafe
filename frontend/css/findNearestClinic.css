@@ -98,11 +98,12 @@ body {
 }
 
 .clinic img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 20px; 
+    width: 300px;
+    height: 200px;
+    margin-top: 20px;
+    border-radius: 5px; /* Added for a bit of rounding to the image edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: A slight shadow for depth */
 }
-
 .popup {
     display: none;
     position: fixed;
@@ -114,6 +115,11 @@ body {
     padding: 20px;
     z-index: 1000;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    
+    /* For horizontal layout */
+    display: flex;
+    align-items: center; /* vertically aligns items in the center */
+    gap: 20px; /* creates space between the items */
 }
 
 .overlay {
@@ -126,3 +132,22 @@ body {
     background: rgba(0, 0, 0, 0.7);
     z-index: 999;
 }
+
+.popup img {
+    margin-right: 20px;  /* adds some space between image and details */
+    flex-shrink: 0; /* prevents the image from shrinking */
+}
+
+.popup-details {
+    flex-grow: 1;  /* makes the details section take the remaining width */
+    display: flex;
+    flex-direction: column; /* stacks the title and content vertically */
+    justify-content: center; /* centers them vertically within their container */
+    gap: 10px; /* space between title and content */
+}
+
+.popup button {
+    align-self: flex-end;  /* aligns the close button to the end */
+    margin-left: auto; /* pushes the button to the right */
+}
+

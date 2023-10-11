@@ -32,15 +32,15 @@
         </div>
 
         <div class="clinics-list">
-            <div class="clinic" onclick="showPopup('Clinic A', 'Details for Clinic A...')">
-                <img src="https://placeimg.com/640/480/animals" alt="Clinic A Image">
-                <h3>Clinic A</h3>
-                <p>City, State</p>
+            <div class="clinic" onclick="showPopup('Veterinary Hospital','+91 6364224813', 'Dr. Hathi', 'surathkal, Karnataka-575023', 'https://content.jdmagicbox.com/comp/trichy/a1/0431px431.x431.200907183009.a9a1/catalogue/the-paws-pet-clinic-kattur-trichy-veterinary-hospitals-etva5uwddm.jpg?clr=')">
+                <img src="https://content.jdmagicbox.com/comp/trichy/a1/0431px431.x431.200907183009.a9a1/catalogue/the-paws-pet-clinic-kattur-trichy-veterinary-hospitals-etva5uwddm.jpg?clr=" alt="Clinic A Image">
+                <h3>Veterinary Hospital</h3>
+                <p>Surathkal, Karnataka</p>
             </div>
-            <div class="clinic" onclick="showPopup('Clinic B', 'Details for Clinic B...')">
-                <img src="https://placeimg.com/640/480/nature" alt="Clinic B Image">
-                <h3>Clinic B</h3>
-                <p>City, State</p>
+            <div class="clinic" onclick="showPopup('Vanasuma Veterinary Clinic', '+91 7568814039', 'Dr. Vasundra', 'surathkal, Karnataka-575025', 'https://images.pexels.com/photos/7469226/pexels-photo-7469226.jpeg?auto=compress&cs=tinysrgb&w=600')">
+                <img src="https://images.pexels.com/photos/7469226/pexels-photo-7469226.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Clinic B Image">
+                <h3>Vanasuma Veterinary Clinic</h3>
+                <p>Suratkal, Karnataka</p>
             </div>
         </div>
     </div>
@@ -48,19 +48,24 @@
     <!-- Popup structure -->
     <div class="overlay" onclick="closePopup()"></div>
     <div class="popup">
-        <h2 id="popup-title">Clinic Name</h2>
-        <p id="popup-content">Details...</p>
+        <img id="popup-image" src="https://images.pexels.com/photos/7469226/pexels-photo-7469226.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Clinic Image" width="200">
+        <div class="popup-details">
+            <h2 id="popup-title">Clinic Name </h2>
+            <p id="popup-content">Clinic Details</p>
+        </div>
         <button onclick="closePopup()">Close</button>
     </div>
 </body>
 
 </html>
 <script>
-    function showPopup(clinicName, clinicDetails) {
-    document.getElementById("popup-content").innerText = clinicDetails;
-    document.getElementById("popup-title").innerText = clinicName;
-    document.querySelector(".overlay").style.display = "block";
-    document.querySelector(".popup").style.display = "block";
+    function showPopup(clinicName, contactNumber, doctorName, addressDetails, imageURL) {
+        document.getElementById("popup-content").innerText = contactNumber + '\n' + doctorName + '\n' + addressDetails;
+        document.getElementById("popup-title").innerText = clinicName;
+        document.getElementById("popup-image").src = imageURL;
+        document.querySelector(".overlay").style.display = "block";
+        document.querySelector(".popup").style.display = "block"; 
+          
 }
 
 function closePopup() {
