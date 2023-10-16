@@ -1,0 +1,213 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #7ae1ac;
+    margin: 0;
+    padding: 0;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px); /* Assuming that the navbar height is around 60px. Adjust if needed */
+}
+
+
+.navbar {
+     background-color: #333;
+    display: flex;
+    justify-content: space-between; /* Changed this to space between to space out your navbar items */
+    width: 100%; /* make sure it takes up the full width */
+    box-sizing: border-box;
+}
+
+.navbar a {
+    color: #fff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+.navbar a.active {
+    background-color: #4CAF50;
+}
+
+.navbar a.logout {
+    margin-left: auto; /* push the logout button to the rightmost side of the navbar */
+}
+
+.container {
+    display: flex;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    width: 900px;
+}
+
+.adoption-form-section {
+    padding: 50px;
+    background-color: #fff;
+    width: 55%;
+}
+
+.adoption-centers-section {
+    background-color: #f9f9f9;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    width: 45%;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.center img {
+    width: 100%;
+    border-radius: 12px;
+    border: 5px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.center img:hover {
+    transform: scale(1.05);
+}
+
+.center h3 {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.center p {
+    font-style: italic;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+.button-group {
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+}
+
+.primary {
+    background-color: #007BFF;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.image-section {
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    width: 45%;
+}
+
+.image-section img {
+    width: 100%;
+    border-radius: 12px;
+    border: 5px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.image-section img:hover {
+    transform: scale(1.05);
+}
+
+.image-section p {
+    font-style: italic;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    display: flex;
+    align-items: center;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-left, .modal-right {
+    flex: 1;
+    padding: 20px;
+}
+
+.modal-left img {
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+.modal-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
