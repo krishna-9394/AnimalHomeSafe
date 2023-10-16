@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsor an Animal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/sponsorManagement.css">
+</head>
+
+<body>
+    <div class="header">
+        <span><h1 style="font-family: 'Poppins', Arial, sans-serif;">Sponsor an Animal Place</h1></span>
+    </div>
+    <div class="navbar">
+        <a href="index.html"><i class="fas fa-home"></i> Gentle Guardian</a>
+        <a href="#" class="active"><i class="fas fa-info-circle"></i> Sponsor an Animal Place</a>
+        <a href="aboutUs.html" target="_blank"><i class="fas fa-paw"></i> About us</a>
+        <a href="contact.html" target="_blank"><i class="fas fa-phone"></i> Contact</a>
+        <a href="loginUser.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Top Sponsors in Card View -->
+    <center><div class="top">Our Top Sponsors </div></center>
+    <div class="top-sponsors">
+        
+        <div class="sponsor-card">Rajesh - ₹1000 - Delhi</div>
+        <div class="sponsor-card">Priya - ₹1500 - Mumbai</div>
+        <div class="sponsor-card">Kiran - ₹1200 - Bengaluru</div>
+        <div class="sponsor-card">Anil - ₹800 - Chennai</div>
+        <div class="sponsor-card">Meera - ₹1700 - Kolkata</div>
+    </div>
+
+    <!-- Search Message & Option -->
+    <div class="search-section">
+        <p>Search for animal places:</p>
+        <input type="text" id="searchInput" placeholder="Search by state, city or name">
+        <button onclick="filterZoos()  ">Search</button>
+    </div>
+
+    <!-- Zoos Display Section -->
+    <div id="zoosDisplay">
+        <!-- Dynamically added by JavaScript -->
+    </div>
+
+    <script src="../js/sponsor.js"></script>
+</body>
+
+</html>
+
+<script>
+    const zoos = [
+    {
+        name: "Delhi Zoo",
+        state: "Delhi",
+        city: "Delhi",
+        desc: "A popular zoo in Delhi",
+        image: "../resources/images/zooImage.jpg",
+        address: "Mathura Road, New Delhi, Delhi 110003",
+        owner: "Delhi Zoo Authority"
+    },
+    {
+        name: "Mumbai Zoo",
+        state: "Maharashtra",
+        city: "Mumbai",
+        desc: "Known for diverse flora and fauna",
+        image: "../resources/images/zooImage.jpg",
+        address: "Byculla East, Mazgaon, Mumbai, Maharashtra 400027",
+        owner: "Municipal Corporation of Greater Mumbai"
+    },
+    {
+        name: "Bangalore Zoo",
+        state: "Karnataka",
+        city: "Bangalore",
+        desc: "A serene environment with various species",
+        image: "../resources/images/zooImage.jpg",
+        address: "Bannerghatta Rd, Bannerghatta, Bengaluru, Karnataka 560083",
+        owner: "Karnataka State Tourism Development Corporation"
+    },
+    {
+        name: "Kolkata Zoo",
+        state: "West Bengal",
+        city: "Kolkata",
+        desc: "One of the oldest zoos in India",
+        image: "../resources/images/zooImage.jpg",
+        address: "2 Alipore Road, Kolkata, West Bengal 700027",
+        owner: "West Bengal Zoo Authority"
+    }
+];
+
+function renderZoos(zoosToRender) {
+    const zoosContainer = document.getElementById('zoosDisplay');
+    zoosContainer.innerHTML = ''; 
+    for (const zoo of zoosToRender) {
+        const zooCard = `
+            <div class="zoo-card">
+                <img src="${zoo.image}" alt="${zoo.name}">
+                <div class="zoo-description">
+                    <h3>${zoo.name}</h3>
+                    <p>${zoo.desc}</p>
+                    <button onclick="showDetails('${zoo.name}', '${zoo.address}', '${zoo.owner}')">View Details</button>
+                    </div>
+                    <button class="sponsor-btn">Sponsor</button>
+            </div>
+        `;
+        zoosContainer.innerHTML += zooCard;
+    }
+}
+
+function filterZoos() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const filteredZoos = zoos.filter(zoo =>
+        zoo.name.toLowerCase().includes(searchTerm) ||
+        zoo.state.toLowerCase().includes(searchTerm) ||
+        zoo.city.toLowerCase().includes(searchTerm)
+    );
+    renderZoos(filteredZoos);
+}
+
+function showDetails(name, address, owner) {
+    alert(`Zoo Name: ${name}\nAddress: ${address}\nOwner: ${owner}`);
+}
+
+// Render initial zoos on page load
+renderZoos(zoos);
+
+</script>
