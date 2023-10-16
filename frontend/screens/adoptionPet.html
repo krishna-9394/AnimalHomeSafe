@@ -4,149 +4,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adopt a Pet</title><!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adopt a Pet</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/adoptionPet.css">
+    <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
+
+    <title>Adopt a Pet</title>
 </head>
 
 <body>
-    <div class="header">
-        <h1 style="font-family: 'Poppins', Arial, sans-serif;">Animal Wellness Hub</h1>
-    </div>
-
     <div class="navbar">
-        <!-- Your existing navbar links -->
-        <a href="adoptPet.html" class="active"><i class="fas fa-paw"></i> Adopt a Pet</a>
+        <a href="index.html"><i class="fas fa-home"></i> Gentle Gaurdian</a>
+        <a href="#" class="active"><i class="fas fa-info-circle"></i> Animal Well Being</a>
+        <a href="aboutUs.html" target="_blank"><i class="fas fa-paw"></i> About us</a>
+        <a href="contact.html" target="_blank"><i class="fas fa-phone"></i> Contact</a>
+        <a href="loginUser.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
+    <div class="content-wrapper">
+        <div class="container">
 
-    <div class="container">
-        <div class="adoption-form">
-            <h2>Describe your ideal pet:</h2>
-            <form>
-                <input type="text" placeholder="Type (e.g. Dog, Cat)">
-                <input type="text" placeholder="Preferred Breed">
-                <input type="text" placeholder="Age">
-                <input type="text" placeholder="Any specific color or markings">
-                <button type="submit">Search</button>
-            </form>
+            <!-- Adoption Form -->
+            <div class="adoption-form-section">
+                <h1>Adopt a Pet</h1>
+                <form id="adoptionForm">
+                    <input type="text" placeholder="Type (e.g. Dog, Cat)" required>
+                    <input type="text" placeholder="Preferred Breed" required>
+                    <input type="number" placeholder="Age" required>
+                    <input type="text" placeholder="Color" required>
+                    <div class="button-group">
+                        <button type="submit" class="btn primary">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div class="image-section">
+                <img src="../resources/images/loginPageDisplayImage.jpg" alt="animal picture">
+                <p>"Animals are nature's reminder of love's purest form."</p>
+            </div>
+            <!-- Adoption Centers List (Initially Hidden) -->
+            <div class="adoption-centers-section hidden">
+                <!-- Sample adoption center, you can duplicate this for multiple centers -->
+                <div class="center" data-center-id="1">
+                    <img src="../resources/images/loginPageDisplayImage.jpg" alt="Center Image" class="center-image">
+                    <h3>Happy Tails Center</h3>
+                    <p>City, State</p>
+                </div>
+
+                <div class="center" data-center-id="2">
+                    <img src="../resources/images/loginPageDisplayImage.jpg" alt="Center Image" class="center-image">
+                    <h3>Peaceful Paws Haven</h3>
+                    <p>Another City, Another State</p>
+                </div>
+
+                <!-- Add more centers as needed -->
+            </div>
+
         </div>
-
-        <div class="centers-list">
-            <!-- Sample adoption center, you can duplicate this for multiple centers -->
-            <div class="center" onclick="showPopup('Happy Tails Center', 'Address Details', 'Contact Info', 'https://sample.image.url')">
-                <img src="https://sample.image.url" alt="Center Image">
-                <h3>Happy Tails Center</h3>
-                <p>City, State</p>
+    </div>
+    <div class="modal" id="centerModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-left">
+                <img src="" alt="Center Image" id="modalImage">
+            </div>
+            <div class="modal-right">
+                <h3 id="modalName">Center Name</h3>
+                <p id="modalContact">Contact No: XXX-XXX-XXXX</p>
+                <p id="modalLocation">City, State</p>
             </div>
         </div>
     </div>
-
-    <!-- Popup structure -->
-    <div class="overlay" onclick="closePopup()"></div>
-    <div class="popup" style="display: none;">
-        <img id="popup-image" src="#" alt="Center Image" width="200" height="200">
-        <div class="popup-details">
-            <h2 id="popup-title">Center Name</h2>
-            <p id="popup-content">Center Details</p>
-        </div>
-        <button onclick="closePopup()">Close</button>
-    </div>
-
     <script>
-        function showPopup(centerName, addressDetails, contactInfo, imageURL) {
-            document.getElementById("popup-content").innerText = contactInfo + '\n' + addressDetails;
-            document.getElementById("popup-title").innerText = centerName;
-            document.getElementById("popup-image").src = imageURL;
-            document.querySelector(".overlay").style.display = "block";
-            document.querySelector(".popup").style.display = "flex";
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const adoptionForm = document.getElementById('adoptionForm');
+            const formSection = document.querySelector('.adoption-form-section');
+            const imageSection = document.querySelector('.image-section');
+            const centersSection = document.querySelector('.adoption-centers-section');
+            const modal = document.getElementById("centerModal");
+            const closeModal = document.querySelector(".close");
+            const centerImages = document.querySelectorAll(".center-image");
 
-        function closePopup() {
-            document.querySelector(".overlay").style.display = "none";
-            document.querySelector(".popup").style.display = "none";
-        }
-    </script>
-</body>
+            adoptionForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                formSection.style.display = 'none';
+                imageSection.style.display = 'none';
+                centersSection.classList.remove('hidden');
+            });
 
-</html>
+            centerImages.forEach(img => {
+                img.addEventListener("click", function () {
+                    // Here, I'm assuming you have some data on the centers in a variable called centersData.
+                    // This is just a mock data for the sake of this example. You should replace with your own data.
+                    let centersData = {
+                        "1": {
+                            name: "Happy Tails Center",
+                            contact: "XXX-XXX-XXXX",
+                            location: "City, State",
+                            image: "../resources/images/loginPageDisplayImage.jpg"
+                        },
+                        "2": {
+                            name: "Peaceful Paws Haven",
+                            contact: "YYY-YYY-YYYY",
+                            location: "Another City, Another State",
+                            image: "../resources/images/loginPageDisplayImage.jpg"
+                        }
+                        // Add more centers as needed
+                    };
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../css/adoptPet.css">
-</head>
+                    const centerId = img.parentElement.getAttribute("data-center-id");
+                    const centerData = centersData[centerId];
+                    document.getElementById("modalImage").src = centerData.image;
+                    document.getElementById("modalName").textContent = centerData.name;
+                    document.getElementById("modalContact").textContent = "Contact No: " +
+                        centerData.contact;
+                    document.getElementById("modalLocation").textContent = centerData.location;
 
-<body>
-    <div class="header">
-        <h1 style="font-family: 'Poppins', Arial, sans-serif;">Animal Wellness Hub</h1>
-    </div>
+                    modal.style.display = "block";
+                });
+            });
 
-    <div class="navbar">
-        <a href="index.html"><i class="fas fa-home"></i> Gentle Guardian</a>
-        <a href="AnimalWellBeing_screen.html"><i class="fas fa-info-circle"></i> Animal Home</a>
-        <a href="findNearestClinic.html"><i class="fas fa-stethoscope"></i> Find Pet Clinics</a>
-        <a href="#" class="active"><i class="fas fa-paw"></i> Adopt a Pet</a>
-        <a href="../css/loginUser.css" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-    </div>
+            closeModal.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
 
-    <div class="container">
-        <form class="adoption-form">
-            <label for="pet-type">Pet Type:</label>
-            <select id="pet-type">
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-                <!-- Add more pet types as required -->
-            </select>
-            <!-- Add more fields as required -->
-            <button type="submit">Search</button>
-        </form>
-
-        <div class="centers-list">
-            <!-- Mock data for adoption centers -->
-            <div class="center" onclick="showPopup('Pet Haven', '123-456-7890', 'https://example.com/img1.jpg')">
-                <img src="https://example.com/img1.jpg" alt="Center A Image">
-                <h3>Pet Haven</h3>
-                <p>Sample Location A</p>
-            </div>
-            <div class="center" onclick="showPopup('Animal Sanctuary', '987-654-3210', 'https://example.com/img2.jpg')">
-                <img src="https://example.com/img2.jpg" alt="Center B Image">
-                <h3>Animal Sanctuary</h3>
-                <p>Sample Location B</p>
-            </div>
-            <!-- Add more centers as required -->
-        </div>
-    </div>
-
-    <!-- Popup structure (similar to the one you had before) -->
-    <div class="overlay" onclick="closePopup()"></div>
-    <div class="popup" style="display: none;">
-        <img id="popup-image" src="#" alt="Center Image" width="200" height="200">
-        <div class="popup-details">
-            <h2 id="popup-title">Center Name</h2>
-            <p id="popup-content">Center Details</p>
-        </div>
-        <button onclick="closePopup()">Close</button>
-    </div>
-
-    <script>
-        function showPopup(centerName, contactNumber, imageURL) {
-            document.getElementById("popup-content").innerText = contactNumber;
-            document.getElementById("popup-title").innerText = centerName;
-            document.getElementById("popup-image").src = imageURL;
-            document.querySelector(".overlay").style.display = "block";
-            document.querySelector(".popup").style.display = "flex";
-        }
-
-        function closePopup() {
-            document.querySelector(".overlay").style.display = "none";
-            document.querySelector(".popup").style.display = "none";
-        }
+            window.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
     </script>
 </body>
 
