@@ -348,3 +348,33 @@ INSERT INTO ANIMAL_PLACE (place_id, name, address_id, type_of_place) VALUES
 (9, 'Lucknow Zoo', 19, 'zoo'),
 (10, 'Mysuru Zoo', 20, 'zoo');
 
+
+CREATE TABLE login_credentials (
+    email VARCHAR(255) PRIMARY KEY,
+    password VARCHAR(255)
+); 
+
+-- Insert raw data into the login_credentials table
+INSERT INTO login_credentials (email, password)
+VALUES
+('rajesh@email.com', 'hashed_password1'),
+('sunita@email.com', 'hashed_password2'),
+('amit@email.com', 'hashed_password3'),
+('anil@email.com', 'hashed_password4'),
+('sheetal@email.com', 'hashed_password5'),
+('vijay@email.com', 'hashed_password6'),
+('girish@email.com', 'hashed_password7'),
+('farida@email.com', 'hashed_password8'),
+('krishna@email.com', 'hashed_password9'),
+('latha@email.com', 'hashed_password10'),
+('manoj@email.com', 'hashed_password11'),
+('harpreet@email.com', 'hashed_password12'),
+('reena@email.com', 'hashed_password13'),
+('rakesh@email.com', 'hashed_password14'),
+('nandini@email.com', 'hashed_password15'),
+('sudhir@email.com', 'hashed_password16'),
+('lalita@email.com', 'hashed_password17'),
+('mohammad@email.com', 'hashed_password18'),
+('jyoti@email.com', 'hashed_password19'),
+('karan@email.com', 'hashed_password20');
+
