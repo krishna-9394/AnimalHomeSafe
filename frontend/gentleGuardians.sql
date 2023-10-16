@@ -76,6 +76,7 @@ CREATE TABLE PRODUCTS_LIST_OF_ALL_SHOPS (
   PRIMARY KEY (shop_id, product_id)
 );
 
+-- drop table ANIMALS_LIST_IN_ALL_PLACES;
 CREATE TABLE ANIMALS_LIST_IN_ALL_PLACES (
   pet_id INTEGER,
   place_id INTEGER,
@@ -85,6 +86,7 @@ CREATE TABLE ANIMALS_LIST_IN_ALL_PLACES (
   PRIMARY KEY (pet_id, place_id)
 );
 
+-- drop table PETS_LIST_OF_ALL_CUSTOMERS ;  
 CREATE TABLE PETS_LIST_OF_ALL_CUSTOMERS(
   pet_id INTEGER,
   customer_id INTEGER,
@@ -290,23 +292,8 @@ INSERT INTO PET_CLINIC (clinic_id, clinic_name, doctor_name, contact_number, add
 (30, 'SafePaws Veterinary', 'Dr. Ritu Agrawal', 76520, 90);
 
 
--- Inserting Additional Sample Data
-INSERT INTO PET (pet_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival) VALUES
-(16, 'Docile and easy-going.', 'Goat', 'Nubian', 'Dander', 'Medium', 'Hay, grains, greens.', 'Female', 38, -10),
-(17, 'Gentle and calm.', 'Cow', 'Jersey', 'Dander', 'Large', 'Grass, hay, silage.', 'Female', 35, -15),
-(18, 'Majestic and vibrant.', 'Peacock', 'Indian Blue', 'Feather dust', 'Large', 'Seeds, insects, small mammals.', 'Male', 40, 5),
-(19, 'Playful and inquisitive.', 'Cub', 'Lion Cub', 'Dander', 'Medium', 'Meat, poultry.', 'Male', 38, -5),
-(20, 'Hardy and friendly.', 'Goat', 'Boer', 'Dander', 'Medium', 'Grains, hay.', 'Male', 38, -10),
-(21, 'Energetic and robust.', 'Cow', 'Holstein', 'Dander', 'Large', 'Grass, grains.', 'Female', 33, -15),
-(22, 'Curious and playful.', 'Rabbit', 'Holland Lop', 'Dander', 'Small', 'Hay, pellets, vegetables.', 'Female', 30, -5),
-(23, 'Sleek and agile.', 'Ferret', 'Standard', 'Dander', 'Small', 'Meat, commercial ferret food.', 'Male', 30, -2),
-(24, 'Cheerful and energetic.', 'Cub', 'Tiger Cub', 'Dander', 'Medium', 'Meat, poultry.', 'Female', 40, -5),
-(25, 'Gentle and affectionate.', 'Llama', 'Cria', 'Dander', 'Large', 'Hay, grains, grass.', 'Male', 32, -20),
-(26, 'Graceful and gentle.', 'Deer', 'White-Tailed', 'None', 'Medium', 'Grass, fruits, nuts.', 'Female', 34, -12),
-(27, 'Tiny and chirpy.', 'Guinea Pig', 'American', 'Dander', 'Small', 'Guinea pig pellets, hay, veggies.', 'Male', 26, 5),
-(28, 'Bright and colorful.', 'Iguana', 'Green', 'None', 'Medium', 'Leafy greens, fruits.', 'Female', 40, 18),
-(29, 'Small and active.', 'Turtle', 'Red-eared Slider', 'None', 'Small', 'Aquatic plants, insects, fish.', 'Male', 35, 10),
-(30, 'Lively and noisy.', 'Duck', 'Mallard', 'Feather dust', 'Medium', 'Grains, insects, small fish.', 'Female', 33, -5);
+
+
 
 -- customer details : 
 INSERT INTO CUSTOMER (customer_id, name, email, address_id, contact_number, sponsor, sponsor_amount) VALUES
@@ -348,3 +335,104 @@ INSERT INTO ANIMAL_PLACE (place_id, name, address_id, type_of_place) VALUES
 (9, 'Lucknow Zoo', 19, 'zoo'),
 (10, 'Mysuru Zoo', 20, 'zoo');
 
+
+CREATE TABLE login_credentials (
+    email VARCHAR(255) PRIMARY KEY,
+    password VARCHAR(255)
+); 
+
+-- Insert raw data into the login_credentials table
+INSERT INTO login_credentials (email, password)
+VALUES
+('rajesh@email.com', 'hashed_password1'),
+('sunita@email.com', 'hashed_password2'),
+('amit@email.com', 'hashed_password3'),
+('anil@email.com', 'hashed_password4'),
+('sheetal@email.com', 'hashed_password5'),
+('vijay@email.com', 'hashed_password6'),
+('girish@email.com', 'hashed_password7'),
+('farida@email.com', 'hashed_password8'),
+('krishna@email.com', 'hashed_password9'),
+('latha@email.com', 'hashed_password10'),
+('manoj@email.com', 'hashed_password11'),
+('harpreet@email.com', 'hashed_password12'),
+('reena@email.com', 'hashed_password13'),
+('rakesh@email.com', 'hashed_password14'),
+('nandini@email.com', 'hashed_password15'),
+('sudhir@email.com', 'hashed_password16'),
+('lalita@email.com', 'hashed_password17'),
+('mohammad@email.com', 'hashed_password18'),
+('jyoti@email.com', 'hashed_password19'),
+('karan@email.com', 'hashed_password20');
+
+CREATE TABLE ANIMAL (
+    animal_id INT PRIMARY KEY,
+    description_info TEXT,
+    animal_name VARCHAR(255),
+    breed VARCHAR(255),
+    allergens VARCHAR(255),
+    size VARCHAR(50),
+    diet_plan TEXT,
+    gender VARCHAR(10),
+    max_temp_of_survival DECIMAL(5,2),
+    min_temp_of_survival DECIMAL(5,2),
+    isDomestic BOOLEAN,
+    common_animal_name VARCHAR(255)
+);
+
+INSERT INTO ANIMAL 
+(animal_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival, isDomestic, common_animal_name) 
+VALUES 
+(31, 'Loyal and intelligent.', 'Dog', 'Golden Retriever', 'Dander', 'Medium', 'Dog food, meat, vegetables.', 'Male', 35, -10, TRUE, 'Dog'),
+(32, 'Sleek and mysterious.', 'Cat', 'Siamese', 'Dander', 'Small', 'Cat food, meat, fish.', 'Female', 38, -5, TRUE, 'Cat'),
+(33, 'Robust and strong.', 'Buffalo', 'Water Buffalo', 'Dander', 'Large', 'Grass, aquatic plants.', 'Male', 33, -10, FALSE, 'Buffalo'),
+(34, 'Calm and sociable.', 'Cow', 'Angus', 'Dander', 'Large', 'Grass, hay.', 'Female', 33, -15, TRUE, 'Cow'),
+(35, 'Docile and woolly.', 'Sheep', 'Merino', 'Dander', 'Medium', 'Grass, hay.', 'Male', 30, -10, TRUE, 'Sheep'),
+(36, 'Majestic and regal.', 'Eagle', 'Bald Eagle', 'Feather dust', 'Medium', 'Fish, small mammals.', 'Male', 40, 5, FALSE, 'Bird'),
+(37, 'Stealthy and fierce.', 'Leopard', 'African Leopard', 'Dander', 'Medium', 'Meat, small mammals.', 'Female', 38, -5, FALSE, 'Wild Cat'),
+(38, 'Elegant and swift.', 'Antelope', 'Springbok', 'None', 'Medium', 'Grass, shrubs.', 'Male', 35, -10, FALSE, 'Antelope'),
+(39, 'Sly and adaptable.', 'Fox', 'Red Fox', 'Dander', 'Small', 'Meat, insects, fruits.', 'Female', 33, -15, FALSE, 'Fox'),
+(40, 'Massive and commanding.', 'Elephant', 'African Elephant', 'None', 'Large', 'Grass, fruits, bark.', 'Male', 36, 5, FALSE, 'Elephant');
+
+INSERT INTO ANIMAL 
+(animal_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival, isDomestic, common_animal_name) 
+VALUES 
+(41, 'Dominant and strategic.', 'Lion', 'African Lion', 'Dander', 'Large', 'Meat, small mammals.', 'Male', 40, -5, FALSE, 'Wild Cat'),
+(42, 'Graceful long-necked grazer.', 'Giraffe', 'Masai Giraffe', 'None', 'Large', 'Leaves, fruits, flowers.', 'Female', 40, 5, FALSE, 'Giraffe'),
+(43, 'Powerful and territorial.', 'Hippopotamus', 'Common Hippopotamus', 'None', 'Large', 'Grass, aquatic plants.', 'Male', 40, 5, FALSE, 'Hippopotamus'),
+(44, 'Quick and cunning.', 'Cheetah', 'African Cheetah', 'Dander', 'Medium', 'Meat, small mammals.', 'Female', 38, 5, FALSE, 'Wild Cat'),
+(45, 'Calm and hefty.', 'Rhinoceros', 'White Rhinoceros', 'None', 'Large', 'Grass, leaves.', 'Male', 40, 5, FALSE, 'Rhinoceros'),
+(46, 'Playful and intelligent.', 'Chimpanzee', 'Common Chimpanzee', 'Dander', 'Medium', 'Fruits, nuts, insects.', 'Male', 35, 5, FALSE, 'Primate'),
+(47, 'King of the jungle.', 'Tiger', 'Bengal Tiger', 'Dander', 'Large', 'Meat, fish.', 'Female', 38, 5, FALSE, 'Wild Cat'),
+(48, 'Large and lumbering.', 'Bear', 'Grizzly Bear', 'Dander', 'Large', 'Fish, berries, plants.', 'Male', 35, -10, FALSE, 'Bear'),
+(49, 'Ferocious and aquatic.', 'Crocodile', 'Saltwater Crocodile', 'None', 'Large', 'Fish, mammals, birds.', 'Male', 38, 5, FALSE, 'Reptile'),
+(50, 'Vibrant and venomous.', 'Snake', 'King Cobra', 'None', 'Medium', 'Small mammals, birds.', 'Male', 35, 10, FALSE, 'Reptile'),
+(51, 'Mighty and soaring.', 'Condor', 'Andean Condor', 'Feather dust', 'Large', 'Carrion.', 'Female', 25, 5, FALSE, 'Bird'),
+(52, 'Elusive and nocturnal.', 'Owl', 'Barn Owl', 'Feather dust', 'Medium', 'Mice, small mammals.', 'Female', 30, -5, FALSE, 'Bird'),
+(53, 'Sleek and aquatic.', 'Seal', 'Harbor Seal', 'None', 'Medium', 'Fish, squid.', 'Male', 15, -10, FALSE, 'Mammal'),
+(54, 'Spiky and insectivorous.', 'Echidna', 'Short-beaked Echidna', 'None', 'Small', 'Ants, termites.', 'Male', 35, 5, FALSE, 'Mammal'),
+(55, 'Colorful and solitary.', 'Pheasant', 'Golden Pheasant', 'Feather dust', 'Medium', 'Seeds, grains, insects.', 'Male', 25, -5, FALSE, 'Bird'),
+(56, 'Intelligent and vocal.', 'Orangutan', 'Bornean Orangutan', 'Dander', 'Large', 'Fruits, leaves, insects.', 'Male', 35, 5, FALSE, 'Primate'),
+(57, 'Powerful and horned.', 'Bison', 'American Bison', 'Dander', 'Large', 'Grass, shrubs.', 'Male', 35, -20, FALSE, 'Bison'),
+(58, 'Armored and ancient.', 'Tortoise', 'Aldabra Giant Tortoise', 'None', 'Large', 'Grass, leaves.', 'Female', 35, 10, FALSE, 'Reptile'),
+(59, 'Tall and heavy.', 'Elephant', 'Asian Elephant', 'None', 'Large', 'Grass, fruits, bark.', 'Female', 36, 10, FALSE, 'Elephant'),
+(60, 'Vivid and agile.', 'Lizard', 'Komodo Dragon', 'None', 'Large', 'Meat, birds, eggs.', 'Male', 40, 10, FALSE, 'Reptile');
+
+INSERT INTO ANIMAL 
+(animal_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival, isDomestic, common_animal_name) 
+VALUES 
+(16, 'Docile and easy-going.', 'Goat', 'Nubian', 'Dander', 'Medium', 'Hay, grains, greens.', 'Female', 38, -10, TRUE, 'Goat'),
+(17, 'Gentle and calm.', 'Cow', 'Jersey', 'Dander', 'Large', 'Grass, hay, silage.', 'Female', 35, -15, TRUE, 'Cow'),
+(18, 'Majestic and vibrant.', 'Peacock', 'Indian Blue', 'Feather dust', 'Large', 'Seeds, insects, small mammals.', 'Male', 40, 5, FALSE, 'Bird'),
+(19, 'Playful and inquisitive.', 'Cub', 'Lion Cub', 'Dander', 'Medium', 'Meat, poultry.', 'Male', 38, -5, FALSE, 'Wild Cat'),
+(20, 'Hardy and friendly.', 'Goat', 'Boer', 'Dander', 'Medium', 'Grains, hay.', 'Male', 38, -10, TRUE, 'Goat'),
+(21, 'Energetic and robust.', 'Cow', 'Holstein', 'Dander', 'Large', 'Grass, grains.', 'Female', 33, -15, TRUE, 'Cow'),
+(22, 'Curious and playful.', 'Rabbit', 'Holland Lop', 'Dander', 'Small', 'Hay, pellets, vegetables.', 'Female', 30, -5, TRUE, 'Rabbit'),
+(23, 'Sleek and agile.', 'Ferret', 'Standard', 'Dander', 'Small', 'Meat, commercial ferret food.', 'Male', 30, -2, TRUE, 'Ferret'),
+(24, 'Cheerful and energetic.', 'Cub', 'Tiger Cub', 'Dander', 'Medium', 'Meat, poultry.', 'Female', 40, -5, FALSE, 'Wild Cat'),
+(25, 'Gentle and affectionate.', 'Llama', 'Cria', 'Dander', 'Large', 'Hay, grains, grass.', 'Male', 32, -20, FALSE, 'Llama'),
+(26, 'Graceful and gentle.', 'Deer', 'White-Tailed', 'None', 'Medium', 'Grass, fruits, nuts.', 'Female', 34, -12, FALSE, 'Deer'),
+(27, 'Tiny and chirpy.', 'Guinea Pig', 'American', 'Dander', 'Small', 'Guinea pig pellets, hay, veggies.', 'Male', 26, 5, TRUE, 'Rodent'),
+(28, 'Bright and colorful.', 'Iguana', 'Green', 'None', 'Medium', 'Leafy greens, fruits.', 'Female', 40, 18, FALSE, 'Reptile'),
+(29, 'Small and active.', 'Turtle', 'Red-eared Slider', 'None', 'Small', 'Aquatic plants, insects, fish.', 'Male', 35, 10, FALSE, 'Reptile'),
+(30, 'Lively and noisy.', 'Duck', 'Mallard', 'Feather dust', 'Medium', 'Grains, insects, small fish.', 'Female', 33, -5, TRUE, 'Bird');
