@@ -145,15 +145,21 @@ body {
 }
 
 .sponsor-btn {
+    border: 0px;
+    border-radius: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #4CAF50;
     color: #fff;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s; /* Added transform to the transition */
+    transform: translateY(10px); /* Starts 10 pixels to the left */
 }
 
 .sponsor-btn:hover {
-    background-color: #45a049;
+    background-color: #ec46e7;
+    transform: translateX(0); /* Translate to original position on hover */
 }
+
+
 
 .popup {
     display: none;

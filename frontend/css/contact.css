@@ -44,7 +44,7 @@ body {
 }
 
 .social-links {
-    background-color: #fff;
+    background-color: #b5e3eb;
     padding: 20px;
     margin: 20px auto;
     max-width: 1000px;
@@ -61,7 +61,7 @@ body {
 }
 
 .social-links a:hover {
-    color: #4CAF50;
+    color: #221bee;
 }
 
 .social-links i {
@@ -94,8 +94,9 @@ body {
 }
 
 .form-group button {
-    background-color: #4CAF50;
-    color: #fff;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #9cdfe9;
+    color: black;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
