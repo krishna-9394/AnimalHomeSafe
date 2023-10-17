@@ -13,4 +13,8 @@ router.get('/id', (req,res) => {
     // details of specific customers
 });
 
+router.get('/topSponsors',(req,res) => {
+    
+});
+
 module.export = router;
