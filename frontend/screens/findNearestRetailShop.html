@@ -11,59 +11,213 @@
 
 <body>
     <div class="header">
-        <h1>Find Your Nearest Retail Shop</h1>
-        <p>Discover shops around you</p>
+        <span>
+            <h1 style="font-family: 'Poppins', Arial, sans-serif;">Find Nearest Retail Shop</h1>
+        </span>
     </div>
-
     <div class="navbar">
         <a href="index.html"><i class="fas fa-home"></i> Gentle Guardian</a>
-        <a href="AnimalWellBeing_screen.html"><i class="fas fa-info-circle"></i> Animal Well Being</a>
-        <a href="#" class="active"><i class="fas fa-shopping-cart"></i> Shop</a>
+        <a href="AnimalWellBeing_screen.html"><i class="fas fa-info-circle"></i> Animal Well-Being</a>
+        <a href="#" class="active"><i class="fas fa-store"></i> Find Store</a>
         <a href="loginUser.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
-    <div class="container">
-        <div class="search">
-            <input type="text" placeholder="Search by Shop Name, City, State...">
-            <button>Search</button>
-        </div>
-
-        <div class="shops-list">
-            <div class="shop" onclick="showPopup('Pet.com','+91 5555555555', 'Mr. Sharma', 'Shop No: 20, Downtown Mall \n Surathkal, Karnataka-575023','https://lh5.googleusercontent.com/p/AF1QipOw0YixNeXd9Q6MceHxx8sKpUu1w7VD60tX3OFm=w171-h171-n-k-no')">
-                <img src="https://lh5.googleusercontent.com/p/AF1QipOw0YixNeXd9Q6MceHxx8sKpUu1w7VD60tX3OFm=w171-h171-n-k-no" alt="Shop A Image">
-                <h3>Electronics World</h3>
-                <p>Surathkal,Karnataka</p>
-            </div>
-            <div class="shop" onclick="showPopup('Pets Essentials', '+91 6666666666', 'Ms. Roy', 'Shop No: 45, Uptown Plaza \n CityZ, StateA-654321', 'https://lh5.googleusercontent.com/p/AF1QipMn6tIpCk11Pt9F9yU9911mIGB9rg8cQw2ztzFT=w171-h171-n-k-no')">
-                <img src="https://lh5.googleusercontent.com/p/AF1QipMn6tIpCk11Pt9F9yU9911mIGB9rg8cQw2ztzFT=w171-h171-n-k-no" alt="Shop B Image">
-                <h3>Pets Essentials</h3>
-                <p>Surathkal, Karnataka</p>
-            </div>
-        </div>
+    <div class="search">
+        <input type="text" placeholder="Search...">
+        <select class="search-filter">
+            <option value="name">Name</option>
+            <option value="city">City</option>
+            <option value="state">State</option>
+        </select>
+        <button>Search</button>
     </div>
 
+    <!-- Store Display Section -->
+    <div id="storeDisplay">
+        <!-- Dynamically added by JavaScript -->
+    </div>
+
+    <!-- Popup structure -->
     <div class="overlay" onclick="closePopup()"></div>
     <div class="popup" style="display: none;">
-        <img id="popup-image" src="#" alt="Shop Image" width="200">
+        <img id="popup-image" src="#" alt="Clinic Image" width="200" height="200">
         <div class="popup-details">
-            <h2 id="popup-title">Shop Name</h2>
-            <p id="popup-content">Shop Details</p>
+            <h2 id="popup-title">Store Name</h2>
+            <p id="popup-content">Store Details</p>
         </div>
         <button onclick="closePopup()">Close</button>
     </div>
     <script>
-        function showPopup(shopName, contactNumber,ownerName, addressDetails, imageURL) {
-            document.getElementById("popup-content").innerText = ownerName+ '\n' + contactNumber + '\n' + addressDetails;
-            document.getElementById("popup-title").innerText = shopName;
+        const stores = [
+        // Mumbai
+        {
+        storeId: "",
+        storeName: "Mumbai Pet Haven",
+        ownerName: "Rajiv Mehta",
+        state: "Maharashtra",
+        city: "Mumbai",
+        image: "../resources/images/store1.jpg",
+        address: "123 Marine Drive, Mumbai - 400020",
+        contactNo: "09712345678"
+        },
+        {
+        storeId: "",
+        storeName: "Mumbai Pet Paradise",
+        ownerName: "Sneha Joshi",
+        state: "Maharashtra",
+        city: "Mumbai",
+        image: "../resources/images/store2.jpg",
+        address: "456 Versova Beach, Mumbai - 400061",
+        contactNo: "09787654321"
+        },
+
+        // Kolkata
+        {
+        storeId: "",
+        storeName: "Kolkata Pet Central",
+        ownerName: "Arijit Banerjee",
+        state: "West Bengal",
+        city: "Kolkata",
+        image: "../resources/images/store3.jpg",
+        address: "78 Park Street, Kolkata - 700016",
+        contactNo: "09876543210"
+        },
+        {
+        storeId: "",
+        storeName: "Kolkata Pet World",
+        ownerName: "Malini Ghosh",
+        state: "West Bengal",
+        city: "Kolkata",
+        image: "../resources/images/store4.jpg",
+        address: "12 Ballygunge Place, Kolkata - 700019",
+        contactNo: "09812345670"
+        },
+
+        // Delhi
+        {
+        storeId: "",
+        storeName: "Delhi Pet House",
+        ownerName: "Ananya Sharma",
+        state: "Delhi",
+        city: "Delhi",
+        image: "../resources/images/store5.jpg",
+        address: "234 Connaught Place, Delhi - 110001",
+        contactNo: "09912345678"
+        },
+        {
+        storeId: "",
+        storeName: "Delhi Pet Empire",
+        ownerName: "Vivek Oberoi",
+        state: "Delhi",
+        city: "Delhi",
+        image: "../resources/images/store6.jpg",
+        address: "567 Rajouri Garden, Delhi - 110027",
+        contactNo: "09987654321"
+        },
+
+        // Bangalore
+        {
+        storeId: "",
+        storeName: "Bangalore Pet Hub",
+        ownerName: "Karthik Rao",
+        state: "Karnataka",
+        city: "Bangalore",
+        image: "../resources/images/store7.jpg",
+        address: "123 MG Road, Bangalore - 560001",
+        contactNo: "09654321098"
+        },
+        {
+        storeId: "",
+        storeName: "Bangalore Pet Kingdom",
+        ownerName: "Lakshmi Narayan",
+        state: "Karnataka",
+        city: "Bangalore",
+        image: "../resources/images/store8.jpg",
+        address: "456 Koramangala, Bangalore - 560034",
+        contactNo: "09609876543"
+        }
+        ];
+
+
+        function renderStores(storesToRender) {
+            const storeContainer = document.getElementById('storeDisplay');
+            storeContainer.innerHTML = '';
+
+            for (const store of storesToRender) {
+                // Create the store card container
+                const storeCard = document.createElement('div');
+                storeCard.className = 'store-card';
+
+                // Create and append image to the store card
+                const img = document.createElement('img');
+                img.src = store.image;
+                img.alt = store.name;
+                storeCard.appendChild(img);
+
+                // Create and append the store description container
+                const storeDescription = document.createElement('div');
+                storeDescription.className = 'store-description';
+                storeCard.appendChild(storeDescription);
+
+                // Create and append h3 tag for store name
+                const h3 = document.createElement('h3');
+                h3.textContent = store.storeName;
+                storeDescription.appendChild(h3);
+
+                // Create and append p tag for contact number
+                const p = document.createElement('p');
+                p.textContent = store.contactNo;
+                storeDescription.appendChild(p);
+
+                var city_state = store.city;
+                city_state += ", ";
+                city_state += store.state;
+                // Create and append p tag for contact number
+                const p2 = document.createElement('p');
+                p2.textContent = city_state;
+                storeDescription.appendChild(p2);
+
+                // Create and append the sponsor button
+                const sponsorBtn = document.createElement('button');
+                sponsorBtn.textContent = 'View Details';
+                sponsorBtn.className = 'sponsor-btn';
+                sponsorBtn.onclick = function () {
+                    showPopUp(store.storeName, store.address, store.image, store.contactNo, store.ownerName);
+                };
+                storeCard.appendChild(sponsorBtn);
+
+                // Append the store card to the main container
+                storeContainer.appendChild(storeCard);
+            }
+        }
+
+
+        function filterStore() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredClinic = clinic.filter(store =>
+                store.name.toLowerCase().includes(searchTerm) ||
+                store.state.toLowerCase().includes(searchTerm) ||
+                store.city.toLowerCase().includes(searchTerm)
+            );
+            renderZoos(filteredStore);
+        }
+
+        function showPopUp(storeName, address, imageURL, contactNo, ownerName) {
+            document.getElementById("popup-content").innerText = ownerName + '\n' + contactNo + '\n' + address;
+            document.getElementById("popup-title").innerText = storeName;
             document.getElementById("popup-image").src = imageURL;
             document.querySelector(".overlay").style.display = "block";
-            document.querySelector(".popup").style.display = "flex";      
+            document.querySelector(".popup").style.display = "flex";
         }
+
         function closePopup() {
             document.querySelector(".overlay").style.display = "none";
             document.querySelector(".popup").style.display = "none";
         }
 
+        // Render initial stores on page load
+        renderStores(stores);
     </script>
 </body>
+
 </html>
