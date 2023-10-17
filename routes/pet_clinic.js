@@ -12,7 +12,20 @@ router.get('/', (req, res) => {
             res.send('Error fetching data from database');
             return;
         }
-        res.json(results);
+
+        const modifiedResult = results.map(row => ({
+            clinicId: row.id.toString(),  // Convert the id to string
+            name: row.clinicName,
+            doctorName: row.doctorName,
+            state: row.state,
+            city: row.city,
+            // Assuming you have a default or fixed image path. Adjust if it's dynamic
+            image: "../resources/images/clinic"+(Math.floor(Math.random() * 5) + 1)+".jpg", 
+            address: `${row.streetName}, ${row.city}, ${row.state}, ${row.pincode}`,
+            contactNo: row.contactNumber.toString()  // Convert the contactNumber to string
+        }));
+
+        res.json(modifiedResult);
     });
 });
 
@@ -25,7 +38,18 @@ router.get('/id', (req, res) => {
             res.send('Error fetching data from database');
             return;
         }
-        res.json(results);
+        const modifiedResult = results.map(row => ({
+            clinicId: row.id.toString(),  // Convert the id to string
+            name: row.clinicName,
+            doctorName: row.doctorName,
+            state: row.state,
+            city: row.city,
+            image: "../resources/images/clinic"+(Math.floor(Math.random() * 5) + 1)+".jpg", 
+            address: `${row.streetName}, ${row.city}, ${row.state}, ${row.pincode}`,
+            contactNo: row.contactNumber.toString()  // Convert the contactNumber to string
+        }));
+
+        res.json(modifiedResult);
     });
 });
 
@@ -38,7 +62,17 @@ router.get('/name', (req, res) => {
             res.send('Error fetching data from database');
             return;
         }
-        res.json(results);
+        const modifiedResult = results.map(row => ({
+            clinicId: row.id.toString(),  // Convert the id to string
+            name: row.clinicName,
+            doctorName: row.doctorName,
+            state: row.state,
+            city: row.city,
+            image: "../resources/images/clinic"+(Math.floor(Math.random() * 5) + 1)+".jpg", 
+            address: `${row.streetName}, ${row.city}, ${row.state}, ${row.pincode}`,
+            contactNo: row.contactNumber.toString()  // Convert the contactNumber to string
+        }));
+        res.json(modifiedResult);
     });
 });
 
@@ -51,7 +85,18 @@ router.get('/city', (req, res) => {
             res.send('Error fetching data from database');
             return;
         }
-        res.json(results);
+        const modifiedResult = results.map(row => ({
+            clinicId: row.id.toString(),  // Convert the id to string
+            name: row.clinicName,
+            doctorName: row.doctorName,
+            state: row.state,
+            city: row.city,
+            image: "../resources/images/clinic"+(Math.floor(Math.random() * 5) + 1)+".jpg", 
+            address: `${row.streetName}, ${row.city}, ${row.state}, ${row.pincode}`,
+            contactNo: row.contactNumber.toString()  // Convert the contactNumber to string
+        }));
+
+        res.json(modifiedResult);
     });
 });
 
@@ -64,7 +109,17 @@ router.get('/state', (req, res) => {
             res.send('Error fetching data from database');
             return;
         }
-        res.json(results);
+        const modifiedResult = results.map(row => ({
+            clinicId: row.id.toString(),  // Convert the id to string
+            name: row.clinicName,
+            doctorName: row.doctorName,
+            state: row.state,
+            city: row.city,
+            image: "../resources/images/clinic"+(Math.floor(Math.random() * 5) + 1)+".jpg", 
+            address: `${row.streetName}, ${row.city}, ${row.state}, ${row.pincode}`,
+            contactNo: row.contactNumber.toString()  // Convert the contactNumber to string
+        }));
+        res.json(modifiedResult);
     });
 });
 
