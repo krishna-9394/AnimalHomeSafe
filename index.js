@@ -1,6 +1,20 @@
 // Importing express module 
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
+
+const cors = require('cors');
+const whitelist = ['http://127.0.0.1:5500'];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors());
+
 
 const pet_clinic = require('./routes/pet_clinic');
 const zoos = require('./routes/zoos');
