@@ -12,11 +12,14 @@ CREATE TABLE ADDRESS (
 );
 
 CREATE TABLE PRODUCT (
-  product_id INTEGER NOT NULL PRIMARY KEY, 
-  product_name VARCHAR(100),
-  product_description VARCHAR(250),
-  cost INTEGER
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(255),
+    product_description TEXT,
+    cost DECIMAL(10, 2),
+    category VARCHAR(255)
 );
+
+
 
 CREATE TABLE RETAIL_STORE (
   shop_id INTEGER PRIMARY KEY,
@@ -67,6 +70,7 @@ CREATE TABLE ANIMAL_PLACE (
   type_of_place VARCHAR(50),
   FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
 );
+
 
 CREATE TABLE PRODUCTS_LIST_OF_ALL_SHOPS (
   product_id INTEGER,
@@ -160,50 +164,53 @@ INSERT INTO ADDRESS (address_id, street_name, city, state, pincode) VALUES
 
 -- --------------
 -- Product Data
-INSERT INTO PRODUCT (product_id, product_name, product_description, cost) VALUES
-(1, 'Dog Collar', 'Adjustable collar for medium-sized dogs', 300),
-(2, 'Catnip Toy', 'Interactive toy filled with catnip', 150),
-(3, 'Bird Seed Mix', 'Nutritious mix of seeds for pet birds', 200),
-(4, 'Aquarium Filter', 'Filter for freshwater aquariums up to 50L', 900),
-(5, 'Hamster Wheel', 'Exercise wheel for hamsters and gerbils', 450),
-(6, 'Horse Saddle', 'Leather saddle for riding horses', 7500),
-(7, 'Reptile Heat Lamp', 'Infrared heat lamp for reptile terrariums', 1100),
-(8, 'Rabbit Hutch', 'Outdoor wooden hutch for rabbits', 3200),
-(9, 'Flea and Tick Shampoo', 'Shampoo for dogs to remove fleas and ticks', 500),
-(10, 'Turtle Food Pellets', 'Nutritious pellets for pet turtles', 280),
-(11, 'Parrot Perch', 'Natural wood perch for large parrots', 650),
-(12, 'Kitten Litter', 'Clumping cat litter for kittens', 300),
-(13, 'Dog Bone Chew', 'Natural bone chew for dogs', 230),
-(14, 'Fish Tank Decor', 'Artificial coral decoration for fish tanks', 750),
-(15, 'Puppy Training Pads', 'Absorbent pads for puppy potty training', 400),
-(16, 'Guinea Pig Cage', 'Spacious cage with play area for guinea pigs', 2800),
-(17, 'Dog Leash', 'Durable leash for walking dogs', 350),
-(18, 'Cat Scratching Post', 'Post with sisal rope for cat scratching', 800),
-(19, 'Bird Bath', 'Hanging bath for garden birds', 650),
-(20, 'Dog Dental Treats', 'Treats to help reduce plaque in dogs', 500);
+INSERT INTO PRODUCT (product_id, product_name, product_description, cost, category) VALUES
+(1, 'Dog Collar', 'Adjustable collar for medium-sized dogs', 300, 'Dog Accessory'),
+(2, 'Catnip Toy', 'Interactive toy filled with catnip', 150, 'Cat Toy'),
+(3, 'Bird Seed Mix', 'Nutritious mix of seeds for pet birds', 200, 'Bird Food'),
+(4, 'Aquarium Filter', 'Filter for freshwater aquariums up to 50L', 900, 'Fish Accessory'),
+(5, 'Hamster Wheel', 'Exercise wheel for hamsters and gerbils', 450, 'Hamster Accessory'),
+(6, 'Horse Saddle', 'Leather saddle for riding horses', 7500, 'Horse Accessory'),
+(7, 'Reptile Heat Lamp', 'Infrared heat lamp for reptile terrariums', 1100, 'Reptile Accessory'),
+(8, 'Rabbit Hutch', 'Outdoor wooden hutch for rabbits', 3200, 'Rabbit Furniture'),
+(9, 'Flea and Tick Shampoo', 'Shampoo for dogs to remove fleas and ticks', 500, 'Dog Care'),
+(10, 'Turtle Food Pellets', 'Nutritious pellets for pet turtles', 280, 'Turtle Food'),
+(11, 'Parrot Perch', 'Natural wood perch for large parrots', 650, 'Bird Accessory'),
+(12, 'Kitten Litter', 'Clumping cat litter for kittens', 300, 'Cat Care'),
+(13, 'Dog Bone Chew', 'Natural bone chew for dogs', 230, 'Dog Toy'),
+(14, 'Fish Tank Decor', 'Artificial coral decoration for fish tanks', 750, 'Fish Decor'),
+(15, 'Puppy Training Pads', 'Absorbent pads for puppy potty training', 400, 'Dog Care'),
+(16, 'Guinea Pig Cage', 'Spacious cage with play area for guinea pigs', 2800, 'Guinea Pig Furniture'),
+(17, 'Dog Leash', 'Durable leash for walking dogs', 350, 'Dog Accessory'),
+(18, 'Cat Scratching Post', 'Post with sisal rope for cat scratching', 800, 'Cat Furniture'),
+(19, 'Bird Bath', 'Hanging bath for garden birds', 650, 'Bird Accessory'),
+(20, 'Dog Dental Treats', 'Treats to help reduce plaque in dogs', 500, 'Dog Care');
+
 
 -- Inserting Additional Sample Data
-INSERT INTO PRODUCT (product_id, product_name, product_description, cost) VALUES
-(21, 'Squeaky Dog Toy', 'Rubber toy that squeaks when bitten', 280),
-(22, 'Cat Feather Wand', 'Interactive toy with feathers for cats', 220),
-(23, 'Dog Plush Teddy', 'Soft plush teddy bear for dogs', 400),
-(24, 'Rope Tug Toy', 'Durable rope for tug-of-war games with dogs', 320),
-(25, 'Cat Laser Pointer', 'Laser toy for cats to chase', 180),
-(26, 'Bird Swing', 'Wooden swing for pet birds like parrots and finches', 250),
-(27, 'Hamster Ball', 'Transparent ball for hamster exploration', 290),
-(28, 'Pet Teepee', 'Cozy teepee-style resting place for cats or small dogs', 1400),
-(29, 'Dog Memory Foam Bed', 'Memory foam bed for elderly or arthritic dogs', 2500),
-(30, 'Cat Window Perch', 'Secure perch for cats to observe from windows', 1100),
-(31, 'Rabbit Play Tunnel', 'Flexible tunnel for rabbits to play and hide', 650),
-(32, 'Aquarium Cave', 'Decorative cave for fish to hide', 600),
-(33, 'Reptile Hideout', 'Shaded area for reptiles to rest and hide', 500),
-(34, 'Bird Ladder', 'Wooden ladder for birds to climb and perch', 350),
-(35, 'Dog Puzzle Toy', 'Toy that dispenses treats as the dog solves the puzzle', 700),
-(36, 'Interactive Cat Ball', 'Ball that moves and lights up, interactive for cats', 380),
-(37, 'Wooden Pet House', 'Outdoor wooden shelter for cats or small dogs', 5000),
-(38, 'Self-Heating Pet Mat', 'Mat that reflects pet\'s heat, keeping them warm', 900),
-(39, 'Dog Agility Kit', 'Set of hurdles and tunnels for dog agility training', 4500),
-(40, 'Catnip Spray', 'Spray to entice cats towards toys or scratch posts' , 250);
+
+INSERT INTO PRODUCT (product_id, product_name, product_description, cost, category) VALUES
+(21, 'Squeaky Dog Toy', 'Rubber toy that squeaks when bitten', 280, 'Dog Toy'),
+(22, 'Cat Feather Wand', 'Interactive toy with feathers for cats', 220, 'Cat Toy'),
+(23, 'Dog Plush Teddy', 'Soft plush teddy bear for dogs', 400, 'Dog Toy'),
+(24, 'Rope Tug Toy', 'Durable rope for tug-of-war games with dogs', 320, 'Dog Toy'),
+(25, 'Cat Laser Pointer', 'Laser toy for cats to chase', 180, 'Cat Toy'),
+(26, 'Bird Swing', 'Wooden swing for pet birds like parrots and finches', 250, 'Bird Accessory'),
+(27, 'Hamster Ball', 'Transparent ball for hamster exploration', 290, 'Hamster Toy'),
+(28, 'Pet Teepee', 'Cozy teepee-style resting place for cats or small dogs', 1400, 'Pet Furniture'),
+(29, 'Dog Memory Foam Bed', 'Memory foam bed for elderly or arthritic dogs', 2500, 'Dog Bed'),
+(30, 'Cat Window Perch', 'Secure perch for cats to observe from windows', 1100, 'Cat Furniture'),
+(31, 'Rabbit Play Tunnel', 'Flexible tunnel for rabbits to play and hide', 650, 'Rabbit Toy'),
+(32, 'Aquarium Cave', 'Decorative cave for fish to hide', 600, 'Fish Accessory'),
+(33, 'Reptile Hideout', 'Shaded area for reptiles to rest and hide', 500, 'Reptile Accessory'),
+(34, 'Bird Ladder', 'Wooden ladder for birds to climb and perch', 350, 'Bird Accessory'),
+(35, 'Dog Puzzle Toy', 'Toy that dispenses treats as the dog solves the puzzle', 700, 'Dog Toy'),
+(36, 'Interactive Cat Ball', 'Ball that moves and lights up, interactive for cats', 380, 'Cat Toy'),
+(37, 'Wooden Pet House', 'Outdoor wooden shelter for cats or small dogs', 5000, 'Pet Furniture'),
+(38, 'Self-Heating Pet Mat', 'Mat that reflects pet\'s heat, keeping them warm', 900, 'Pet Bed'),
+(39, 'Dog Agility Kit', 'Set of hurdles and tunnels for dog agility training', 4500, 'Dog Training'),
+(40, 'Catnip Spray', 'Spray to entice cats towards toys or scratch posts' , 250, 'Cat Accessory');
+
 
 
 -- Inserting Retail Store Data
@@ -249,6 +256,7 @@ INSERT INTO RETAIL_STORE (shop_id, shop_name, owner_name, contact_number, addres
 
 -- Inserting Sample Data for retail stores
 -- Table creation (for reference)
+
 CREATE TABLE PET_CLINIC (
   clinic_id INTEGER PRIMARY KEY,
   clinic_name VARCHAR(50),
@@ -436,3 +444,153 @@ VALUES
 (28, 'Bright and colorful.', 'Iguana', 'Green', 'None', 'Medium', 'Leafy greens, fruits.', 'Female', 40, 18, FALSE, 'Reptile'),
 (29, 'Small and active.', 'Turtle', 'Red-eared Slider', 'None', 'Small', 'Aquatic plants, insects, fish.', 'Male', 35, 10, FALSE, 'Reptile'),
 (30, 'Lively and noisy.', 'Duck', 'Mallard', 'Feather dust', 'Medium', 'Grains, insects, small fish.', 'Female', 33, -5, TRUE, 'Bird');
+
+
+
+INSERT INTO PRODUCTS_LIST_OF_ALL_SHOPS (product_id, shop_id) VALUES
+-- Shop 1
+(5, 1),
+(7, 1),
+(12, 1),
+(16, 1),
+(20, 1),
+(24, 1),
+(28, 1),
+(35, 1),
+
+-- Shop 2
+(3, 2),
+(6, 2),
+(10, 2),
+(13, 2),
+(15, 2),
+(17, 2),
+(25, 2),
+(27, 2),
+(29, 2),
+(33, 2),
+-- Shop 3
+(1, 
+3),
+(4, 3),
+(9, 3),
+(11, 3),
+(14, 3),
+(22, 3),
+(23, 3),
+(30, 3),
+(31, 3),
+(36, 3),
+(38, 3),
+
+-- Shop 4
+(2, 4),
+(8, 4),
+(18, 4),
+(19, 4),
+(21, 4),
+(26, 4),
+(32, 4),
+(37, 4),
+
+-- Shop 5
+(3, 5),
+(7, 5),
+(10, 5),
+(20, 5),
+(34, 5),
+(39, 5);
+
+INSERT INTO PRODUCTS_LIST_OF_ALL_SHOPS (product_id, shop_id) VALUES
+(5, 38),
+(15, 38),
+(24, 38),
+(28, 38),
+(35, 38),
+(37, 38),
+(40, 38);
+
+INSERT INTO PRODUCTS_LIST_OF_ALL_SHOPS (product_id, shop_id) VALUES
+(8, 6),
+(15, 6),
+(12, 7),
+(24, 7),
+(31, 7),
+(4, 8),
+(33, 8),
+(5, 9),
+(22, 9),
+(39, 9),
+(18, 10),
+(28, 10),
+(1, 11),
+(21, 11),
+(35, 11),
+(11, 12),
+(19, 12),
+(3, 13),
+(27, 13),
+(36, 13),
+(10, 14),
+(25, 14),
+(6, 15),
+(23, 15),
+(37, 15),
+(2, 16),
+(29, 16),
+(13, 17),
+(34, 17),
+(40, 17),
+(8, 18),
+(15, 18),
+(22, 18),
+(4, 19),
+(18, 19),
+(12, 20),
+(25, 20),
+(38, 20),
+(6, 21),
+(33, 21),
+(1, 22),
+(21, 22),
+(37, 22),
+(9, 23),
+(19, 23),
+(28, 23),
+(10, 24),
+(30, 24),
+(40, 24),
+(5, 25),
+(15, 25),
+(7, 26),
+(27, 26),
+(37, 26),
+(3, 27),
+(13, 27),
+(11, 28),
+(22, 28),
+(33, 28),
+(4, 29),
+(14, 29),
+(24, 29),
+(20, 30),
+(31, 30),
+(2, 31),
+(12, 31),
+(9, 32),
+(19, 32),
+(29, 32),
+(6, 33),
+(16, 33),
+(26, 33),
+(1, 34),
+(21, 34),
+(8, 35),
+(18, 35),
+(28, 35),
+(3, 36),
+(23, 36),
+(33, 36),
+(12, 37),
+(22, 37),
+(32, 37);
