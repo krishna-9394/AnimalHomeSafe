@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const connection = require('../db');
 
-const baseQuery = "select pc.clinic_id as id, pc.clinic_name as clinic_name, pc.doctor_name as doctor_name, pc.contact_number as contact_number, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from pet_clinic as pc join address as adr on pc.address_id = adr.address_id";
+const baseQuery = "select c.clinic_id as id, c.clinic_name as clinicName, c.doctor_name as doctorName, c.contact_number as contactNumber, a.street_name as streetName, a.city, a.state, a.pincode from pet_clinic as c join address as a on a.address_id = c.address_id";
 
 router.get('/', (req, res) => {
     const sql_query = baseQuery+";";
@@ -18,7 +18,20 @@ router.get('/', (req, res) => {
 
 router.get('/id', (req, res) => {
     const userId = req.query.id;
-    const sql_query = baseQuery+" where pc.clinic_id = " + userId + ";";
+    const sql_query = baseQuery+" where c.clinic_id = " + userId + ";";
+    connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+router.get('/name', (req, res) => {
+    const clinicName = req.query.name;
+    const sql_query = baseQuery+" where c.clinic_name LIKE '" + clinicName + "%' OR c.clinic_name LIKE '%"+clinicName+"' OR c.clinic_name LIKE '%"+clinicName+"%';";
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
@@ -30,29 +43,27 @@ router.get('/id', (req, res) => {
 });
 
 router.get('/city', (req, res) => {
-    const city_name = req.query.city;
-    const sql_query = baseQuery+' where adr.city = "' + city_name + '";';
+    const city = req.query.city;
+    const sql_query = baseQuery+" where a.city LIKE '" + city + "%' OR a.city LIKE '%"+city+"' OR a.city LIKE '%"+city+"%';"
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
             res.send('Error fetching data from database');
             return;
         }
-        console.log(results);
         res.json(results);
     });
 });
 
 router.get('/state', (req, res) => {
-    const state_name = req.query.state;
-    const sql_query = baseQuery+' where adr.state = "' + state_name + '";';
+    const state = req.query.state;
+    const sql_query = baseQuery+" where a.state LIKE '" + state + "%' OR a.state LIKE '%"+state+"' OR a.state LIKE '%"+state+"%';"
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
             res.send('Error fetching data from database');
             return;
         }
-        console.log(results);
         res.json(results);
     });
 });
