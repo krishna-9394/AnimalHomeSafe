@@ -29,9 +29,22 @@ router.get('/id', (req, res) => {
     });
 });
 
+router.get('/name', (req, res) => {
+    const clinicName = req.query.name;
+    const sql_query = baseQuery+" where c.clinic_name LIKE '" + clinicName + "%' OR c.clinic_name LIKE '%"+clinicName+"' OR c.clinic_name LIKE '%"+clinicName+"%';";
+    connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
+});
+
 router.get('/city', (req, res) => {
-    const city_name = req.query.city;
-    const sql_query = baseQuery+' where a.city = "' + city_name + '";';
+    const city = req.query.city;
+    const sql_query = baseQuery+" where a.city LIKE '" + city + "%' OR a.city LIKE '%"+city+"' OR a.city LIKE '%"+city+"%';"
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
@@ -43,8 +56,8 @@ router.get('/city', (req, res) => {
 });
 
 router.get('/state', (req, res) => {
-    const state_name = req.query.state;
-    const sql_query = baseQuery+' where a.state = "' + state_name + '";';
+    const state = req.query.state;
+    const sql_query = baseQuery+" where a.state LIKE '" + state + "%' OR a.state LIKE '%"+state+"' OR a.state LIKE '%"+state+"%';"
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
