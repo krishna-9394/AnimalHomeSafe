@@ -58,6 +58,7 @@ CREATE TABLE ANIMAL_PLACE (
   FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
 );
 
+select * from ANIMAL_PLACE JOIN ADDRESS WHERE ADDRESS.address_id = ANIMAL_PLACE.address_id order by rand() limit 5;
 
 CREATE TABLE PRODUCTS_LIST_OF_ALL_SHOPS (
   product_id INTEGER,
@@ -573,3 +574,61 @@ INSERT INTO PRODUCTS_LIST_OF_ALL_SHOPS (product_id, shop_id) VALUES
 (12, 37),
 (22, 37),
 (32, 37);
+
+-- Stray Animals Management
+CREATE TABLE StrayAnimalGuidelines (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    AnimalType VARCHAR(255) NOT NULL,
+    Guidelines JSON
+);
+
+-- Inserting guidelines for dogs
+INSERT INTO StrayAnimalGuidelines (AnimalType, Guidelines) VALUES
+('Dog', '[
+    {"title": "Approach Carefully", "content": "Always approach a stray dog cautiously and slowly. Avoid direct eye contact, which they may see as a threat."},
+    {"title": "Check for Identification", "content": "Look for any collars or tags that may provide information about the dog\'s owner."},
+    {"title": "Use Food to Gain Trust", "content": "Offer food or treats to gain the dog\'s trust. Make sure the food is suitable for dogs."},
+    {"title": "Check Health Signs", "content": "Look for signs of illness or injury. Do not approach if the dog seems sick or aggressive."},
+    {"title": "Use Leash If Possible", "content": "If you have a leash, carefully put it on the dog to gain better control."},
+    {"title": "Observe Behavior", "content": "Spend some time observing the dog\'s behavior to gauge its temperament."},
+    {"title": "Call Authorities", "content": "If the dog seems aggressive or severely ill, it\'s best to call animal control."},
+    {"title": "Take to Safe Location", "content": "Once the dog is comfortable, take it to a safe location until you can find its owner or a new home."}]'
+);
+
+-- Inserting guidelines for cats
+INSERT INTO StrayAnimalGuidelines (AnimalType, Guidelines) VALUES
+('Cat', '[
+    {"title": "Don\'t Chase", "content": "Never chase a stray cat as it may become frightened and run away."},
+    {"title": "Offer Food", "content": "Offer some cat food or treats to attract the stray cat."},
+    {"title": "Slow Movements", "content": "Make slow, deliberate movements to avoid startling the cat."},
+    {"title": "Check for ID", "content": "If possible, check for a collar or any form of identification."},
+    {"title": "Use Carrier", "content": "Use a carrier to safely transport the cat."},
+    {"title": "Check for Health Issues", "content": "Look for signs like limping or distressed meowing, which might indicate health issues."},
+    {"title": "Allow the Cat to Come to You", "content": "Sit or crouch down and extend your hand, allowing the cat to approach you."},
+    {"title": "Call for Help", "content": "If the cat appears sick or injured, call animal welfare services immediately."}]'
+);
+
+INSERT INTO StrayAnimalGuidelines (AnimalType, Guidelines) VALUES
+('Cow', '[
+    {"title": "Keep Distance", "content": "Maintain a safe distance initially. Do not make sudden movements."},
+    {"title": "Do Not Startle", "content": "Avoid loud noises or actions that might scare the cow."},
+    {"title": "Check Identification", "content": "Look for any tags, brands, or other identifiers."},
+    {"title": "Contact Local Authorities", "content": "Inform local animal control or farmers who might be searching for the stray cow."},
+    {"title": "Provide Water and Food", "content": "Offer fresh water and suitable food like hay."},
+    {"title": "Check for Illness", "content": "Observe the cow for signs of illness such as limping or labored breathing."},
+    {"title": "Use Caution When Approaching", "content": "Approach the cow cautiously, especially if it appears anxious or agitated."},
+    {"title": "Secure Area", "content": "If possible, guide the cow to a secured fenced area while waiting for authorities."}]'
+);
+
+-- Inserting guidelines for goats
+INSERT INTO StrayAnimalGuidelines (AnimalType, Guidelines) VALUES
+('Goat', '[
+    {"title": "Approach Slowly", "content": "Move slowly to avoid frightening the goat."},
+    {"title": "Check for Tags or Brands", "content": "Examine the goat for any form of identification like ear tags or brands."},
+    {"title": "Offer Food", "content": "Offer grains or fresh vegetables to win its trust."},
+    {"title": "Contact Owners or Authorities", "content": "If identification is found, contact the owners or else notify local animal control."},
+    {"title": "Be Cautious of Horns", "content": "Some goats have horns and can use them when scared or threatened."},
+    {"title": "Assess Health", "content": "Look for signs of illness or injury such as coughing, limping, or visible wounds."},
+    {"title": "Use Rope for Control", "content": "If available, use a rope to guide the goat."},
+    {"title": "Temporary Shelter", "content": "Provide a temporary shelter like a pen if you have one, until the owner or authorities arrive."}]'
+);
