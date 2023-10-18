@@ -75,3 +75,61 @@ body {
     border-radius: 5px;
     font-family: 'Poppins', Arial, sans-serif;
 }
+
+#guidelines-section {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-around; */
+  }
+  
+  .guideline-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    margin: 4px;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 8px;
+  }
+
+  .guideline-card:hover{
+    transform: scale(1.03); 
+  }
+  
+  .guideline-title {
+    font-weight: bold;
+  }
+  
+  .guideline-content {
+    margin-top: 10px;
+  }
+  
+ /* Container for the additional cards */
+.additional-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* The buttons inside the additional card */
+.additional-card button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 5px; /* Add a little margin between buttons */
+}
+
+/* Hover state */
+.additional-card button:hover {
+    background-color: #0056b3;
+}
+
+/* Active state */
+.additional-card button:active {
+    background-color: #004499;
+}
