@@ -25,16 +25,16 @@
     </div>
 
     <div class="search">
-        <input type="text" placeholder="Search...">
-        <select class="search-filter">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <select class="search-filter" id="searchFilter">
             <option value="name">Name</option>
             <option value="city">City</option>
             <option value="state">State</option>
         </select>
-        <button>Search</button>
+        <button id="searchButton">Search</button>
     </div>
 
-    <!-- Zoos Display Section -->
+    <!-- Clinic Display Section -->
     <div id="clinicDisplay">
         <!-- Dynamically added by JavaScript -->
     </div>
@@ -50,7 +50,25 @@
           <button onclick="closePopup()">Close</button>
       </div>
       <script>
-          const clinics = [{
+        document.getElementById('searchButton').addEventListener('click', searchClinic);
+        function searchClinic() {
+            const searchTerm = document.getElementById('searchInput').value;
+            const searchFilter = document.getElementById('searchFilter').value;
+            var endPoints = `${searchFilter}?${searchFilter}=${searchTerm}`;
+            if(searchTerm.trim()==='') endPoints = ``;
+            // Make an API call using the searchTerm and searchFilter
+            fetch(`http://localhost:3000/routes/pet_clinic/`+endPoints)
+            .then(response => response.json())
+            .then(data => {
+            clinics = data;
+            renderClinic(clinics);
+            })
+            .catch(error => {
+            console.error('Error fetching clinic data:', error);
+            });
+        }
+
+          var clinics = [{
                 clinicId: "",
                 name: "Doggy World",
                 doctorName: "Dr Kavitha Aggrawal",
@@ -84,10 +102,10 @@
                 clinicId: "",
                 name: "Pawswell Pet Clinic",
                 doctorName: "Dr. Pashaw",
-                state: "Golf Green",
+                state: "West Bengal",
                 city: "Kolkata",
                 image: "../resources/images/clinic4.jpg",
-                address: "1/2, South City Complex, Prince Golam Mohammad Shah Road, Golf Green, Kolkata - 700095",
+                address: "1/2, South City Complex, Prince Golam Mohammad Shah Road, Kolkata, West Bengal - 700095",
                 contactNo: "09606210622"
               }
           ];
@@ -142,17 +160,6 @@
                 // Append the clinic card to the main container
                 clinicContainer.appendChild(clinicCard);
             }
-          }
-
-
-          function filterClinic() {
-              const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-              const filteredClinic = clinic.filter(clinic =>
-                  clinic.name.toLowerCase().includes(searchTerm) ||
-                  clinic.state.toLowerCase().includes(searchTerm) ||
-                  clinic.city.toLowerCase().includes(searchTerm)
-              );
-              renderZoos(filteredClinic);
           }
 
           function showPopUp(clinicName, address, imageURL, contactNo, doctorName) {
