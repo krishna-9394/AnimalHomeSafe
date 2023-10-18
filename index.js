@@ -20,11 +20,13 @@ const pet_clinic = require('./routes/pet_clinic');
 const zoos = require('./routes/zoos');
 const wildlife_sanctuary = require('./routes/wildlife_sanctuary');
 const customer = require('./routes/customer');
+const retailStore = require('./routes/retail_store');
 
 app.use('/routes/pet_clinic/',pet_clinic);
 app.use('/routes/zoos/',zoos);
 app.use('/routes/wildlife_sanctuary/',wildlife_sanctuary);
 app.use('/routes/customer/',customer);
+app.use('/routes/retail_store/',retailStore);
 
 app.get('/', (req,res) => {
     res.send("You have entered common url");

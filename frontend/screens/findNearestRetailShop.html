@@ -23,13 +23,14 @@
     </div>
 
     <div class="search">
-        <input type="text" placeholder="Search...">
-        <select class="search-filter">
-            <option value="name">Name</option>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <select class="search-filter" id="searchFilter">
+            <option value="store_name">Store Name</option>
             <option value="city">City</option>
             <option value="state">State</option>
+            <option value="product_name">Product Name</option>
         </select>
-        <button>Search</button>
+        <button id="searchButton">Search</button>
     </div>
 
     <!-- Store Display Section -->
@@ -47,148 +48,208 @@
         </div>
         <button onclick="closePopup()">Close</button>
     </div>
+    <!-- Popup structure -->
+   <div id="productPopup" class="product-popup">
+       <div class="product-popup-content">
+           <span class="close-btn"></span>
+           <h2>Products</h2>
+           <table>
+               <thead>
+                   <tr>
+                       <th>ID</th>
+                       <th>Name</th>
+                       <th>Description</th>
+                       <th>Cost</th>
+                       <th>Category</th>
+                   </tr>
+               </thead>
+               <tbody id="productTableBody">
+                   <!-- Rows will be added here dynamically using JavaScript -->
+               </tbody>
+           </table>
+           <button class="popup-button" onclick="closeProductPopup()">Close</button>
+       </div>
+   </div>
+
+
     <script>
-        const stores = [
-        // Mumbai
-        {
-        storeId: "",
-        storeName: "Mumbai Pet Haven",
-        ownerName: "Rajiv Mehta",
-        state: "Maharashtra",
-        city: "Mumbai",
-        image: "../resources/images/store1.jpg",
-        address: "123 Marine Drive, Mumbai - 400020",
-        contactNo: "09712345678"
-        },
-        {
-        storeId: "",
-        storeName: "Mumbai Pet Paradise",
-        ownerName: "Sneha Joshi",
-        state: "Maharashtra",
-        city: "Mumbai",
-        image: "../resources/images/store2.jpg",
-        address: "456 Versova Beach, Mumbai - 400061",
-        contactNo: "09787654321"
-        },
-
-        // Kolkata
-        {
-        storeId: "",
-        storeName: "Kolkata Pet Central",
-        ownerName: "Arijit Banerjee",
-        state: "West Bengal",
-        city: "Kolkata",
-        image: "../resources/images/store3.jpg",
-        address: "78 Park Street, Kolkata - 700016",
-        contactNo: "09876543210"
-        },
-        {
-        storeId: "",
-        storeName: "Kolkata Pet World",
-        ownerName: "Malini Ghosh",
-        state: "West Bengal",
-        city: "Kolkata",
-        image: "../resources/images/store4.jpg",
-        address: "12 Ballygunge Place, Kolkata - 700019",
-        contactNo: "09812345670"
-        },
-
-        // Delhi
-        {
-        storeId: "",
-        storeName: "Delhi Pet House",
-        ownerName: "Ananya Sharma",
-        state: "Delhi",
-        city: "Delhi",
-        image: "../resources/images/store5.jpg",
-        address: "234 Connaught Place, Delhi - 110001",
-        contactNo: "09912345678"
-        },
-        {
-        storeId: "",
-        storeName: "Delhi Pet Empire",
-        ownerName: "Vivek Oberoi",
-        state: "Delhi",
-        city: "Delhi",
-        image: "../resources/images/store6.jpg",
-        address: "567 Rajouri Garden, Delhi - 110027",
-        contactNo: "09987654321"
-        },
-
-        // Bangalore
-        {
-        storeId: "",
-        storeName: "Bangalore Pet Hub",
-        ownerName: "Karthik Rao",
-        state: "Karnataka",
-        city: "Bangalore",
-        image: "../resources/images/store7.jpg",
-        address: "123 MG Road, Bangalore - 560001",
-        contactNo: "09654321098"
-        },
-        {
-        storeId: "",
-        storeName: "Bangalore Pet Kingdom",
-        ownerName: "Lakshmi Narayan",
-        state: "Karnataka",
-        city: "Bangalore",
-        image: "../resources/images/store8.jpg",
-        address: "456 Koramangala, Bangalore - 560034",
-        contactNo: "09609876543"
+        document.getElementById('searchButton').addEventListener('click', searchStores);
+        function searchStores() {
+            const searchTerm = document.getElementById('searchInput').value;
+            const searchFilter = document.getElementById('searchFilter').value;
+            var endPoints = `${searchFilter}?${searchFilter}=${searchTerm}`;
+            if(searchTerm.trim()==='') endPoints = ``;
+            // Make an API call using the searchTerm and searchFilter
+            fetch(`http://localhost:3000/routes/retail_store/`+endPoints)
+            .then(response => response.json())
+            .then(data => {
+            stores = data;
+            renderStores(stores);
+            })
+            .catch(error => {
+            console.error('Error fetching clinic data:', error);
+            });
         }
+        
+        var stores = [
+        // Mumbai
+            {
+            storeId: "1",
+            storeName: "PetMart",
+            ownerName: "Rajesh Kumar",
+            state: "West Bengal",
+            city: "Kolkata",
+            image: "../resources/images/store5.jpg",
+            address: "Park Street, Kolkata - 700016",
+            contactNo: "98450"
+            },
+            {
+            storeId: "2",
+            storeName: "Animal House",
+            ownerName: "Sunita Patel",
+            state: "Maharashtra",
+            city: "Pune",
+            image: "../resources/images/store7.jpg",
+            address: "JM Road, Pune - 411004",
+            contactNo: "98350"
+            },
+            {
+            storeId: "3",
+            storeName: "Paws & Tails",
+            ownerName: "Amit Roy",
+            state: "Kerala",
+            city: "Kozhikode",
+            image: "../resources/images/store8.jpg",
+            address: "Tiger Path, Kozhikode - 673596",
+            contactNo: "983601"
+            },
+            {
+            storeId: "4",
+            storeName: "Fluffy World",
+            ownerName: "Anil Sharma",
+            state: "Karnataka",
+            city: "Bangalore",
+            image: "../resources/images/store5.jpg",
+            address: "Koramangala, Bangalore - 560034",
+            contactNo: "98100"
+            }
         ];
 
+         function renderStores(storesToRender) {
+         const storeContainer = document.getElementById('storeDisplay');
+         storeContainer.innerHTML = '';
 
-        function renderStores(storesToRender) {
-            const storeContainer = document.getElementById('storeDisplay');
-            storeContainer.innerHTML = '';
+         for (const store of storesToRender) {
+         // Create the store card container
+         const storeCard = document.createElement('div');
+         storeCard.className = 'store-card';
 
-            for (const store of storesToRender) {
-                // Create the store card container
-                const storeCard = document.createElement('div');
-                storeCard.className = 'store-card';
+         // Create and append image to the store card
+         const img = document.createElement('img');
+         img.src = store.image;
+         img.alt = store.name;
+         storeCard.appendChild(img);
 
-                // Create and append image to the store card
-                const img = document.createElement('img');
-                img.src = store.image;
-                img.alt = store.name;
-                storeCard.appendChild(img);
+         // Create and append the store description container
+         const storeDescription = document.createElement('div');
+         storeDescription.className = 'store-description';
+         storeCard.appendChild(storeDescription);
 
-                // Create and append the store description container
-                const storeDescription = document.createElement('div');
-                storeDescription.className = 'store-description';
-                storeCard.appendChild(storeDescription);
+         // Create and append h3 tag for store name
+         const h3 = document.createElement('h3');
+         h3.textContent = store.storeName;
+         storeDescription.appendChild(h3);
 
-                // Create and append h3 tag for store name
-                const h3 = document.createElement('h3');
-                h3.textContent = store.storeName;
-                storeDescription.appendChild(h3);
+         // Create and append p tag for contact number
+         const p = document.createElement('p');
+         p.textContent = store.contactNo;
+         storeDescription.appendChild(p);
 
-                // Create and append p tag for contact number
-                const p = document.createElement('p');
-                p.textContent = store.contactNo;
-                storeDescription.appendChild(p);
+         var city_state = store.city;
+         city_state += ", ";
+         city_state += store.state;
+         // Create and append p tag for contact number
+         const p2 = document.createElement('p');
+         p2.textContent = city_state;
+         storeDescription.appendChild(p2);
 
-                var city_state = store.city;
-                city_state += ", ";
-                city_state += store.state;
-                // Create and append p tag for contact number
-                const p2 = document.createElement('p');
-                p2.textContent = city_state;
-                storeDescription.appendChild(p2);
+         // Create and append the View Details button
+         const detailsBtn = document.createElement('button');
+         detailsBtn.textContent = 'View Details';
+         detailsBtn.className = 'sponsor-btn';
+         detailsBtn.onclick = function () {
+         showPopUp(store.storeName, store.address, store.image, store.contactNo, store.ownerName);
+         };
+         storeCard.appendChild(detailsBtn);
 
-                // Create and append the sponsor button
-                const sponsorBtn = document.createElement('button');
-                sponsorBtn.textContent = 'View Details';
-                sponsorBtn.className = 'sponsor-btn';
-                sponsorBtn.onclick = function () {
-                    showPopUp(store.storeName, store.address, store.image, store.contactNo, store.ownerName);
-                };
-                storeCard.appendChild(sponsorBtn);
 
-                // Append the store card to the main container
-                storeContainer.appendChild(storeCard);
+         const productBtn = document.createElement('button');
+         productBtn.textContent = 'View Products';
+         productBtn.className = 'sponsor-btn';
+         productBtn.onclick = function () {
+         showProducts(store.storeId)
+         };
+         storeCard.appendChild(productBtn);
+
+         // Append the store card to the main container
+         storeContainer.appendChild(storeCard);
+         }
+         }
+
+        var products = [];
+
+        function showProducts(storeId) {
+             var endPoints = `shop_id=${storeId}`;
+             fetch(`http://localhost:3000/routes/retail_store/id/products?`+endPoints)
+             .then(response => response.json())
+             .then(data => {
+             products = data;
+             console.log(data);
+             renderProducts(products);
+             })
+             .catch(error => {
+             console.error('Error fetching clinic data:', error);
+             });
+        }
+
+        document.querySelector(".popup-button").addEventListener("click", function() {
+            document.getElementById("productPopup").style.display = "none";
+        });
+
+        function renderProducts(products) {
+            var tbody = document.getElementById('productTableBody');
+
+            while (tbody.firstChild) {
+            tbody.removeChild(tbody.firstChild);
             }
+            for(var i = 0;i<products.length;i++){
+                var product = products[i];
+                var row = document.createElement('tr');
+
+                var tid = document.createElement('td');
+                tid.textContent = (i+1);
+                row.appendChild(tid);
+
+                var tname = document.createElement('td');
+                tname.textContent = product.name;
+                row.appendChild(tname);
+
+                var tdesc = document.createElement('td');
+                tdesc.textContent = product.description;
+                row.appendChild(tdesc);
+                
+                var tcost = document.createElement('td');
+                tcost.textContent = product.cost;
+                row.appendChild(tcost);
+
+                var tcat = document.createElement('td');
+                tcat.textContent = product.category;
+                row.appendChild(tcat);
+
+                tbody.appendChild(row);
+            }
+
+            document.getElementById("productPopup").style.display = "block";
         }
 
 
@@ -197,7 +258,7 @@
             const filteredClinic = clinic.filter(store =>
                 store.name.toLowerCase().includes(searchTerm) ||
                 store.state.toLowerCase().includes(searchTerm) ||
-                store.city.toLowerCase().includes(searchTerm)
+                store.city .toLowerCase().includes(searchTerm)
             );
             renderZoos(filteredStore);
         }
