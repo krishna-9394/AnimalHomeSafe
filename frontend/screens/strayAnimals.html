@@ -23,16 +23,80 @@
         <a href="loginUser.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
+    
+
     <div class="search">
-        <input type="text" id="searchInput" placeholder="Enter the type of stray animal who needs help.....  ">
+        <input type="text" id="searchInput"  placeholder="Enter the type of stray animal who needs help.....  ">
         <button id="searchButton">Search</button>
     </div>
-
-    <div class="results">
-        
+    <center><div class="additional-cards" id="additionalCards" style="display:none;">
+        <div class="additional-card">
+            <!-- Nearby Clinics Button -->
+            <button id="nearbyClinicsButton">Nearby Clinics</button>
+            <!-- Nearby Pet Stores Button -->
+            <button id="nearbyPetStoresButton">Nearby Pet Stores</button>
+        </div>
     </div>
+    </center>
+    <div id="text" hidden style="margin-left: 15px;"><h2>Guidelines for Stray Animal</h2></div>
+    <div id="guidelines-section">
+        <div id="text" ><h3></h3> </div>
+    </div>
+    
+    
 </body>
 <script>
+
+function renderGuidelines() {
+    const guidelinesSection = document.getElementById("guidelines-section");
+    guidelinesSection.innerHTML = '';
+    const searchTerm = document.getElementById("searchInput").value;
+    
+    if(searchTerm == null || searchTerm.length == 0) {
+        console.log("No search term");
+    } else {
+        fetch(`http://localhost:3000/routes/animal/strayAnimals?strayAnimals=`+searchTerm)
+        .then(response => response.json())
+        .then(data => {
+            const guidelinesData = data[0].Guidelines; // Access the Guidelines key here
+            var a = 1;
+            document.getElementById("text").hidden = false;
+            guidelinesData.forEach(guideline => {
+                const guidelineCard = document.createElement("div");
+                guidelineCard.classList.add("guideline-card");
+      
+                const guidelineTitle = document.createElement("div");
+                guidelineTitle.classList.add("guideline-title");
+                guidelineTitle.textContent = "#"+a+" "+guideline.title;
+                a++;
+      
+                const guidelineContent = document.createElement("div");
+                guidelineContent.classList.add("guideline-content");
+                guidelineContent.textContent = guideline.content;
+      
+                guidelineCard.appendChild(guidelineTitle);
+                guidelineCard.appendChild(guidelineContent);
+                guidelinesSection.appendChild(guidelineCard);
+            });
+            additionalCards.style.display = "block";  
+        })
+        .catch(error => {
+            console.error('Error fetching clinic data:', error);
+        });
+
+        document.getElementById("nearbyClinicsButton").addEventListener("click", function() {
+            window.location.href = 'findNearestClinic.html'; // Navigate to a new HTML page for Nearby Clinics
+        });
+
+        document.getElementById("nearbyPetStoresButton").addEventListener("click", function() {
+            window.location.href = 'findNearestRetailShop.html'; // Navigate to a new HTML page for Nearby Pet Stores
+        });
+    }
+}
+
+
+// Attach the click event listener to the search button
+document.getElementById("searchButton").addEventListener("click", renderGuidelines);
 
 </script>
 </html>
