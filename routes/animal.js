@@ -32,6 +32,20 @@ router.get('/id', (req, res) => {
 router.get('/animal_name', (req, res) => {
     const animalName = req.query.animal_name;
     const sql_query = baseQuery+" where a.animal_name LIKE '" + animalName + "%' OR a.animal_name LIKE '%"+animalName+"' OR a.animal_name LIKE '%"+animalName+"%';";
+     connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+const base_Query2 = 'SELECT Guidelines FROM StrayAnimalGuidelines'
+router.get('/strayAnimals', (req, res) => {
+    const animal_name = req.query.strayAnimals; 
+    const sql_query = base_Query2 + " where AnimalType = '" + animal_name+ "'"; 
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
@@ -67,6 +81,5 @@ router.get('/breed', (req, res) => {
         res.json(results);
     });
 });
-
 
 module.exports = router;
