@@ -78,13 +78,14 @@
             const searchTerm = document.getElementById('searchInput').value;
             const searchFilter = document.getElementById('searchFilter').value;
             var endPoints = `${searchFilter}?${searchFilter}=${searchTerm}`;
+            console.log(endPoints);
             if(searchTerm.trim()==='') endPoints = ``;
             // Make an API call using the searchTerm and searchFilter
             fetch(`http://localhost:3000/routes/retail_store/`+endPoints)
             .then(response => response.json())
             .then(data => {
-            stores = data;
-            renderStores(stores);
+                stores = data;
+                renderStores(stores);
             })
             .catch(error => {
             console.error('Error fetching clinic data:', error);

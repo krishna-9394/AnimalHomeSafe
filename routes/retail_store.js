@@ -80,8 +80,10 @@ router.get('/city', (req, res) => {
         res.json(modifiedData);
     });
 });
+
 router.get('/state', (req, res) => {
     const state_name = req.query.state;
+    console.log(state_name)
     const sql_query = baseQuery+" where adr.state LIKE '" + state_name + "%' OR adr.state LIKE '%"+state_name+"' OR adr.state LIKE '%"+state_name+"%';";
     connection.query(sql_query, (err, results) => {
         if (err) {
