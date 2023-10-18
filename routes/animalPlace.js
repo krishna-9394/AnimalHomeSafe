@@ -3,12 +3,10 @@ const router = express.Router();
 
 const connection = require('../db');
 
-const baseQuery = "select ap.place_id as id, ap.name as name, ap.type_of_place as type, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from pet_clinic as pc join address as adr on pc.address_id = adr.address_id where type_of_place <> 'zoo'";
-
-const customQuery = "select ap.place_id as id, ap.name as name, ap.type_of_place as type from pet_clinic as pc join address as adr on pc.address_id = adr.address_id where type_of_place <> 'zoo'";
+const baseQuery = "select * from ANIMAL_PLACE JOIN ADDRESS WHERE ADDRESS.address_id = ANIMAL_PLACE.address_id";
 
 router.get('/', (req, res) => {
-    const sql_query = customQuery+";";
+    const sql_query = baseQuery+" order by rand() limit 5;";
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
