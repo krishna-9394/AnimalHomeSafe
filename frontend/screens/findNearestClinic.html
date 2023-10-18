@@ -1,178 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
-    <link rel="stylesheet" href="../css/findNearestClinic.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Find Nearest Clinic</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
+        <link rel="stylesheet" href="../css/findNearestClinic.css">
+    </head>
 
-<body>
-<div class="header">
-    <span>
-        <h1 style="font-family: 'Poppins', Arial, sans-serif;">Find Nearest Clinic</h1>
-    </span>
-</div>
-<div class="navbar">
-    <a href="index.html"><i class="fas fa-home"></i> Gentle Guardian</a>
-    <a href="AnimalWellBeing_screen.html" class="active"><i class="fas fa-info-circle"></i> Animal Well-Being</a>
-    <a href="aboutUs.html" target="_blank"><i class="fas fa-paw"></i> About us</a>
-    <a href="contact.html" target="_blank"><i class="fas fa-phone"></i> Contact</a>
-    <a href="loginUser.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-</div>
+    <body>
+        <div class="header">
+            <h1 style="font-family: 'Poppins', Arial, sans-serif;">Animal Wellness Hub</h1>
+        </div>
 
-<div class="search">
-    <input type="text" placeholder="Search...">
-    <select class="search-filter">
-        <option value="name">Name</option>
-        <option value="city">City</option>
-        <option value="state">State</option>
-    </select>
-    <button>Search</button>
-</div>
+        <div class="navbar">
+            <a href="index.html"><i class="fas fa-home"></i> Gentle Gaurdian</a>
+            <a href="AnimalWellBeing_screen.html"><i class="fas fa-info-circle"></i> Animal Home</a>
+            <a href="#" class="active"><i class="fas fa-stethoscope"></i> Find Pet Clinics</a>
+            <a href="../css/loginUser.css" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
 
-<!-- Zoos Display Section -->
-<div id="clinicDisplay">
-    <!-- Dynamically added by JavaScript -->
-</div>
+        <div class="container">
+            <div class="search">
+                <input type="text" placeholder="Search by Name, City, State...">
+                <button>Search</button>
+            </div>
 
-  <!-- Popup structure -->
-  <div class="overlay" onclick="closePopup()"></div>
-  <div class="popup" style="display: none;">
-      <img id="popup-image" src="#" alt="Clinic Image" width="200" height="200">
-      <div class="popup-details">
-          <h2 id="popup-title">Clinic Name</h2>
-          <p id="popup-content">Clinic Details</p>
-      </div>
-      <button onclick="closePopup()">Close</button>
-  </div>
-  <script>
-      const clinics = [{
-            clinicId: "",
-            name: "Doggy World",
-            doctorName: "Dr Kavitha Aggrawal",
-            state: "Delhi",
-            city: "Delhi",
-            image: "../resources/images/clinic1.jpg",
-            address: "Plot Number 147 and 148, Rohini Sector 8, Delhi - 110085",
-            contactNo: "07795669312"
-          },
-          {
-            clinicId: "",
-            name: "BTM Vet Clinic",
-            doctorName: "Dr. Bhavik Patel",
-            state: "Karnataka",
-            city: "Bangalore",
-            image: "../resources/images/clinic2.jpg",
-            address: "No 447, 7th Cross 6th Main, BTM Layout 2nd Stage, Bangalore - 560076",
-            contactNo: "09980873522"
-          },
-          {
-            clinicId: "",
-            name: "Shanti Clinic",
-            doctorName: "Dr. Pooja J Thakur",
-            state: "Maharastra",
-            city: "Mumbai",
-            image: "../resources/images/clinic3.jpg",
-            address: "265 Balkrishna Niwas, Laxmi Nappu Road, Matunga East, Mumbai - 400019",
-            contactNo: "09845228977"
-          },
-          {
-            clinicId: "",
-            name: "Pawswell Pet Clinic",
-            doctorName: "Dr. Pashaw",
-            state: "Golf Green",
-            city: "Kolkata",
-            image: "../resources/images/clinic4.jpg",
-            address: "1/2, South City Complex, Prince Golam Mohammad Shah Road, Golf Green, Kolkata - 700095",
-            contactNo: "09606210622"
-          }
-      ];
+            <div class="clinics-list">
+                <div class="clinic" onclick="showPopup('Veterinary Hospital','+91 6364224813', 'Dr. Hathi', 'No: 16/2, surathkal \n Karnataka-575023', 'https://content.jdmagicbox.com/comp/trichy/a1/0431px431.x431.200907183009.a9a1/catalogue/the-paws-pet-clinic-kattur-trichy-veterinary-hospitals-etva5uwddm.jpg?clr=')">
+                    <img src="https://content.jdmagicbox.com/comp/trichy/a1/0431px431.x431.200907183009.a9a1/catalogue/the-paws-pet-clinic-kattur-trichy-veterinary-hospitals-etva5uwddm.jpg?clr=" alt="Clinic A Image">
+                    <h3>Veterinary Hospital</h3>
+                    <p>Surathkal, Karnataka</p>
+                </div>
+                <div class="clinic" onclick="showPopup('Vanasuma Veterinary Clinic', '+91 7568814039', 'Dr. Vasundra', 'No:16/2, surathkal \n Karnataka-575025', 'https://images.pexels.com/photos/7469226/pexels-photo-7469226.jpeg?auto=compress&cs=tinysrgb&w=600')">
+                    <img src="https://images.pexels.com/photos/7469226/pexels-photo-7469226.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Clinic B Image">
+                    <h3>Vanasuma Veterinary Clinic</h3>
+                    <p>Suratkal, Karnataka</p>
+                </div>
+            </div>
+        </div>
 
-      function renderClinic(clinicsToRender) {
-        const clinicContainer = document.getElementById('clinicDisplay');
-        clinicContainer.innerHTML = '';
+        <!-- Popup structure -->
+    <div class="overlay" onclick="closePopup()"></div>
+        <div class="popup" style="display: none;">
+            <img id="popup-image" src="#" alt="Clinic Image" width="200" height="200">
+            <div class="popup-details">
+                <h2 id="popup-title">Clinic Name</h2>
+                <p id="popup-content">Clinic Details</p>
+            </div>
+            <button onclick="closePopup()">Close</button>
+        </div>
+        <script>
+            function showPopup(clinicName, contactNumber, doctorName, addressDetails, imageURL) {
+                document.getElementById("popup-content").innerText = doctorName + '\n' + contactNumber + '\n' + addressDetails;
+                document.getElementById("popup-title").innerText = clinicName;
+                document.getElementById("popup-image").src = imageURL;
+                document.querySelector(".overlay").style.display = "block";
+                document.querySelector(".popup").style.display = "flex";
+            }
 
-        for (const clinic of clinicsToRender) {
-            // Create the clinic card container
-            const clinicCard = document.createElement('div');
-            clinicCard.className = 'clinic-card';
+            function closePopup() {
+                document.querySelector(".overlay").style.display = "none";
+                document.querySelector(".popup").style.display = "none";
+            }
+        </script>
+    </body>
 
-            // Create and append image to the clinic card
-            const img = document.createElement('img');
-            img.src = clinic.image;
-            img.alt = clinic.name;
-            clinicCard.appendChild(img);
-
-            // Create and append the clinic description container
-            const clinicDescription = document.createElement('div');
-            clinicDescription.className = 'clinic-description';
-            clinicCard.appendChild(clinicDescription);
-
-            // Create and append h3 tag for clinic name
-            const h3 = document.createElement('h3');
-            h3.textContent = clinic.name;
-            clinicDescription.appendChild(h3);
-
-            // Create and append p tag for contact number
-            const p = document.createElement('p');
-            p.textContent = clinic.contactNo;
-            clinicDescription.appendChild(p);
-
-            var city_state = clinic.city;
-            city_state += ", ";
-            city_state += clinic.state;
-            // Create and append p tag for contact number
-            const p2 = document.createElement('p');
-            p2.textContent = city_state;
-            clinicDescription.appendChild(p2);
-
-            // Create and append the sponsor button
-            const sponsorBtn = document.createElement('button');
-            sponsorBtn.textContent = 'View Details';
-            sponsorBtn.className = 'sponsor-btn';
-            sponsorBtn.onclick = function() {
-                showPopUp(clinic.name, clinic.address, clinic.image, clinic.contactNo, clinic.doctorName);
-            };
-            clinicCard.appendChild(sponsorBtn);
-
-            // Append the clinic card to the main container
-            clinicContainer.appendChild(clinicCard);
-        }
-      }
-
-
-      function filterClinic() {
-          const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-          const filteredClinic = clinic.filter(clinic =>
-              clinic.name.toLowerCase().includes(searchTerm) ||
-              clinic.state.toLowerCase().includes(searchTerm) ||
-              clinic.city.toLowerCase().includes(searchTerm)
-          );
-          renderZoos(filteredClinic);
-      }
-
-      function showPopUp(clinicName, address, imageURL, contactNo, doctorName) {
-          document.getElementById("popup-content").innerText = doctorName + '\n' + contactNo + '\n' + address;
-          document.getElementById("popup-title").innerText = clinicName;
-          document.getElementById("popup-image").src = imageURL;
-          document.querySelector(".overlay").style.display = "block";
-          document.querySelector(".popup").style.display = "flex";
-      }
-
-      function closePopup() {
-          document.querySelector(".overlay").style.display = "none";
-          document.querySelector(".popup").style.display = "none";
-      }
-
-      // Render initial zoos on page load
-      renderClinic(clinics);
-  </script>
-</body>
-
-</html>
-
+    </html>

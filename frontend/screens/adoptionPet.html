@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/adoptionPet.css">
+    <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
+
+    <title>Adopt a Pet</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html"><i class="fas fa-home"></i> Gentle Gaurdian</a>
+        <a href="#" class="active"><i class="fas fa-info-circle"></i> Animal Well Being</a>
+        <a href="aboutUs.html" target="_blank"><i class="fas fa-paw"></i> About us</a>
+        <a href="contact.html" target="_blank"><i class="fas fa-phone"></i> Contact</a>
+        <a href="loginUser.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+    <div class="content-wrapper">
+        <div class="container">
+
+            <!-- Adoption Form -->
+            <div class="adoption-form-section">
+                <h1>Adopt a Pet</h1>
+                <form id="adoptionForm">
+                    <input type="text" placeholder="Type (e.g. Dog, Cat)" required>
+                    <input type="text" placeholder="Preferred Breed" required>
+                    <input type="number" placeholder="Age" required>
+                    <input type="text" placeholder="Color" required>
+                    <div class="button-group">
+                        <button type="submit" class="btn primary">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div class="image-section">
+                <img src="../resources/images/loginPageDisplayImage.jpg" alt="animal picture">
+                <p>"Animals are nature's reminder of love's purest form."</p>
+            </div>
+            <!-- Adoption Centers List (Initially Hidden) -->
+            <div class="adoption-centers-section hidden">
+                <!-- Sample adoption center, you can duplicate this for multiple centers -->
+                <div class="center" data-center-id="1">
+                    <img src="../resources/images/loginPageDisplayImage.jpg" alt="Center Image" class="center-image">
+                    <h3>Happy Tails Center</h3>
+                    <p>City, State</p>
+                </div>
+
+                <div class="center" data-center-id="2">
+                    <img src="../resources/images/loginPageDisplayImage.jpg" alt="Center Image" class="center-image">
+                    <h3>Peaceful Paws Haven</h3>
+                    <p>Another City, Another State</p>
+                </div>
+
+                <!-- Add more centers as needed -->
+            </div>
+
+        </div>
+    </div>
+    <div class="modal" id="centerModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-left">
+                <img src="" alt="Center Image" id="modalImage">
+            </div>
+            <div class="modal-right">
+                <h3 id="modalName">Center Name</h3>
+                <p id="modalContact">Contact No: XXX-XXX-XXXX</p>
+                <p id="modalLocation">City, State</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const adoptionForm = document.getElementById('adoptionForm');
+            const formSection = document.querySelector('.adoption-form-section');
+            const imageSection = document.querySelector('.image-section');
+            const centersSection = document.querySelector('.adoption-centers-section');
+            const modal = document.getElementById("centerModal");
+            const closeModal = document.querySelector(".close");
+            const centerImages = document.querySelectorAll(".center-image");
+
+            adoptionForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                formSection.style.display = 'none';
+                imageSection.style.display = 'none';
+                centersSection.classList.remove('hidden');
+            });
+
+            centerImages.forEach(img => {
+                img.addEventListener("click", function () {
+                    // Here, I'm assuming you have some data on the centers in a variable called centersData.
+                    // This is just a mock data for the sake of this example. You should replace with your own data.
+                    let centersData = {
+                        "1": {
+                            name: "Happy Tails Center",
+                            contact: "XXX-XXX-XXXX",
+                            location: "City, State",
+                            image: "../resources/images/loginPageDisplayImage.jpg"
+                        },
+                        "2": {
+                            name: "Peaceful Paws Haven",
+                            contact: "YYY-YYY-YYYY",
+                            location: "Another City, Another State",
+                            image: "../resources/images/loginPageDisplayImage.jpg"
+                        }
+                        // Add more centers as needed
+                    };
+
+                    const centerId = img.parentElement.getAttribute("data-center-id");
+                    const centerData = centersData[centerId];
+                    document.getElementById("modalImage").src = centerData.image;
+                    document.getElementById("modalName").textContent = centerData.name;
+                    document.getElementById("modalContact").textContent = "Contact No: " +
+                        centerData.contact;
+                    document.getElementById("modalLocation").textContent = centerData.location;
+
+                    modal.style.display = "block";
+                });
+            });
+
+            closeModal.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

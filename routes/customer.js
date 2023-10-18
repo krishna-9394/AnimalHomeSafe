@@ -3,18 +3,19 @@ const router = express.Router();
 
 const connection = require('../db');
 
-const baseQuery = '';
+const baseQuery = 'select name, email, sponsor_amount from CUSTOMER ';
 
-router.get('/', (req,res) => {
-    // list of all customers
+router.get('/topFiveSponsors', (req,res) => {
+    const sql_query = baseQuery+" order by sponsor_amount desc limit 5;";
+    connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
 });
 
-router.get('/id', (req,res) => {
-    // details of specific customers
-});
 
-router.get('/topSponsors',(req,res) => {
-    
-});
-
-module.export = router;
+module.exports = router;
