@@ -39,19 +39,6 @@ CREATE TABLE PET_CLINIC (
   FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
 );
 
-CREATE TABLE PET (
-  pet_id INTEGER PRIMARY KEY,
-  description_info VARCHAR(450),
-  animal_name VARCHAR(50),
-  breed VARCHAR(50),
-  allergens VARCHAR(100),
-  size VARCHAR(25),
-  diet_plan VARCHAR(500),
-  gender VARCHAR(25),
-  max_temp_of_survival INTEGER,
-  min_temp_of_survival INTEGER
-);
-
 CREATE TABLE CUSTOMER (
   customer_id INTEGER PRIMARY KEY,
   name VARCHAR(25),
@@ -90,14 +77,6 @@ CREATE TABLE ANIMALS_LIST_IN_ALL_PLACES (
   PRIMARY KEY (pet_id, place_id)
 );
 
--- drop table PETS_LIST_OF_ALL_CUSTOMERS ;  
-CREATE TABLE PETS_LIST_OF_ALL_CUSTOMERS(
-  pet_id INTEGER,
-  customer_id INTEGER,
-  FOREIGN KEY (pet_id) REFERENCES PET(pet_id),
-  FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id),
-  PRIMARY KEY (pet_id, customer_id)
-);
 
 -- Product Data
 INSERT INTO ADDRESS (address_id, street_name, city, state, pincode) VALUES
