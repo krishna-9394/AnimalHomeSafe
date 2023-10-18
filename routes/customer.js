@@ -3,9 +3,7 @@ const router = express.Router();
 
 const connection = require('../db');
 
-const baseQuery = 'select name, email, address_id, contact_number, sponsor, sponsor_amount from CUSTOMER ';
-
-
+const baseQuery = 'select name, email, sponsor_amount from CUSTOMER ';
 
 router.get('/topFiveSponsors', (req,res) => {
     const sql_query = baseQuery+" order by sponsor_amount desc limit 5;";
