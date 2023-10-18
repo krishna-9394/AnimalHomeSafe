@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know-Animal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
+    <link rel="stylesheet" href="../css/knowAnimal.css"> <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <h1 style="font-family: 'Poppins', Arial, sans-serif;">Know about your animal</h1>
+    </div>
+
+    <div class="navbar">
+        <a href="index.html"><i class="fas fa-home"></i> Gentle Guardian</a>
+        <a href="#" class="active"><i class="fas fa-info-circle"></i> Know-Animal</a>
+        <a href="aboutUs.html" target="_blank"><i class="fas fa-paw"></i> About us</a>
+        <a href="contact.html" target="_blank"><i class="fas fa-phone"></i> Contact</a>
+        <a href="loginUser.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Search Message & Option -->
+    <div class="search-section">
+        <p>Search for animals you want to know about:</p>
+        <input type="text" id="searchInput" placeholder="Search by name,breed ">
+        <button onclick="filterAnimals()">Search</button>
+    </div>
+
+    <!-- Animals Display Section -->
+    <div id="animalsDisplay">
+        <!-- Dynamically added by JavaScript -->
+    </div>
+
+    <script src="know.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
