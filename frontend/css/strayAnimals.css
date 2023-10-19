@@ -103,33 +103,56 @@ body {
   .guideline-content {
     margin-top: 10px;
   }
-  
- /* Container for the additional cards */
-.additional-cards {
+  .additional-card-container {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    justify-content: space-around;
+    margin: 0 auto;
+   }
+
+  .additional-card {
+    flex:w;
+    border: 1px solid #ccc;
+    border-radius: 18px;
+    width: 23%; 
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
 }
 
-/* The buttons inside the additional card */
+.additional-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.additional-card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+}
+
+.additional-card p {
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.additional-card li:hover {
+    color: green;
+}
+
 .additional-card button {
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin: 0 5px; /* Add a little margin between buttons */
 }
 
-/* Hover state */
 .additional-card button:hover {
-    background-color: #0056b3;
-}
-
-/* Active state */
-.additional-card button:active {
-    background-color: #004499;
+    background-color: green;
 }
