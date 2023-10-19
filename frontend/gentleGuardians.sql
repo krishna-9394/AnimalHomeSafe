@@ -19,8 +19,6 @@ CREATE TABLE PRODUCT (
     category VARCHAR(255)
 );
 
-
-
 CREATE TABLE RETAIL_STORE (
   shop_id INTEGER PRIMARY KEY,
   shop_name VARCHAR(25),
@@ -235,16 +233,6 @@ INSERT INTO RETAIL_STORE (shop_id, shop_name, owner_name, contact_number, addres
 (38, 'Reptile Ritz', 'Lavanya Raghav', 98380, 89);
 
 -- Inserting Sample Data for retail stores
--- Table creation (for reference)
-
-CREATE TABLE PET_CLINIC (
-  clinic_id INTEGER PRIMARY KEY,
-  clinic_name VARCHAR(50),
-  doctor_name VARCHAR(50),
-  contact_number INTEGER,
-  address_id INTEGER,
-  FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
-);
 
 -- Inserting Sample Data fir pet_clinics
 INSERT INTO PET_CLINIC (clinic_id, clinic_name, doctor_name, contact_number, address_id) VALUES
@@ -278,9 +266,6 @@ INSERT INTO PET_CLINIC (clinic_id, clinic_name, doctor_name, contact_number, add
 (28, 'Feathered Friend Vet', 'Dr. Simran Kaur', 65420, 88),
 (29, 'Healthy Tails Clinic', 'Dr. Dhruv Sharma', 34550, 89),
 (30, 'SafePaws Veterinary', 'Dr. Ritu Agrawal', 76520, 90);
-
-
-
 
 
 -- customer details : 
@@ -633,3 +618,73 @@ INSERT INTO StrayAnimalGuidelines (AnimalType, Guidelines) VALUES
     {"title": "Use Rope for Control", "content": "If available, use a rope to guide the goat."},
     {"title": "Temporary Shelter", "content": "Provide a temporary shelter like a pen if you have one, until the owner or authorities arrive."}]'
 );
+
+
+
+
+-- Creting adoption center table 
+
+CREATE TABLE ADOPTION_CENTER (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(50),
+  address_id INTEGER,
+  contact_number VARCHAR(15),
+  FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
+);
+
+-- Inserting Sample Data for Adoption Centers with Randomized Address IDs
+INSERT INTO ADOPTION_CENTER (id, name, address_id, contact_number) VALUES
+(1, 'Happy Paws', 1, '+91 98765 43210'),
+(2, 'Animal Haven', 98, '+91 87654 32109'),
+(3, 'Furry Friends', 15, '+91 76543 21098'),
+(4, 'Paw Paradise', 77, '+91 65432 10987'),
+(5, 'Rescue Ranch', 75, '+91 54321 09876'),
+(6, 'Cuddly Corner', 5, '+91 43210 98765'),
+(7, 'Kindred Spirits', 96, '+91 32109 87654'),
+(8, 'Heavenly Creatures', 83, '+91 21098 76543'),
+(9, 'Paws & Claws', 95, '+91 10987 65432'),
+(10, 'Wagging Tails', 10, '+91 09876 54321'),
+(11, 'Four-legged Palace', 80, '+91 12345 67890'),
+(12, 'Furever Home', 91, '+91 23456 78901'),
+(13, 'Critter Camp', 89, '+91 34567 89012'),
+(14, 'Animal Kingdom', 74, '+91 45678 90123'),
+(15, 'Barkville', 92, '+91 56789 01234'),
+(16, 'Majestic Tails', 100, '+91 67890 12345'),
+(17, 'Feathers & Fur', 84, '+91 78901 23456'),
+(18, 'Meow Mansion', 71, '+91 89012 34567'),
+(19, 'Woof Wonderland', 93, '+91 90123 45678'),
+(20, 'Hearty Homes', 85, '+91 91234 56789');
+
+
+-- creating table to store list of animals in all the adoption center
+
+CREATE TABLE ANIMALS_LIST_IN_ADOPTION_CENTERS (
+  animal_id INTEGER,
+  center_id INTEGER,
+  animal_count INTEGER,
+  FOREIGN KEY (animal_id) REFERENCES ANIMAL(animal_id),
+  FOREIGN KEY (center_id) REFERENCES ADOPTION_CENTER(id),
+  PRIMARY KEY (animal_id, center_id)
+);
+
+INSERT INTO ANIMALS_LIST_IN_ADOPTION_CENTERS (animal_id, center_id, animal_count) VALUES
+(18, 1, 10), (19, 1, 11), (24, 1, 12), (25, 1, 13), (26, 1, 14), (28, 1, 15), (29, 1, 16), (41, 1, 17), (42, 1, 18), (43, 1, 19),
+(44, 2, 10), (45, 2, 11), (46, 2, 12), (47, 2, 13), (48, 2, 14), (49, 2, 15), (50, 2, 16), (51, 2, 17), (52, 2, 18), (53, 2, 19),
+(54, 3, 10), (55, 3, 11), (56, 3, 12), (57, 3, 13), (58, 3, 14), (59, 3, 15), (60, 3, 16), (18, 3, 17), (19, 3, 18), (24, 3, 19),
+(25, 4, 10), (26, 4, 11), (28, 4, 12), (29, 4, 13), (41, 4, 14), (42, 4, 15), (43, 4, 16), (44, 4, 17), (45, 4, 18), (46, 4, 19),
+(47, 5, 10), (48, 5, 11), (49, 5, 12), (50, 5, 13), (51, 5, 14), (52, 5, 15), (53, 5, 16), (54, 5, 17), (55, 5, 18), (56, 5, 19),
+(57, 6, 10), (58, 6, 11), (59, 6, 12), (60, 6, 13), (18, 6, 14), (19, 6, 15), (24, 6, 16), (25, 6, 17), (26, 6, 18), (28, 6, 19),
+(29, 7, 10), (41, 7, 11), (42, 7, 12), (43, 7, 13), (44, 7, 14), (45, 7, 15), (46, 7, 16), (47, 7, 17), (48, 7, 18), (49, 7, 19),
+(50, 8, 10), (51, 8, 11), (52, 8, 12), (53, 8, 13), (54, 8, 14), (55, 8, 15), (56, 8, 16), (57, 8, 17), (58, 8, 18), (59, 8, 19),
+(60, 9, 10), (18, 9, 11), (19, 9, 12), (24, 9, 13), (25, 9, 14), (26, 9, 15), (28, 9, 16), (29, 9, 17), (41, 9, 18), (42, 9, 19),
+(43, 10, 10), (44, 10, 11), (45, 10, 12), (46, 10, 13), (47, 10, 14), (48, 10, 15), (49, 10, 16), (50, 10, 17), (51, 10, 18), (52, 10, 19),
+(53, 11, 10), (54, 11, 11), (55, 11, 12), (56, 11, 13), (57, 11, 14), (58, 11, 15), (59, 11, 16), (60, 11, 17), (18, 11, 18), (19, 11, 19),
+(24, 12, 10), (25, 12, 11), (26, 12, 12), (28, 12, 13), (29, 12, 14), (41, 12, 15), (42, 12, 16), (43, 12, 17), (44, 12, 18), (45, 12, 19),
+(46, 13, 10), (47, 13, 11), (48, 13, 12), (49, 13, 13), (50, 13, 14), (51, 13, 15), (52, 13, 16), (53, 13, 17), (54, 13, 18), (55, 13, 19),
+(56, 14, 10), (57, 14, 11), (58, 14, 12), (59, 14, 13), (60, 14, 14), (18, 14, 15), (19, 14, 16), (24, 14, 17), (25, 14, 18), (26, 14, 19),
+(28, 15, 10), (29, 15, 11), (41, 15, 12), (42, 15, 13), (43, 15, 14), (44, 15, 15), (45, 15, 16), (46, 15, 17), (47, 15, 18), (48, 15, 19),
+(49, 16, 10), (50, 16, 11), (51, 16, 12), (52, 16, 13), (53, 16, 14), (54, 16, 15), (55, 16, 16), (56, 16, 17), (57, 16, 18), (58, 16, 19),
+(59, 17, 10), (60, 17, 11), (18, 17, 12), (19, 17, 13), (24, 17, 14), (25, 17, 15), (26, 17, 16), (28, 17, 17), (29, 17, 18), (41, 17, 19),
+(42, 18, 10), (43, 18, 11), (44, 18, 12), (45, 18, 13), (46, 18, 14), (47, 18, 15), (48, 18, 16), (49, 18, 17), (50, 18, 18), (51, 18, 19),
+(52, 19, 10), (53, 19, 11), (54, 19, 12), (55, 19, 13), (56, 19, 14), (57, 19, 15), (58, 19, 16), (59, 19, 17), (60, 19, 18), (18, 19, 19),
+(19, 20, 10), (24, 20, 11), (25, 20, 12), (26, 20, 13), (28, 20, 14), (29, 20, 15), (41, 20, 16), (42, 20, 17), (43, 20, 18), (44, 20, 19);
