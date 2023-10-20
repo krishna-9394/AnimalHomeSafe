@@ -68,7 +68,7 @@ CREATE TABLE PRODUCTS_LIST_OF_ALL_SHOPS (
   PRIMARY KEY (shop_id, product_id)
 );
 
--- drop table ANIMALS_LIST_IN_ALL_PLACES;
+
 
 
 
