@@ -351,7 +351,8 @@ CREATE TABLE ANIMAL (
     max_temp_of_survival DECIMAL(5,2),
     min_temp_of_survival DECIMAL(5,2),
     isDomestic BOOLEAN,
-    common_animal_name VARCHAR(255)
+    common_animal_name VARCHAR(255),
+    imageURL VARCHAR(255)
 );
 INSERT INTO ANIMAL 
 (animal_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival, isDomestic, common_animal_name, imageURL) 
@@ -361,7 +362,7 @@ VALUES
 (33, 'Robust and strong.', 'Buffalo', 'Water Buffalo', 'Dander', 'Large', 'Grass, aquatic plants.', 'Male', 33, -10, FALSE, 'Buffalo', 'https://unsplash.com/photos/thC1uwWdMfM'),
 (34, 'Calm and sociable.', 'Cow', 'Angus', 'Dander', 'Large', 'Grass, hay.', 'Female', 33, -15, TRUE, 'Cow', 'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y293fGVufDB8fDB8fHww'),
 (35, 'Docile and woolly.', 'Sheep', 'Merino', 'Dander', 'Medium', 'Grass, hay.', 'Male', 30, -10, TRUE, 'Sheep', 'https://images.unsplash.com/photo-1588942173353-0c53a1bf9081?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hlZXB8ZW58MHx8MHx8fDA%3D'),
-(36, 'Majestic and regal.', 'Eagle', 'Bald Eagle', 'Feather dust', 'Medium', 'Fish, small mammals.', 'Male', 40, 5, FALSE, 'Bird' 'https://plus.unsplash.com/premium_photo-1674458852390-ac22d6c502d7?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+(36, 'Majestic and regal.', 'Eagle', 'Bald Eagle', 'Feather dust', 'Medium', 'Fish, small mammals.', 'Male', 40, 5, FALSE, 'Bird', 'https://plus.unsplash.com/premium_photo-1674458852390-ac22d6c502d7?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
 (37, 'Stealthy and fierce.', 'Leopard', 'African Leopard', 'Dander', 'Medium', 'Meat, small mammals.', 'Female', 38, -5, FALSE, 'Wild Cat', 'https://images.unsplash.com/photo-1544985361-b420d7a77043?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGVvcGFyZHxlbnwwfHwwfHx8MA%3D%3D'),
 (38, 'Elegant and swift.', 'Antelope', 'Springbok', 'None', 'Medium', 'Grass, shrubs.', 'Male', 35, -10, FALSE, 'Antelope', 'https://images.unsplash.com/photo-1566034356854-23137d8128de?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YW50ZWxvcGV8ZW58MHx8MHx8fDA%3D'),
 (39, 'Sly and adaptable.', 'Fox', 'Red Fox', 'Dander', 'Small', 'Meat, insects, fruits.', 'Female', 33, -15, FALSE, 'Fox', 'https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Rm94fGVufDB8fDB8fHww'),
@@ -618,40 +619,6 @@ INSERT INTO StrayAnimalGuidelines (AnimalType, Guidelines) VALUES
 );
 
 select * from StrayAnimalGuidelines;
-
--- Creting adoption center table 
-
-CREATE TABLE ADOPTION_CENTER (
-  id INTEGER PRIMARY KEY,
-  name VARCHAR(50),
-  address_id INTEGER,
-  contact_number VARCHAR(15),
-  FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
-);
-
--- Inserting Sample Data for Adoption Centers with Randomized Address IDs
-INSERT INTO ADOPTION_CENTER (id, name, address_id, contact_number) VALUES
-(1, 'Happy Paws', 1, '+91 98765 43210'),
-(2, 'Animal Haven', 98, '+91 87654 32109'),
-(3, 'Furry Friends', 15, '+91 76543 21098'),
-(4, 'Paw Paradise', 77, '+91 65432 10987'),
-(5, 'Rescue Ranch', 75, '+91 54321 09876'),
-(6, 'Cuddly Corner', 5, '+91 43210 98765'),
-(7, 'Kindred Spirits', 96, '+91 32109 87654'),
-(8, 'Heavenly Creatures', 83, '+91 21098 76543'),
-(9, 'Paws & Claws', 95, '+91 10987 65432'),
-(10, 'Wagging Tails', 10, '+91 09876 54321'),
-(11, 'Four-legged Palace', 80, '+91 12345 67890'),
-(12, 'Furever Home', 91, '+91 23456 78901'),
-(13, 'Critter Camp', 89, '+91 34567 89012'),
-(14, 'Animal Kingdom', 74, '+91 45678 90123'),
-(15, 'Barkville', 92, '+91 56789 01234'),
-(16, 'Majestic Tails', 100, '+91 67890 12345'),
-(17, 'Feathers & Fur', 84, '+91 78901 23456'),
-(18, 'Meow Mansion', 71, '+91 89012 34567'),
-(19, 'Woof Wonderland', 93, '+91 90123 45678'),
-(20, 'Hearty Homes', 85, '+91 91234 56789');
-
 
 -- creating table to store list of animals in all the adoption center
 CREATE TABLE ADOPTION_CENTER (
