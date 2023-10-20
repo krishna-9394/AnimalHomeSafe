@@ -19,8 +19,6 @@ CREATE TABLE PRODUCT (
     category VARCHAR(255)
 );
 
-
-
 CREATE TABLE RETAIL_STORE (
   shop_id INTEGER PRIMARY KEY,
   shop_name VARCHAR(25),
@@ -235,16 +233,6 @@ INSERT INTO RETAIL_STORE (shop_id, shop_name, owner_name, contact_number, addres
 (38, 'Reptile Ritz', 'Lavanya Raghav', 98380, 89);
 
 -- Inserting Sample Data for retail stores
--- Table creation (for reference)
-
-CREATE TABLE PET_CLINIC (
-  clinic_id INTEGER PRIMARY KEY,
-  clinic_name VARCHAR(50),
-  doctor_name VARCHAR(50),
-  contact_number INTEGER,
-  address_id INTEGER,
-  FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
-);
 
 -- Inserting Sample Data fir pet_clinics
 INSERT INTO PET_CLINIC (clinic_id, clinic_name, doctor_name, contact_number, address_id) VALUES
@@ -278,9 +266,6 @@ INSERT INTO PET_CLINIC (clinic_id, clinic_name, doctor_name, contact_number, add
 (28, 'Feathered Friend Vet', 'Dr. Simran Kaur', 65420, 88),
 (29, 'Healthy Tails Clinic', 'Dr. Dhruv Sharma', 34550, 89),
 (30, 'SafePaws Veterinary', 'Dr. Ritu Agrawal', 76520, 90);
-
-
-
 
 
 -- customer details : 
@@ -365,65 +350,66 @@ CREATE TABLE ANIMAL (
     max_temp_of_survival DECIMAL(5,2),
     min_temp_of_survival DECIMAL(5,2),
     isDomestic BOOLEAN,
-    common_animal_name VARCHAR(255)
+    common_animal_name VARCHAR(255),
+    imageURL varchar(255)
 );
 
 INSERT INTO ANIMAL 
-(animal_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival, isDomestic, common_animal_name) 
+(animal_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival, isDomestic, common_animal_name, imageURL) 
 VALUES 
-(31, 'Loyal and intelligent.', 'Dog', 'Golden Retriever', 'Dander', 'Medium', 'Dog food, meat, vegetables.', 'Male', 35, -10, TRUE, 'Dog'),
-(32, 'Sleek and mysterious.', 'Cat', 'Siamese', 'Dander', 'Small', 'Cat food, meat, fish.', 'Female', 38, -5, TRUE, 'Cat'),
-(33, 'Robust and strong.', 'Buffalo', 'Water Buffalo', 'Dander', 'Large', 'Grass, aquatic plants.', 'Male', 33, -10, FALSE, 'Buffalo'),
-(34, 'Calm and sociable.', 'Cow', 'Angus', 'Dander', 'Large', 'Grass, hay.', 'Female', 33, -15, TRUE, 'Cow'),
-(35, 'Docile and woolly.', 'Sheep', 'Merino', 'Dander', 'Medium', 'Grass, hay.', 'Male', 30, -10, TRUE, 'Sheep'),
-(36, 'Majestic and regal.', 'Eagle', 'Bald Eagle', 'Feather dust', 'Medium', 'Fish, small mammals.', 'Male', 40, 5, FALSE, 'Bird'),
-(37, 'Stealthy and fierce.', 'Leopard', 'African Leopard', 'Dander', 'Medium', 'Meat, small mammals.', 'Female', 38, -5, FALSE, 'Wild Cat'),
-(38, 'Elegant and swift.', 'Antelope', 'Springbok', 'None', 'Medium', 'Grass, shrubs.', 'Male', 35, -10, FALSE, 'Antelope'),
-(39, 'Sly and adaptable.', 'Fox', 'Red Fox', 'Dander', 'Small', 'Meat, insects, fruits.', 'Female', 33, -15, FALSE, 'Fox'),
-(40, 'Massive and commanding.', 'Elephant', 'African Elephant', 'None', 'Large', 'Grass, fruits, bark.', 'Male', 36, 5, FALSE, 'Elephant');
+(31, 'Loyal and intelligent.', 'Dog', 'Golden Retriever', 'Dander', 'Medium', 'Dog food, meat, vegetables.', 'Male', 35, -10, TRUE, 'Dog', 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YW5pbWFsc3xlbnwwfHwwfHx8MA%3D%3D'),
+(32, 'Sleek and mysterious.', 'Cat', 'Siamese', 'Dander', 'Small', 'Cat food, meat, fish.', 'Female', 38, -5, TRUE, 'Cat', 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YW5pbWFsc3xlbnwwfHwwfHx8MA%3D%3D'),
+(33, 'Robust and strong.', 'Buffalo', 'Water Buffalo', 'Dander', 'Large', 'Grass, aquatic plants.', 'Male', 33, -10, FALSE, 'Buffalo', 'https://unsplash.com/photos/thC1uwWdMfM'),
+(34, 'Calm and sociable.', 'Cow', 'Angus', 'Dander', 'Large', 'Grass, hay.', 'Female', 33, -15, TRUE, 'Cow', 'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y293fGVufDB8fDB8fHww'),
+(35, 'Docile and woolly.', 'Sheep', 'Merino', 'Dander', 'Medium', 'Grass, hay.', 'Male', 30, -10, TRUE, 'Sheep', 'https://images.unsplash.com/photo-1588942173353-0c53a1bf9081?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hlZXB8ZW58MHx8MHx8fDA%3D'),
+(36, 'Majestic and regal.', 'Eagle', 'Bald Eagle', 'Feather dust', 'Medium', 'Fish, small mammals.', 'Male', 40, 5, FALSE, 'Bird' 'https://plus.unsplash.com/premium_photo-1674458852390-ac22d6c502d7?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+(37, 'Stealthy and fierce.', 'Leopard', 'African Leopard', 'Dander', 'Medium', 'Meat, small mammals.', 'Female', 38, -5, FALSE, 'Wild Cat', 'https://images.unsplash.com/photo-1544985361-b420d7a77043?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGVvcGFyZHxlbnwwfHwwfHx8MA%3D%3D'),
+(38, 'Elegant and swift.', 'Antelope', 'Springbok', 'None', 'Medium', 'Grass, shrubs.', 'Male', 35, -10, FALSE, 'Antelope', 'https://images.unsplash.com/photo-1566034356854-23137d8128de?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YW50ZWxvcGV8ZW58MHx8MHx8fDA%3D'),
+(39, 'Sly and adaptable.', 'Fox', 'Red Fox', 'Dander', 'Small', 'Meat, insects, fruits.', 'Female', 33, -15, FALSE, 'Fox', 'https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Rm94fGVufDB8fDB8fHww'),
+(40, 'Massive and commanding.', 'Elephant', 'African Elephant', 'None', 'Large', 'Grass, fruits, bark.', 'Male', 36, 5, FALSE, 'Elephant', 'https://images.unsplash.com/photo-1603483080228-04f2313d9f10?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RWxlcGhhbnR8ZW58MHx8MHx8fDA%3D');
 
 INSERT INTO ANIMAL 
-(animal_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival, isDomestic, common_animal_name) 
+(animal_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival, isDomestic, common_animal_name, imageURL) 
 VALUES 
-(41, 'Dominant and strategic.', 'Lion', 'African Lion', 'Dander', 'Large', 'Meat, small mammals.', 'Male', 40, -5, FALSE, 'Wild Cat'),
-(42, 'Graceful long-necked grazer.', 'Giraffe', 'Masai Giraffe', 'None', 'Large', 'Leaves, fruits, flowers.', 'Female', 40, 5, FALSE, 'Giraffe'),
-(43, 'Powerful and territorial.', 'Hippopotamus', 'Common Hippopotamus', 'None', 'Large', 'Grass, aquatic plants.', 'Male', 40, 5, FALSE, 'Hippopotamus'),
-(44, 'Quick and cunning.', 'Cheetah', 'African Cheetah', 'Dander', 'Medium', 'Meat, small mammals.', 'Female', 38, 5, FALSE, 'Wild Cat'),
-(45, 'Calm and hefty.', 'Rhinoceros', 'White Rhinoceros', 'None', 'Large', 'Grass, leaves.', 'Male', 40, 5, FALSE, 'Rhinoceros'),
-(46, 'Playful and intelligent.', 'Chimpanzee', 'Common Chimpanzee', 'Dander', 'Medium', 'Fruits, nuts, insects.', 'Male', 35, 5, FALSE, 'Primate'),
-(47, 'King of the jungle.', 'Tiger', 'Bengal Tiger', 'Dander', 'Large', 'Meat, fish.', 'Female', 38, 5, FALSE, 'Wild Cat'),
-(48, 'Large and lumbering.', 'Bear', 'Grizzly Bear', 'Dander', 'Large', 'Fish, berries, plants.', 'Male', 35, -10, FALSE, 'Bear'),
-(49, 'Ferocious and aquatic.', 'Crocodile', 'Saltwater Crocodile', 'None', 'Large', 'Fish, mammals, birds.', 'Male', 38, 5, FALSE, 'Reptile'),
-(50, 'Vibrant and venomous.', 'Snake', 'King Cobra', 'None', 'Medium', 'Small mammals, birds.', 'Male', 35, 10, FALSE, 'Reptile'),
-(51, 'Mighty and soaring.', 'Condor', 'Andean Condor', 'Feather dust', 'Large', 'Carrion.', 'Female', 25, 5, FALSE, 'Bird'),
-(52, 'Elusive and nocturnal.', 'Owl', 'Barn Owl', 'Feather dust', 'Medium', 'Mice, small mammals.', 'Female', 30, -5, FALSE, 'Bird'),
-(53, 'Sleek and aquatic.', 'Seal', 'Harbor Seal', 'None', 'Medium', 'Fish, squid.', 'Male', 15, -10, FALSE, 'Mammal'),
-(54, 'Spiky and insectivorous.', 'Echidna', 'Short-beaked Echidna', 'None', 'Small', 'Ants, termites.', 'Male', 35, 5, FALSE, 'Mammal'),
-(55, 'Colorful and solitary.', 'Pheasant', 'Golden Pheasant', 'Feather dust', 'Medium', 'Seeds, grains, insects.', 'Male', 25, -5, FALSE, 'Bird'),
-(56, 'Intelligent and vocal.', 'Orangutan', 'Bornean Orangutan', 'Dander', 'Large', 'Fruits, leaves, insects.', 'Male', 35, 5, FALSE, 'Primate'),
-(57, 'Powerful and horned.', 'Bison', 'American Bison', 'Dander', 'Large', 'Grass, shrubs.', 'Male', 35, -20, FALSE, 'Bison'),
-(58, 'Armored and ancient.', 'Tortoise', 'Aldabra Giant Tortoise', 'None', 'Large', 'Grass, leaves.', 'Female', 35, 10, FALSE, 'Reptile'),
-(59, 'Tall and heavy.', 'Elephant', 'Asian Elephant', 'None', 'Large', 'Grass, fruits, bark.', 'Female', 36, 10, FALSE, 'Elephant'),
-(60, 'Vivid and agile.', 'Lizard', 'Komodo Dragon', 'None', 'Large', 'Meat, birds, eggs.', 'Male', 40, 10, FALSE, 'Reptile');
+(41, 'Dominant and strategic.', 'Lion', 'African Lion', 'Dander', 'Large', 'Meat, small mammals.', 'Male', 40, -5, FALSE, 'Wild Cat','https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TGlvbnxlbnwwfHwwfHx8MA%3D%3D'),
+(42, 'Graceful long-necked grazer.', 'Giraffe', 'Masai Giraffe', 'None', 'Large', 'Leaves, fruits, flowers.', 'Female', 40, 5, FALSE, 'Giraffe', 'https://images.unsplash.com/photo-1547721064-da6cfb341d50?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z2lyYWZmZXxlbnwwfHwwfHx8MA%3D%3D'),
+(43, 'Powerful and territorial.', 'Hippopotamus', 'Common Hippopotamus', 'None', 'Large', 'Grass, aquatic plants.', 'Male', 40, 5, FALSE, 'Hippopotamus', 'https://images.unsplash.com/photo-1619535211143-8e209a7b662c?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SGlwcG9wb3RhbXVzfGVufDB8fDB8fHww'),
+(44, 'Quick and cunning.', 'Cheetah', 'African Cheetah', 'Dander', 'Medium', 'Meat, small mammals.', 'Female', 38, 5, FALSE, 'Wild Cat', 'https://plus.unsplash.com/premium_photo-1673545660859-423a44316681?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q2hlZXRhaHxlbnwwfHwwfHx8MA%3D%3D'),
+(45, 'Calm and hefty.', 'Rhinoceros', 'White Rhinoceros', 'None', 'Large', 'Grass, leaves.', 'Male', 40, 5, FALSE, 'Rhinoceros', 'https://images.unsplash.com/photo-1598894000396-bc30e0996899?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Umhpbm9jZXJvc3xlbnwwfHwwfHx8MA%3D%3D'),
+(46, 'Playful and intelligent.', 'Chimpanzee', 'Common Chimpanzee', 'Dander', 'Medium', 'Fruits, nuts, insects.', 'Male', 35, 5, FALSE, 'Primate', 'https://images.unsplash.com/photo-1495488448539-6fa4eae3a55c?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Q2hpbXBhbnplZXxlbnwwfHwwfHx8MA%3D%3D'),
+(47, 'King of the jungle.', 'Tiger', 'Bengal Tiger', 'Dander', 'Large', 'Meat, fish.', 'Female', 38, 5, FALSE, 'Wild Cat', 'https://images.unsplash.com/photo-1615963244664-5b845b2025ee?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8VGlnZXJ8ZW58MHx8MHx8fDA%3D'),
+(48, 'Large and lumbering.', 'Bear', 'Grizzly Bear', 'Dander', 'Large', 'Fish, berries, plants.', 'Male', 35, -10, FALSE, 'Bear','https://unsplash.com/photos/qQWV91TTBrE'),
+(49, 'Ferocious and aquatic.', 'Crocodile', 'Saltwater Crocodile', 'None', 'Large', 'Fish, mammals, birds.', 'Male', 38, 5, FALSE, 'Reptile','https://images.unsplash.com/photo-1614065613125-17553fbc59f6?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Q3JvY29kaWxlfGVufDB8fDB8fHww'),
+(50, 'Vibrant and venomous.', 'Snake', 'King Cobra', 'None', 'Medium', 'Small mammals, birds.', 'Male', 35, 10, FALSE, 'Reptile','https://images.unsplash.com/photo-1570741066052-817c6de995c8?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U25ha2V8ZW58MHx8MHx8fDA%3D'),
+(51, 'Mighty and soaring.', 'Condor', 'Andean Condor', 'Feather dust', 'Large', 'Carrion.', 'Female', 25, 5, FALSE, 'Bird','https://plus.unsplash.com/premium_photo-1661809784790-aef66e922d8f?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q29uZG9yfGVufDB8fDB8fHww'),
+(52, 'Elusive and nocturnal.', 'Owl', 'Barn Owl', 'Feather dust', 'Medium', 'Mice, small mammals.', 'Female', 30, -5, FALSE, 'Bird','https://images.unsplash.com/photo-1553264701-d138db4fd5d4?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8b3dsfGVufDB8fDB8fHww'),
+(53, 'Sleek and aquatic.', 'Seal', 'Harbor Seal', 'None', 'Medium', 'Fish, squid.', 'Male', 15, -10, FALSE, 'Mammal','https://images.unsplash.com/photo-1565413294262-fa587c396965?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2VhbHxlbnwwfHwwfHx8MA%3D%3D'),
+(54, 'Spiky and insectivorous.', 'Echidna', 'Short-beaked Echidna', 'None', 'Small', 'Ants, termites.', 'Male', 35, 5, FALSE, 'Mammal','https://images.unsplash.com/photo-1635150657535-1af93bd99d47?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZWNoaWRuYXxlbnwwfHwwfHx8MA%3D%3D'),
+(55, 'Colorful and solitary.', 'Pheasant', 'Golden Pheasant', 'Feather dust', 'Medium', 'Seeds, grains, insects.', 'Male', 25, -5, FALSE, 'Bird','https://images.unsplash.com/photo-1623184272516-eb68ee29c529?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8UGhlYXNhbnR8ZW58MHx8MHx8fDA%3D'),
+(56, 'Intelligent and vocal.', 'Orangutan', 'Bornean Orangutan', 'Dander', 'Large', 'Fruits, leaves, insects.', 'Male', 35, 5, FALSE, 'Primate', 'https://images.unsplash.com/photo-1629413040378-ee8e305fbc07?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8b3Jhbmd1dGFufGVufDB8fDB8fHww'),
+(57, 'Powerful and horned.', 'Bison', 'American Bison', 'Dander', 'Large', 'Grass, shrubs.', 'Male', 35, -20, FALSE, 'Bison', 'https://images.unsplash.com/flagged/photo-1575440172687-fdd4ddf4285f?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Qmlzb258ZW58MHx8MHx8fDA%3D'),
+(58, 'Armored and ancient.', 'Tortoise', 'Aldabra Giant Tortoise', 'None', 'Large', 'Grass, leaves.', 'Female', 35, 10, FALSE, 'Reptile', 'https://images.unsplash.com/photo-1559041881-74dd9fd9b600?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VG9ydG9pc2V8ZW58MHx8MHx8fDA%3D'),
+(59, 'Tall and heavy.', 'Elephant', 'Asian Elephant', 'None', 'Large', 'Grass, fruits, bark.', 'Female', 36, 10, FALSE, 'Elephant','https://images.unsplash.com/photo-1551316679-9c6ae9dec224?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QXNpYW4lMjBFbGVwaGFudHxlbnwwfHwwfHx8MA%3D%3D'),
+(60, 'Vivid and agile.', 'Lizard', 'Komodo Dragon', 'None', 'Large', 'Meat, birds, eggs.', 'Male', 40, 10, FALSE, 'Reptile', 'https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGl6YXJkfGVufDB8fDB8fHww');
 
 INSERT INTO ANIMAL 
-(animal_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival, isDomestic, common_animal_name) 
+(animal_id, description_info, animal_name, breed, allergens, size, diet_plan, gender, max_temp_of_survival, min_temp_of_survival, isDomestic, common_animal_name, imageURL) 
 VALUES 
-(16, 'Docile and easy-going.', 'Goat', 'Nubian', 'Dander', 'Medium', 'Hay, grains, greens.', 'Female', 38, -10, TRUE, 'Goat'),
-(17, 'Gentle and calm.', 'Cow', 'Jersey', 'Dander', 'Large', 'Grass, hay, silage.', 'Female', 35, -15, TRUE, 'Cow'),
-(18, 'Majestic and vibrant.', 'Peacock', 'Indian Blue', 'Feather dust', 'Large', 'Seeds, insects, small mammals.', 'Male', 40, 5, FALSE, 'Bird'),
-(19, 'Playful and inquisitive.', 'Cub', 'Lion Cub', 'Dander', 'Medium', 'Meat, poultry.', 'Male', 38, -5, FALSE, 'Wild Cat'),
-(20, 'Hardy and friendly.', 'Goat', 'Boer', 'Dander', 'Medium', 'Grains, hay.', 'Male', 38, -10, TRUE, 'Goat'),
-(21, 'Energetic and robust.', 'Cow', 'Holstein', 'Dander', 'Large', 'Grass, grains.', 'Female', 33, -15, TRUE, 'Cow'),
-(22, 'Curious and playful.', 'Rabbit', 'Holland Lop', 'Dander', 'Small', 'Hay, pellets, vegetables.', 'Female', 30, -5, TRUE, 'Rabbit'),
-(23, 'Sleek and agile.', 'Ferret', 'Standard', 'Dander', 'Small', 'Meat, commercial ferret food.', 'Male', 30, -2, TRUE, 'Ferret'),
-(24, 'Cheerful and energetic.', 'Cub', 'Tiger Cub', 'Dander', 'Medium', 'Meat, poultry.', 'Female', 40, -5, FALSE, 'Wild Cat'),
-(25, 'Gentle and affectionate.', 'Llama', 'Cria', 'Dander', 'Large', 'Hay, grains, grass.', 'Male', 32, -20, FALSE, 'Llama'),
-(26, 'Graceful and gentle.', 'Deer', 'White-Tailed', 'None', 'Medium', 'Grass, fruits, nuts.', 'Female', 34, -12, FALSE, 'Deer'),
-(27, 'Tiny and chirpy.', 'Guinea Pig', 'American', 'Dander', 'Small', 'Guinea pig pellets, hay, veggies.', 'Male', 26, 5, TRUE, 'Rodent'),
-(28, 'Bright and colorful.', 'Iguana', 'Green', 'None', 'Medium', 'Leafy greens, fruits.', 'Female', 40, 18, FALSE, 'Reptile'),
-(29, 'Small and active.', 'Turtle', 'Red-eared Slider', 'None', 'Small', 'Aquatic plants, insects, fish.', 'Male', 35, 10, FALSE, 'Reptile'),
-(30, 'Lively and noisy.', 'Duck', 'Mallard', 'Feather dust', 'Medium', 'Grains, insects, small fish.', 'Female', 33, -5, TRUE, 'Bird');
+(16, 'Docile and easy-going.', 'Goat', 'Nubian', 'Dander', 'Medium', 'Hay, grains, greens.', 'Female', 38, -10, TRUE, 'Goat','https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8R29hdHxlbnwwfHwwfHx8MA%3D%3D'),
+(17, 'Gentle and calm.', 'Cow', 'Jersey', 'Dander', 'Large', 'Grass, hay, silage.', 'Female', 35, -15, TRUE, 'Cow', 'https://images.unsplash.com/photo-1595365691689-6b7b4e1970cf?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8amVyc2V5JTIwY293fGVufDB8fDB8fHww'),
+(18, 'Majestic and vibrant.', 'Peacock', 'Indian Blue', 'Feather dust', 'Large', 'Seeds, insects, small mammals.', 'Male', 40, 5, FALSE, 'Bird', 'https://images.unsplash.com/photo-1536514900905-0d5511b9d489?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVhY29ja3xlbnwwfHwwfHx8MA%3D%3D'),
+(19, 'Playful and inquisitive.', 'Cub', 'Lion Cub', 'Dander', 'Medium', 'Meat, poultry.', 'Male', 38, -5, FALSE, 'Wild Cat', 'https://images.unsplash.com/photo-1603626127249-7c3932a000ab?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TGlvbiUyMEN1YnxlbnwwfHwwfHx8MA%3D%3D'),
+(20, 'Hardy and friendly.', 'Goat', 'Boer', 'Dander', 'Medium', 'Grains, hay.', 'Male', 38, -10, TRUE, 'Goat', 'https://images.unsplash.com/photo-1587622627361-14b33dcdff6f?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Qm9lcnxlbnwwfHwwfHx8MA%3D%3D'),
+(21, 'Energetic and robust.', 'Cow', 'Holstein', 'Dander', 'Large', 'Grass, grains.', 'Female', 33, -15, TRUE, 'Cow','https://images.unsplash.com/photo-1647338720004-41b9b871ccf2?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8SG9sc3RlaW4lMjBjb3d8ZW58MHx8MHx8fDA%3D'),
+(22, 'Curious and playful.', 'Rabbit', 'Holland Lop', 'Dander', 'Small', 'Hay, pellets, vegetables.', 'Female', 30, -5, TRUE, 'Rabbit','https://images.unsplash.com/photo-1518796745738-41048802f99a?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8UmFiYml0fGVufDB8fDB8fHww'),
+(23, 'Sleek and agile.', 'Ferret', 'Standard', 'Dander', 'Small', 'Meat, commercial ferret food.', 'Male', 30, -2, TRUE, 'Ferret', 'https://images.unsplash.com/photo-1615087240969-eeff2fa558f2?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmVycmV0fGVufDB8fDB8fHww'),
+(24, 'Cheerful and energetic.', 'Cub', 'Tiger Cub', 'Dander', 'Medium', 'Meat, poultry.', 'Female', 40, -5, FALSE, 'Wild Cat', 'https://images.unsplash.com/photo-1516728778615-2d590ea1855e?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8VGlnZXIlMjBDdWJ8ZW58MHx8MHx8fDA%3D'),
+(25, 'Gentle and affectionate.', 'Llama', 'Cria', 'Dander', 'Large', 'Hay, grains, grass.', 'Male', 32, -20, FALSE, 'Llama', 'https://images.unsplash.com/photo-1589182337358-2cb63099350c?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TGxhbWF8ZW58MHx8MHx8fDA%3D'),
+(26, 'Graceful and gentle.', 'Deer', 'White-Tailed', 'None', 'Medium', 'Grass, fruits, nuts.', 'Female', 34, -12, FALSE, 'Deer','https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8RGVlcnxlbnwwfHwwfHx8MA%3D%3D'),
+(27, 'Tiny and chirpy.', 'Guinea Pig', 'American', 'Dander', 'Small', 'Guinea pig pellets, hay, veggies.', 'Male', 26, 5, TRUE, 'Rodent','https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8R3VpZW5hJTIwcGlnfGVufDB8fDB8fHww'),
+(28, 'Bright and colorful.', 'Iguana', 'Green', 'None', 'Medium', 'Leafy greens, fruits.', 'Female', 40, 18, FALSE, 'Reptile', 'https://images.unsplash.com/photo-1603826567635-2c9db43071fa?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SWd1YW5hfGVufDB8fDB8fHww'),
+(29, 'Small and active.', 'Turtle', 'Red-eared Slider', 'None', 'Small', 'Aquatic plants, insects, fish.', 'Male', 35, 10, FALSE, 'Reptile', 'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VHVydGxlfGVufDB8fDB8fHww'),
+(30, 'Lively and noisy.', 'Duck', 'Mallard', 'Feather dust', 'Medium', 'Grains, insects, small fish.', 'Female', 33, -5, TRUE, 'Bird','https://images.unsplash.com/photo-1563409236302-8442b5e644df?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RHVja3xlbnwwfHwwfHx8MA%3D%3D');
 
 
 
@@ -632,3 +618,73 @@ INSERT INTO StrayAnimalGuidelines (AnimalType, Guidelines) VALUES
     {"title": "Use Rope for Control", "content": "If available, use a rope to guide the goat."},
     {"title": "Temporary Shelter", "content": "Provide a temporary shelter like a pen if you have one, until the owner or authorities arrive."}]'
 );
+
+
+
+
+-- Creting adoption center table 
+
+CREATE TABLE ADOPTION_CENTER (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(50),
+  address_id INTEGER,
+  contact_number VARCHAR(15),
+  FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
+);
+
+-- Inserting Sample Data for Adoption Centers with Randomized Address IDs
+INSERT INTO ADOPTION_CENTER (id, name, address_id, contact_number) VALUES
+(1, 'Happy Paws', 1, '+91 98765 43210'),
+(2, 'Animal Haven', 98, '+91 87654 32109'),
+(3, 'Furry Friends', 15, '+91 76543 21098'),
+(4, 'Paw Paradise', 77, '+91 65432 10987'),
+(5, 'Rescue Ranch', 75, '+91 54321 09876'),
+(6, 'Cuddly Corner', 5, '+91 43210 98765'),
+(7, 'Kindred Spirits', 96, '+91 32109 87654'),
+(8, 'Heavenly Creatures', 83, '+91 21098 76543'),
+(9, 'Paws & Claws', 95, '+91 10987 65432'),
+(10, 'Wagging Tails', 10, '+91 09876 54321'),
+(11, 'Four-legged Palace', 80, '+91 12345 67890'),
+(12, 'Furever Home', 91, '+91 23456 78901'),
+(13, 'Critter Camp', 89, '+91 34567 89012'),
+(14, 'Animal Kingdom', 74, '+91 45678 90123'),
+(15, 'Barkville', 92, '+91 56789 01234'),
+(16, 'Majestic Tails', 100, '+91 67890 12345'),
+(17, 'Feathers & Fur', 84, '+91 78901 23456'),
+(18, 'Meow Mansion', 71, '+91 89012 34567'),
+(19, 'Woof Wonderland', 93, '+91 90123 45678'),
+(20, 'Hearty Homes', 85, '+91 91234 56789');
+
+
+-- creating table to store list of animals in all the adoption center
+
+CREATE TABLE ANIMALS_LIST_IN_ADOPTION_CENTERS (
+  animal_id INTEGER,
+  center_id INTEGER,
+  animal_count INTEGER,
+  FOREIGN KEY (animal_id) REFERENCES ANIMAL(animal_id),
+  FOREIGN KEY (center_id) REFERENCES ADOPTION_CENTER(id),
+  PRIMARY KEY (animal_id, center_id)
+);
+
+INSERT INTO ANIMALS_LIST_IN_ADOPTION_CENTERS (animal_id, center_id, animal_count) VALUES
+(18, 1, 10), (19, 1, 11), (24, 1, 12), (25, 1, 13), (26, 1, 14), (28, 1, 15), (29, 1, 16), (41, 1, 17), (42, 1, 18), (43, 1, 19),
+(44, 2, 10), (45, 2, 11), (46, 2, 12), (47, 2, 13), (48, 2, 14), (49, 2, 15), (50, 2, 16), (51, 2, 17), (52, 2, 18), (53, 2, 19),
+(54, 3, 10), (55, 3, 11), (56, 3, 12), (57, 3, 13), (58, 3, 14), (59, 3, 15), (60, 3, 16), (18, 3, 17), (19, 3, 18), (24, 3, 19),
+(25, 4, 10), (26, 4, 11), (28, 4, 12), (29, 4, 13), (41, 4, 14), (42, 4, 15), (43, 4, 16), (44, 4, 17), (45, 4, 18), (46, 4, 19),
+(47, 5, 10), (48, 5, 11), (49, 5, 12), (50, 5, 13), (51, 5, 14), (52, 5, 15), (53, 5, 16), (54, 5, 17), (55, 5, 18), (56, 5, 19),
+(57, 6, 10), (58, 6, 11), (59, 6, 12), (60, 6, 13), (18, 6, 14), (19, 6, 15), (24, 6, 16), (25, 6, 17), (26, 6, 18), (28, 6, 19),
+(29, 7, 10), (41, 7, 11), (42, 7, 12), (43, 7, 13), (44, 7, 14), (45, 7, 15), (46, 7, 16), (47, 7, 17), (48, 7, 18), (49, 7, 19),
+(50, 8, 10), (51, 8, 11), (52, 8, 12), (53, 8, 13), (54, 8, 14), (55, 8, 15), (56, 8, 16), (57, 8, 17), (58, 8, 18), (59, 8, 19),
+(60, 9, 10), (18, 9, 11), (19, 9, 12), (24, 9, 13), (25, 9, 14), (26, 9, 15), (28, 9, 16), (29, 9, 17), (41, 9, 18), (42, 9, 19),
+(43, 10, 10), (44, 10, 11), (45, 10, 12), (46, 10, 13), (47, 10, 14), (48, 10, 15), (49, 10, 16), (50, 10, 17), (51, 10, 18), (52, 10, 19),
+(53, 11, 10), (54, 11, 11), (55, 11, 12), (56, 11, 13), (57, 11, 14), (58, 11, 15), (59, 11, 16), (60, 11, 17), (18, 11, 18), (19, 11, 19),
+(24, 12, 10), (25, 12, 11), (26, 12, 12), (28, 12, 13), (29, 12, 14), (41, 12, 15), (42, 12, 16), (43, 12, 17), (44, 12, 18), (45, 12, 19),
+(46, 13, 10), (47, 13, 11), (48, 13, 12), (49, 13, 13), (50, 13, 14), (51, 13, 15), (52, 13, 16), (53, 13, 17), (54, 13, 18), (55, 13, 19),
+(56, 14, 10), (57, 14, 11), (58, 14, 12), (59, 14, 13), (60, 14, 14), (18, 14, 15), (19, 14, 16), (24, 14, 17), (25, 14, 18), (26, 14, 19),
+(28, 15, 10), (29, 15, 11), (41, 15, 12), (42, 15, 13), (43, 15, 14), (44, 15, 15), (45, 15, 16), (46, 15, 17), (47, 15, 18), (48, 15, 19),
+(49, 16, 10), (50, 16, 11), (51, 16, 12), (52, 16, 13), (53, 16, 14), (54, 16, 15), (55, 16, 16), (56, 16, 17), (57, 16, 18), (58, 16, 19),
+(59, 17, 10), (60, 17, 11), (18, 17, 12), (19, 17, 13), (24, 17, 14), (25, 17, 15), (26, 17, 16), (28, 17, 17), (29, 17, 18), (41, 17, 19),
+(42, 18, 10), (43, 18, 11), (44, 18, 12), (45, 18, 13), (46, 18, 14), (47, 18, 15), (48, 18, 16), (49, 18, 17), (50, 18, 18), (51, 18, 19),
+(52, 19, 10), (53, 19, 11), (54, 19, 12), (55, 19, 13), (56, 19, 14), (57, 19, 15), (58, 19, 16), (59, 19, 17), (60, 19, 18), (18, 19, 19),
+(19, 20, 10), (24, 20, 11), (25, 20, 12), (26, 20, 13), (28, 20, 14), (29, 20, 15), (41, 20, 16), (42, 20, 17), (43, 20, 18), (44, 20, 19);

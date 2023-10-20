@@ -1,15 +1,85 @@
-const express = require('express');
+const express = require('express')
 const router = express.Router();
-
 const connection = require('../db');
 
-router.get('/', (req,res) => {
-    // list of all pets
-    
+const baseQuery = "select a.animal_id as id, a.animal_name, a.common_animal_name as common_name, a.breed, a.description_info as description, a.allergens, a.size, a.diet_plan, a.gender, a.max_temp_of_survival, a.min_temp_of_survival, a.isDomestic, a.imageURL from animal as a";
+
+router.get('/', (req, res) => {
+    const sql_query = baseQuery+";";
+    connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
 });
 
-router.get('/id', (req,res) => {
-    // details of specific details
+router.get('/id', (req, res) => {
+    const animalId = req.query.animal_id;
+    const sql_query = baseQuery+" where a.animal_id = " + animalId + ";";
+    connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
 });
 
-module.export = router;
+router.get('/animal_name', (req, res) => {
+    const animalName = req.query.animal_name;
+    const sql_query = baseQuery+" where a.animal_name LIKE '" + animalName + "%' OR a.animal_name LIKE '%"+animalName+"' OR a.animal_name LIKE '%"+animalName+"%';";
+     connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+const base_Query2 = 'SELECT Guidelines FROM StrayAnimalGuidelines'
+router.get('/strayAnimals', (req, res) => {
+    const animal_name = req.query.strayAnimals; 
+    const sql_query = base_Query2 + " where AnimalType = '" + animal_name+ "'"; 
+    connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+router.get('/common_name', (req, res) => {
+    const commonName = req.query.common_name;
+    const sql_query = baseQuery+" where a.common_animal_name LIKE '" + commonName + "%' OR a.common_animal_name LIKE '%"+commonName+"' OR a.common_animal_name LIKE '%"+commonName+"%';";
+    connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+router.get('/breed', (req, res) => {
+    const breed = req.query.breed;
+    const sql_query = baseQuery+" where a.breed LIKE '" + breed + "%' OR a.breed LIKE '%"+breed+"' OR a.breed LIKE '%"+breed+"%';";
+    connection.query(sql_query, (err, results) => {
+        if (err) {
+            console.error('Error fetching data:', err);
+            res.send('Error fetching data from database');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+module.exports = router;

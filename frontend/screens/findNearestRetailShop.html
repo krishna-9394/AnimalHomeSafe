@@ -249,19 +249,8 @@
 
                 tbody.appendChild(row);
             }
-
+   
             document.getElementById("productPopup").style.display = "block";
-        }
-
-
-        function filterStore() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const filteredClinic = clinic.filter(store =>
-                store.name.toLowerCase().includes(searchTerm) ||
-                store.state.toLowerCase().includes(searchTerm) ||
-                store.city .toLowerCase().includes(searchTerm)
-            );
-            renderZoos(filteredStore);
         }
 
         function showPopUp(storeName, address, imageURL, contactNo, ownerName) {
