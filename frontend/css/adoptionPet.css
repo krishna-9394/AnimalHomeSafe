@@ -3,12 +3,6 @@ body {
     background-color: #f0f0f0;
     margin: 0;
 }
-.header {
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    text-align: center;
-}
 
 .navbar {
     background-color: #333;
@@ -160,6 +154,7 @@ body {
 }
 
 .popup {
+    
     display: none;
     position: fixed;
     top: 50%;
@@ -178,7 +173,8 @@ body {
 
 .overlay {
     display: none;
-    position: fixed;
+    overflow-y: auto;
+    /* position: fixed; */
     top: 0;
     left: 0;
     width: 100%;
@@ -232,7 +228,7 @@ body {
 .animal-popup-content {
     background-color: #f9f9f9;
     margin: 5% auto;
-    padding: 20px;
+    padding: 5px;
     width: 60%;
     position: relative;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -244,7 +240,7 @@ body {
 
 .popup-button {
     align-self: flex-end;
-    margin: 15px auto;
+    margin: 10px auto;
     padding: 8px 16px;
     background-color: #ff4b5c;  /* Reddish color for the button */
     border: none;

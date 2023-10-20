@@ -3,12 +3,6 @@ body {
     background-color: #f0f0f0;
     margin: 0;
 }
-.header {
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    text-align: center;
-}
 
 .navbar {
     background-color: #333;
@@ -45,19 +39,7 @@ body {
     float: right;
 }
 
-.top-sponsors {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    background-color: #fff;
-}
 
-.sponsor-card {
-    background-color: #e6e6e6;
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
 
 .search {
 
@@ -112,6 +94,7 @@ body {
 
 .animal-card {
     display: flex;
+    border-radius: 20px;
     align-items: center;
     background-color: #fff;
     padding: 20px;
@@ -227,18 +210,15 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    /* width: 80%;
-    margin-left: 10%;
-    margin-right: 10%; */
     height: 100%;
     background: rgba(0,0,0,0.7);
-    z-index: 1000;
+    z-index: 600;
 }
 
 .animal-popup-content {
     background-color: #f9f9f9;
     margin: 5% auto;
-    padding: 20px;
+    padding: 8px;
     width: 50%;
     position: relative;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -250,7 +230,7 @@ body {
 
 .popup-button {
     align-self: flex-end;
-    margin: 15px auto;
+    margin: 12px auto;
     padding: 8px 16px;
     background-color: #ff4b5c;  /* Reddish color for the button */
     border: none;
