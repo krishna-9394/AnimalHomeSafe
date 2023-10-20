@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router();
 const connection = require('../db');
 
-const baseQuery = "select ac.id, ac.name, ac.contact_number, ad.street_name, ad.city, ad.state, ad.pincode from adoption_center as ac join address as ad on ac.address_id = ad.address_id";
+const baseQuery = "select ac.id, ac.name, ac.contact_number, ad.street_name, ad.city, ad.state, ad.pincode from ADOPTION_CENTER as ac join ADDRESS as ad on ac.address_id = ad.address_id";
 
-const baseQuery2 = "select a.common_animal_name as common_name, a.breed, a.size, a.description_info as description, list.animal_count as count from ANIMALS_LIST_IN_ADOPTION_CENTERS as list join animal as a on a.animal_id = list.animal_id where list.center_id = ";
+const baseQuery2 = "select a.common_animal_name as common_name, a.breed, a.size, a.description_info as description, list.animal_count as count from ANIMALS_LIST_IN_ADOPTION_CENTERS as list join ANIMAL as a on a.animal_id = list.animal_id where list.center_id = ";
 
 router.get('/', (req, res) => {
     const sql_query = baseQuery+";";
@@ -46,7 +46,7 @@ router.get('/adoption_center_name', (req, res) => {
 
 router.get('/common_name', (req, res) => {
     const commonName = req.query.common_name;
-    const sql_query = `select ac.id, ac.name, ac.contact_number, adr.street_name, adr.city, adr.state, adr.pincode from animals_list_in_adoption_centers list join animal a join adoption_center ac join address adr on list.animal_id = a.animal_id and list.center_id = ac.id and ac.address_id = adr.address_id where a.common_animal_name Like '%${commonName}' or a.common_animal_name like '${commonName}%' or a.common_animal_name Like '%${commonName}%';`;
+    const sql_query = `select ac.id, ac.name, ac.contact_number, adr.street_name, adr.city, adr.state, adr.pincode from ANIMALS_LIST_IN_ADOPTION_CENTERS list join ANIMAL a join ADOPTION_CENTER ac join ADDRESS adr on list.animal_id = a.animal_id and list.center_id = ac.id and ac.address_id = adr.address_id where a.common_animal_name Like '%${commonName}' or a.common_animal_name like '${commonName}%' or a.common_animal_name Like '%${commonName}%';`;
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
