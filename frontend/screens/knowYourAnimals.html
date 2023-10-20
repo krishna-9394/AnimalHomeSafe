@@ -13,11 +13,6 @@
     </head>
 
     <body>
-        <div class="header">
-            <span>
-                <h1 style="font-family: 'Poppins', Arial, sans-serif;">Know Animals</h1>
-            </span>
-        </div>
         <div class="navbar">
             <a href="index.html"><i class="fas fa-home"></i> Gentle Guardian</a>
             <a href="AnimalWellBeing_screen.html"><i class="fas fa-info-circle"></i> Animal Well-Being</a>
@@ -42,8 +37,8 @@
 
          <!-- Popup structure -->
          <div class="overlay" onclick="closePopup()"></div>
-         <div id="animalPopup" class="animal-popup">
-             <div class="animal-popup-content">
+         <div id="animalPopup" class="animal-popup" style="overflow-y: auto;" >
+             <div class="animal-popup-content" >
                  <span class="close-btn"></span>
                  <h2 id = "animalTitleContent">Animals Description</h2>
                  <table>
@@ -57,7 +52,9 @@
              </div>
          </div>
         <script>
+
             document.getElementById('searchButton').addEventListener('click', searchAnimals);
+
             function searchAnimals() {
                 const searchTerm = document.getElementById('searchInput').value;
                 const searchFilter = document.getElementById('searchFilter').value;
@@ -74,6 +71,7 @@
                         console.error('Error fetching clinic data:', error);
                     });
             }
+
             var animals = [
                  {
                     id: 16,
@@ -140,6 +138,7 @@
                     "https://images.unsplash.com/photo-1603626127249-7c3932a000ab?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TGlvbiUyMEN1YnxlbnwwfHwwfHx8MA%3D%3D"
                  }
             ];
+
             function renderAnimals(animalsToRender) {
                 const animalContainer = document.getElementById('animalDisplay');
                 animalContainer.innerHTML = '';
@@ -162,17 +161,17 @@
 
                     // Create and append h3 tag for animal name
                     const h3 = document.createElement('h3');
-                    h3.textContent = animal.animal_name;
+                    h3.textContent = "Common Name: " + animal.animal_name;
                     animalDescription.appendChild(h3);
 
                     // Create and append h3 tag for animal name
                     const h4 = document.createElement('p');
-                    h4.textContent = animal.breed;
+                    h4.textContent = "Breed: "+animal.breed;
                     animalDescription.appendChild(h4);
 
                     // Create and append p tag for Domestic
                     const p = document.createElement('p');
-                    p.textContent = (animal.isDomestic==1? 'Yes' : 'No');
+                    p.textContent = "Domestic? : "+(animal.isDomestic==1? 'Yes' : 'No');
                     animalDescription.appendChild(p);
 
                     // Create and append the sponsor button
@@ -191,6 +190,7 @@
                     animalContainer.appendChild(animalCard);
                 }
             }
+           
             function showPopUp(animalName, commonName, breed, description, allergens, size, dietPlan, gender, maxTemp, minTemp, isDomestic, imageURL) {
                 var title = document.getElementById('animalTitleContent');
                 title.textContent = animalName+"'s Description";

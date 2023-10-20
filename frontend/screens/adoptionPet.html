@@ -12,11 +12,6 @@
 </head>
 
 <body>
-    <div class="header">
-        <span>
-            <h1 style="font-family: 'Poppins', Arial, sans-serif;">Adopt a Pet</h1>
-        </span>
-    </div>
     <div class="navbar">
         <a href="index.html"><i class="fas fa-home"></i> Gentle Guardian</a>
         <a href="AnimalWellBeing_screen.html"><i class="fas fa-info-circle"></i> Animal Well-Being</a>
@@ -51,7 +46,7 @@
         <button onclick="closePopup()">Close</button>
     </div>
     <!-- Popup structure -->
-    <div id="animalPopup" class="animal-popup">
+    <div id="animalPopup" class="animal-popup" style="overflow-y: auto;">
         <div class="animal-popup-content">
             <span class="close-btn"></span>
             <h2>Animals</h2>
@@ -256,7 +251,7 @@
         }
 
         function showPopUp(adoptionCenterName, address, contactNo, imageURL) {
-            document.getElementById("popup-content").innerText = contactNo + '\n' + address;
+            document.getElementById("popup-content").innerText = "Contact No : "+contactNo + '\n' +"Address : "+ address;
             document.getElementById("popup-title").innerText = adoptionCenterName;
             document.getElementById("popup-image").src = imageURL;
             document.querySelector(".overlay").style.display = "block";
