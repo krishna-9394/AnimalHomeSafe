@@ -11,21 +11,22 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/endangered.css">
+    <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
 </head>
 
 
 <body>
     <div class="header">
-        <span><h1 style="font-family: 'Poppins', Arial, sans-serif;">Endangered Animal Control</h1></span>
+        <span><h1 style="font-family: 'Poppins', Arial, sans-serif;">Endangered Animal Protection</h1></span>
     </div>
     <div class="navbar">
         <a href="index.html"><i class="fas fa-home"></i> Gentle Guardian</a>
-        <a href="#"><i class="fas fa-exclamation-triangle"></i> Endangered Animal Control</a>
+        <a href="#" class="active"><i class="fas fa-exclamation-triangle"></i> Endangered Animal Protection</a>
         <a href="aboutUs.html" target="_blank"><i class="fas fa-paw"></i> About us</a>
-        <a href="contact.html" target="_blank"><i class="fas fa-phone"></i> Contact</a>
+        <a href="contact.html" target="_blank"><i class="fas fa-phone"></i> Contact us</a>
         <a href="loginUser.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
-
+    &nbsp;
 
     <!-- Endangered Animals in Card View -->
     <div id="endangered-animals-container" class="endangered-animals">
@@ -126,60 +127,11 @@
             description: "The Wildlife Conservation Society believes wildlife is worth fighting for, and they’re dedicated to protecting wildlife across the planet. Their mission focuses on combining science, conservation, and education to create real and lasting change to wildlife. Some of the species they work with include big cats, bears, and apes, creating programs to combat climate change and habitat destruction.",
             website: "https://www.wcs.org/"
         },
-        // {
-        //     name: "Giraffe Conservation Foundation",
-        //     description: "It’s estimated that giraffe numbers have plummeted across Africa by 40% to under 100,000 individual giraffes in the past two decades, largely due to habitat loss, habitat destruction, illegal poaching, and human population growth. The Giraffe Conservation Foundation works across Africa in countries such as Kenya, Ethiopia, and Uganda to protect giraffes. They develop initiatives and education programs to reverse this decline, including their World Giraffe Day.",
-        //     website: "https://giraffeconservation.org/"
-        // }
-        // You can add more organizations following the same structure
     ];
    
 
 
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     const organizations = [
-    //         {
-    //             name: "WWF",
-    //             description: "The WWF is the world’s leading animal conservation charity...",
-    //             website: "https://www.worldwildlife.org/"
-    //         },
-    //         {
-    //             name: "International Rhino Foundation",
-    //             description: "A vital charity that helps rhinos across the globe...",
-    //             website: "https://www.rhinos.org/"
-    //         },
-    //         {
-    //             name: "The Nature Conservancy",
-    //             description: "Since 1951, The Nature Conservancy has been dedicated to protecting nature for people today and for future generations...",
-    //             website: "https://www.nature.org/"
-    //         },
-    //         {
-    //             name: "Wildlife Alliance",
-    //             description: "The Wildlife Alliance is a must on any list of endangered animal charities...",
-    //             website: "https://www.wildlifealliance.org/"
-    //         },
-    //         {
-    //             name: "World Society for the Protection of Animals",
-    //             description: "The World Society for the Protection of Animals is an important organization that helps endangered animals across the world...",
-    //             website: "https://www.wspa.org/"
-    //         },
-    //         {
-    //             name: "International Fund for Animal Welfare (IFAW)",
-    //             description: "The International Fund for Animal Welfare is one of the biggest charities that help endangered animals...",
-    //             website: "https://www.ifaw.org/"
-    //         },
-    //         {
-    //             name: "Performing Animal Welfare Society",
-    //             description: "The Performing Animal Welfare Society is leading the effort to rescue animals that have been the victim of exotic and performing animal trades...",
-    //             website: "https://www.pawsweb.org/"
-    //         },
-    //         {
-    //             name: "Panthera",
-    //             description: "One of the top wildlife conservation organizations, Panthera is dedicated to conserving the world’s 36 species of wild cats...",
-    //             website: "https://www.panthera.org/"
-    //         },
-    //         // Add information for other organizations
-    //     ];
+    
     const organizationsContainer = document.getElementById('endangered-animals-container');
 
 
