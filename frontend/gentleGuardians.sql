@@ -68,7 +68,7 @@ CREATE TABLE PRODUCTS_LIST_OF_ALL_SHOPS (
   PRIMARY KEY (shop_id, product_id)
 );
 
-
+-- drop table ANIMALS_LIST_IN_ALL_PLACES;
 
 
 
@@ -620,7 +620,7 @@ INSERT INTO StrayAnimalGuidelines (AnimalType, Guidelines) VALUES
 
 select * from StrayAnimalGuidelines;
 
--- creating table to store list of animals in all the adoption center
+-- Creting adoption center table 
 CREATE TABLE ADOPTION_CENTER (
   id INTEGER PRIMARY KEY,
   name VARCHAR(50),
@@ -628,6 +628,8 @@ CREATE TABLE ADOPTION_CENTER (
   contact_number VARCHAR(15),
   FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
 );
+
+-- creating table to store list of animals in all the adoption center
 CREATE TABLE ANIMALS_LIST_IN_ADOPTION_CENTERS (
   animal_id INTEGER,
   center_id INTEGER,
@@ -680,6 +682,3 @@ INSERT INTO ANIMALS_LIST_IN_ADOPTION_CENTERS (animal_id, center_id, animal_count
 (42, 18, 14), (43, 18, 13), (44, 18, 12), (45, 18, 11), (46, 18, 10), (47, 18, 9), (48, 18, 8), (49, 18, 7), (50, 18, 6), (51, 18, 5),
 (52, 19, 16), (53, 19, 18), (54, 19, 7), (55, 19, 9), (56, 19, 13), (57, 19, 10), (58, 19, 11), (59, 19, 6), (60, 19, 12), (18, 19, 20),
 (19, 20, 5), (24, 20, 17), (25, 20, 16), (26, 20, 15), (28, 20, 14), (29, 20, 13), (41, 20, 12), (42, 20, 11), (43, 20, 10), (44, 20, 9);
-
-
-
