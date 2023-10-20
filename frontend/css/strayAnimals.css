@@ -1,14 +1,9 @@
 body {
     font-family: 'Poppins', Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: white;
     margin: 0;
 }
-.header {
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    text-align: center;
-}
+
 
 .navbar {
     background-color: #333;
@@ -110,11 +105,12 @@ body {
    }
 
   .additional-card {
-    flex:w;
+    background-color: #e6e3e3;
+    height: 300px;
     border: 1px solid #ccc;
     border-radius: 18px;
     width: 23%; 
-    margin: 10px;
+    margin-top: 10px;
     padding: 10px;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -126,8 +122,9 @@ body {
 }
 
 .additional-card img {
-    width: 200px;
-    height: 200px;
+    margin-top: 10px;
+    width: 60%;
+    height: 53%;
     border-radius: 5px;
 }
 
@@ -143,6 +140,7 @@ body {
 }
 
 .additional-card button {
+    margin-top: 10px;
     background-color: #007bff;
     color: white;
     border: none;

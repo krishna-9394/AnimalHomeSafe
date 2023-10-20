@@ -11,14 +11,9 @@
         <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
 </head>
 <body>
-    <div class="header">
-        <span>
-            <h1 style="font-family: 'Poppins', Arial, sans-serif;">Stray Animals Management</h1>
-        </span>
-    </div>
     <div class="navbar">
         <a href="index.html"><i class="fas fa-home"></i> Gentle Guardian</a>
-        <a href="strayAnimals.html" class="active"><i class="fas fa-cat"></i>Help Stray Animals</a>
+        <a href="strayAnimals.html" class="active"><i class="fas fa-cat"></i> Help Stray Animals</a>
         <a href="aboutUs.html"><i class="fas fa-info-circle"></i> About Us</a>
         <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
         <a href="loginUser.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -28,15 +23,17 @@
     <div class="additional-card-container">
         <div class="additional-card">
             <img src="../resources/images/clinic1.jpg" alt="Clinic Image">
-            <p>Immediate Help Nearby</p>
-            <button>Find Nearby Clinics</button>
+            <p>Find nearby clinics to get immediate  help</p>
+            &nbsp;
+            <button id="nearbyClinicsButton">Find Nearby Clinics</button>
         </div>
     
         <!-- Card for Nearby Adoption Centers -->
         <div class="additional-card">
             <img src="../resources/images/adoptMe.jpeg" alt="Adoption Center Image">
-            <p>Give Them a Forever Home</p>
-            <button>Find Adoption Centers</button>
+            <p>Find them a nearby adoption centres</p>
+            &nbsp;
+            <button id="adoption">Find Adoption Centers</button>
         </div>
 
         <div class="additional-card">
@@ -45,7 +42,7 @@
             <ul>
                 <li>+91 345210494</li>
                 <li>+91 234560912</li>
-                <li>reachOut@gentleGuardians.com</li>
+                <li>helpFauna@gentleGuardians</li>
                 <!-- Add more -->
             </ul>
         </div>
@@ -101,19 +98,19 @@ function renderGuidelines() {
             console.error('Error fetching clinic data:', error);
         });
 
-        document.getElementById("nearbyClinicsButton").addEventListener("click", function() {
-            window.location.href = 'findNearestClinic.html'; // Navigate to a new HTML page for Nearby Clinics
-        });
-
-        document.getElementById("nearbyPetStoresButton").addEventListener("click", function() {
-            window.location.href = 'findNearestRetailShop.html'; // Navigate to a new HTML page for Nearby Pet Stores
-        });
+        
     }
 }
 
 
 // Attach the click event listener to the search button
 document.getElementById("searchButton").addEventListener("click", renderGuidelines);
+document.getElementById("nearbyClinicsButton").addEventListener("click", function() {
+            window.location.href = 'findNearestClinic.html'; // Navigate to a new HTML page for Nearby Clinics
+});
 
+document.getElementById("adoption").addEventListener("click", function() {
+    window.location.href = 'adoptionPet.html'; // Navigate to a new HTML page for Nearby Adoption Centres
+});
 </script>
 </html>
