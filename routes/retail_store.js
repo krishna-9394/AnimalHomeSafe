@@ -7,9 +7,6 @@ const connection = require('../db');
 
 const baseQuery = "select rs.shop_id as id, rs.shop_name as shop_name, rs.owner_name as owner_name, rs.contact_number as contact_number, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from retail_store as rs join address as adr on adr.address_id = rs.address_id";
 
-const customQuery = "select rs.shop_id as id, rs.shop_name as shop_name, rs.owner_name as owner_name, rs.contact_number as contact_number, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from retail_store as rs join address as adr join products_list_of_all_shops as list on adr.address_id = rs.address_id and rs.shop_id = list.shop_id where list.product";
-
-
 router.get('/', (req, res) => {
     const sql_query = baseQuery+";";
     connection.query(sql_query, (err, results) => {
@@ -132,37 +129,21 @@ router.get('/store_name', (req, res) => {
 
 router.get('/product_name',(req,res) =>{
     const productName = req.query.product_name;
-    const sql_query = "select product_id as id from product where product_name LIKE '" + productName + "%' OR product_name LIKE '%"+productName+"' OR product_name LIKE '%"+productName+"%';";
-    connection.query(sql_query, (err, results) => {
+    const customQuery = `select  rs.shop_id as id, rs.shop_name as shop_name, rs.owner_name as owner_name, rs.contact_number as contact_number, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from products_list_of_all_shops list join product p join retail_store rs join address adr on list.product_id = p.product_id and rs.shop_id = list.shop_id and rs.address_id = adr.address_id where p.product_name Like '%${productName}' or p.product_name like '${productName}%' or p.product_name Like '%${productName}%';`;
+
+    connection.query(customQuery, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
             res.send('Error fetching data from database');
             return;
         }
-        var data = [];
-        console.log(results);
-         const promises = results.map(result => {
-            return new Promise((resolve, reject) => {
-                const sql_query = baseQuery + " and rs.shop_id = " + (result.id) + ";";
-                connection.query(sql_query, (err, storeResults) => {
-                    if (err) {
-                        console.error('Error fetching data:', err);
-                        reject(err);
-                        return;
-                    }
-                    storeResults.forEach(item => data.push(item));
-                    resolve();
-                });
-            });
-        });
-        console.log(data);
-         const modifiedData = data.map(result => ({
+        const modifiedData = results.map(result => ({
             storeId: result.id.toString(), // Convert the id to a string format
             storeName: result.shop_name,
             ownerName: result.owner_name,
             state: result.state,
             city: result.city,
-            image: "../resources/images/store"+(Math.floor(Math.random() * 8) + 1)+".jpg",
+            image: "../resources/images/store" + (Math.floor(Math.random() * 8) + 1) + ".jpg",
             address: `${result.street_name}, ${result.city} - ${result.pincode}`,
             contactNo: result.contact_number.toString() // Convert the contact number to a string format
         }));
@@ -182,22 +163,6 @@ router.get('/id/products',(req,res) => {
         res.json(results);
     });
 });
-
-// TODO 2: Add endpoint to get details of a certain product
-
-// router.get('/product/id',(req,res) => {
-//     const product_id = req.query.product_id;
-//     const sql_query = 'c
-//     connection.query(sql_query, (err, results) => {
-//         if (err) {
-//             console.error('Error fetching data:', err);
-//             res.send('Error fetching data from database');
-//             return;
-//         }
-//         console.log(results);
-//         res.json(results);
-//     });
-// })
 
 module.exports = router;
 

@@ -46,7 +46,7 @@ router.get('/adoption_center_name', (req, res) => {
 
 router.get('/common_name', (req, res) => {
     const commonName = req.query.common_name;
-    const sql_query = baseQuery+" where a.common_animal_name LIKE '" + commonName + "%' OR a.common_animal_name LIKE '%"+commonName+"' OR a.common_animal_name LIKE '%"+commonName+"%';";
+    const sql_query = `select ac.id, ac.name, ac.contact_number, adr.street_name, adr.city, adr.state, adr.pincode from animals_list_in_adoption_centers list join animal a join adoption_center ac join address adr on list.animal_id = a.animal_id and list.center_id = ac.id and ac.address_id = adr.address_id where a.common_animal_name Like '%${commonName}' or a.common_animal_name like '${commonName}%' or a.common_animal_name Like '%${commonName}%';`;
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
