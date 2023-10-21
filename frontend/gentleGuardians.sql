@@ -353,7 +353,7 @@ CREATE TABLE ANIMAL (
     min_temp_of_survival DECIMAL(5,2),
     isDomestic BOOLEAN,
     common_animal_name VARCHAR(255),
-    imageURL VARCHAR(1000)
+    imageURL VARCHAR(255)
 );
 
 INSERT INTO ANIMAL 

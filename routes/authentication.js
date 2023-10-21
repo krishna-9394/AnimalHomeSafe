@@ -52,21 +52,15 @@ router.post('/signUp', (req, res) => {
         if (results.length !== 0) {
             return res.status(401).json({ status: 'Email already exists' });
         } else {
-            const count = "select count(*) from CUSTOMER;"
-            var presentCount = 0;
-            connection.query(count, (err,results) => {
+            const procedureQuery = "CALL AddCustomerAndCredentials(" + name +", " + contact +", " + email + ", " + password +") ;" ;
+            connection.query(procedureQuery,(err,results) => {
                 if(err) {
                     return results;
+                }else {
+                    res.status(200).json({ status: 'Account created successfully' });
                 }
-                presentCount = results;
             });
-            const addQuery = "INSERT INTO CUSTOMER (customer_id, name, email, address_id, contact_number, sponsor, sponsor_amount) VALUES ( " + presentCount + ", " + name + ", " + email + ", " + 84 + ", " + contact + ", " + false + ", "+ 0 +" ;";
-            
-            res.status(200).json({ status: 'Account created successfully' });
         }
-
-
-        
     });
 });
 
