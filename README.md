@@ -109,14 +109,6 @@ Delve into the robust technologies that power Gentle Guardians. Engineered for o
 - **Used For**: Login and Signup operations.
 
 ---
-
-### Page Rendering 🖥️
-
-#### Ruby on Rails 🛤️
-- **Role**: Handles HTML page rendering.
-- **Advantage**: Offers a seamless and intuitive browsing experience.
-
----
 ## 🛠️ Development Tools 🛠️
 
 Unlock the full potential of your development process with these collaborative and debugging tools. They are integral to ensuring seamless coordination and effective testing across the team.
