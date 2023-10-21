@@ -717,6 +717,3 @@ END;
 //
 DELIMITER ;
 
-
-
-

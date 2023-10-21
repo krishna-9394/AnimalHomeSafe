@@ -3,16 +3,13 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../db');
 
-// Define base SQL queries to be used later
 const baseQuery = "select ap.place_id as id, ap.name as name, ap.type_of_place as type, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from pet_clinic as pc join address as adr on pc.address_id = adr.address_id where type_of_place = 'zoo'";
+
 const customQuery = "select ap.place_id as id, ap.name as name, ap.type_of_place as type from pet_clinic as pc join address as adr on pc.address_id = adr.address_id where type_of_place = 'zoo'";
 
 // Route to fetch all records
 router.get('/', (req, res) => {
-    // Construct the SQL query
-    const sql_query = customQuery + ";";
-
-    // Execute the SQL query
+    const sql_query = customQuery+";";
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
@@ -48,11 +45,7 @@ router.get('/id', (req, res) => {
 router.get('/city', (req, res) => {
     // Extract city name from query parameters
     const city_name = req.query.city;
-
-    // Construct the SQL query
-    const sql_query = customQuery + ' and adr.city = "' + city_name + '";';
-
-    // Execute the SQL query
+    const sql_query = customQuery+' and adr.city = "' + city_name + '";';
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
@@ -69,11 +62,7 @@ router.get('/city', (req, res) => {
 router.get('/state', (req, res) => {
     // Extract state name from query parameters
     const state_name = req.query.state;
-
-    // Construct the SQL query
-    const sql_query = customQuery + ' and adr.state = "' + state_name + '";';
-
-    // Execute the SQL query
+    const sql_query = customQuery+' and adr.state = "' + state_name + '";';
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);

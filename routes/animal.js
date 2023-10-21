@@ -5,8 +5,7 @@ const router = express.Router();
 // Database connection
 const connection = require('../db');
 
-// Base SQL query for fetching all animals details 
-const baseQuery = "select a.animal_id as id, a.animal_name, a.common_animal_name as common_name, a.breed, a.description_info as description, a.allergens, a.size, a.diet_plan, a.gender, a.max_temp_of_survival, a.min_temp_of_survival, a.isDomestic, a.imageURL from animal as a";
+const baseQuery = "select a.animal_id as id, a.animal_name, a.common_animal_name as common_name, a.breed, a.description_info as description, a.allergens, a.size, a.diet_plan, a.gender, a.max_temp_of_survival, a.min_temp_of_survival, a.isDomestic, a.imageURL from ANIMAL as a";
 
 router.get('/', (req, res) => {
     const sql_query = baseQuery+";";

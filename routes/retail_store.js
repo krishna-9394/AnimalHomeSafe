@@ -135,7 +135,7 @@ router.get('/store_name', (req, res) => {
 // Get the store details by searching for the product you want and find all the stores that has that product you are searching   
 router.get('/product_name',(req,res) =>{
     const productName = req.query.product_name;
-    const customQuery = `select  rs.shop_id as id, rs.shop_name as shop_name, rs.owner_name as owner_name, rs.contact_number as contact_number, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from products_list_of_all_shops list join product p join retail_store rs join address adr on list.product_id = p.product_id and rs.shop_id = list.shop_id and rs.address_id = adr.address_id where p.product_name Like '%${productName}' or p.product_name like '${productName}%' or p.product_name Like '%${productName}%';`;
+    const customQuery = `select  rs.shop_id as id, rs.shop_name as shop_name, rs.owner_name as owner_name, rs.contact_number as contact_number, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from PRODUCTS_LIST_OF_ALL_SHOPS list join PRODUCT p join RETAIL_STORE rs join ADDRESS adr on list.product_id = p.product_id and rs.shop_id = list.shop_id and rs.address_id = adr.address_id where p.product_name Like '%${productName}' or p.product_name like '${productName}%' or p.product_name Like '%${productName}%';`;
 
     connection.query(customQuery, (err, results) => {
         if (err) {
@@ -159,7 +159,7 @@ router.get('/product_name',(req,res) =>{
 
 router.get('/id/products',(req,res) => {
     const shop_id = req.query.shop_id;
-    const sql_query = 'select p.product_id as id, p.product_name as name, p.product_description as description, p.cost, p.category as category from products_list_of_all_shops as list join product as p on p.product_id = list.product_id where list.shop_id = '+ shop_id + ';';
+    const sql_query = 'select p.product_id as id, p.product_name as name, p.product_description as description, p.cost, p.category as category from PRODUCTS_LIST_OF_ALL_SHOPS as list join PRODUCT as p on p.product_id = list.product_id where list.shop_id = '+ shop_id + ';';
      connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
