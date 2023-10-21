@@ -188,7 +188,41 @@
          productBtn.textContent = 'Sponsor';
          productBtn.className = 'sponsor-btn';
          productBtn.onclick = function () {
-          
+            const popUpContainer = document.createElement("div");
+            popUpContainer.className = "myText";
+
+            // Add a static image for the QR code from local path
+            const qrImage = document.createElement("img");
+            qrImage.src = "../resources/images/qr_code.png";  // Replace with your actual path
+            qrImage.alt = "QR Code";
+            popUpContainer.appendChild(qrImage);
+
+            // Add Zoo details
+            const zooDetails = document.createElement("p");
+            zooDetails.id = "zooDetails";
+            zooDetails.innerHTML = `${place.name} <br> ${city_state}`;
+            popUpContainer.appendChild(zooDetails);
+
+            // Create an input field for the amount
+            const amountInput = document.createElement("input");
+            amountInput.className = "myTextField";
+            amountInput.type = "number";
+            amountInput.placeholder = "Enter amount to sponsor";
+            popUpContainer.appendChild(amountInput);
+
+            // Create submit button
+            const submitButton = document.createElement("button");
+            submitButton.className = "myButton";
+            submitButton.innerHTML = "Submit";
+            popUpContainer.appendChild(submitButton);
+            submitButton.addEventListener("click", function(){
+                alert(`Sponsored amount: ${amountInput.value}`);
+                popUpContainer.style.display = "none";
+
+            })
+
+            // Append the pop-up container to the document body
+            document.body.appendChild(popUpContainer);
          };
          placeCard.appendChild(productBtn);
 
