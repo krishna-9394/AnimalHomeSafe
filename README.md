@@ -86,7 +86,7 @@ Delve into the robust technologies that power Gentle Guardians. Engineered for o
 #### JavaScript 🚀
 - **Role**: Facilitates dynamic interactions within the application.
 
----
+----
 
 ### Server-Side 🎛️
 
