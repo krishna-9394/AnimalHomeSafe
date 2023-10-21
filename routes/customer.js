@@ -2,8 +2,12 @@
 const express = require('express');
 const router = express.Router();
 
+
 // Database connection
 const connection = require('../db');
+
+// Middleware for parsing JSON bodies
+router.use(express.json());
 
 // Base SQL query for fetching customer information
 const baseQuery = 'select name, email, sponsor_amount from CUSTOMER ';
@@ -22,6 +26,22 @@ router.get('/topFiveSponsors', (req, res) => {
         }
         // Send the result as JSON if the query is successful
         res.json(results);
+    });
+});
+
+// Handle POST request for user login
+router.post('/sponsorTransaction', (req, res) => {
+    // Extract email and amount from request body
+    const email = req.body.email;
+    const incrementValue = req.body.amount
+
+    const sql_query = `UPDATE CUSTOMER SET sponsor_amount = sponsor_amount + ${incrementValue}, sponsor = true WHERE email = '${targetEmailId}'`;
+    connection.query(sql_query, (err, results) => {
+      if (err) {
+        console.error('Error updating data:', err);
+        return;
+      }
+      console.log(`Transaction Completed Successfully`);
     });
 });
 
