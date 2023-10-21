@@ -4,12 +4,12 @@ const connection = require('../db');
 
 router.use(express.json()); 
 
+var session = {"email":"","password":""};
+
 router.post('/login', (req, res) => {
-    console.log(req.body)
     const email = req.body.email;
     const password = req.body.password;
     const query = "SELECT * FROM login_credentials WHERE email = \'"+email + "\'";
-    console.log(query);
     connection.query(query,(err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
@@ -21,13 +21,13 @@ router.post('/login', (req, res) => {
         }
 
         const user = results[0];
-        console.log(user);
         const match = (password == user.password)
 
         if (!match) {
             return res.status(401).json({ status: 'Invalid credentials' });
         }
-
+        session.email = email; // Set session variables
+        session.password = password;
         res.status(200).json({ status: 'Logged in successfully' });
     });
 });
@@ -42,7 +42,6 @@ router.post('/signUp', (req, res) => {
 
     const query = "SELECT * FROM login_credentials WHERE email = \'"+email + "\'";
     console.log(query);
-    var ans = 0;
     connection.query(query,(err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
@@ -65,5 +64,24 @@ router.post('/signUp', (req, res) => {
         }
     });
 });
+
+router.get('/userCredentials', (req, res) => {
+    // Check if user is logged in
+    console.log(session.email);
+    if (session.email.length>0 && session.password.length>0) {
+      // Return the user credentials stored in the session
+      res.status(200).json({
+        email: session.email,
+        password: session.password,
+        status: 'User is logged in'
+      });
+    } else {
+      // If session variables are not set, user is not logged in
+      res.status(401).json({
+        status: 'User is not logged in'
+      });
+    }
+  });
+  
 
 module.exports = router;
