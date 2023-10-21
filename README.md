@@ -117,7 +117,35 @@ Delve into the robust technologies that power Gentle Guardians. Engineered for o
 - **Advantage**: Offers a seamless and intuitive browsing experience.
 
 ---
+## 🛠️ Development Tools 🛠️
 
+Unlock the full potential of your development process with these collaborative and debugging tools. They are integral to ensuring seamless coordination and effective testing across the team.
+
+---
+
+### 🎯 Core Tools 🎯
+
+#### Visual Studio Code 📝
+- **Role**: Primary code editor used for development.
+- **Features**: Syntax highlighting, IntelliSense, and a rich ecosystem of extensions.
+
+#### GitHub 🌐
+- **Role**: Version control platform for collaborative code management.
+- **Features**: Branching, pull requests, and code reviews to enhance team collaboration.
+
+#### Git 🔄
+- **Role**: Distributed version control system.
+- **Features**: Local branching, commit history, and merge conflict resolution.
+
+---
+
+### 🌐 API Testing & Collaboration 🌐
+
+#### Postman 💌
+- **Role**: API testing tool used for backend development.
+- **Features**: Enables team members to collaborate on API development and testing, ensuring a consistent and robust backend.
+
+---
 ## Authors
 
 - [@Ekank Chhaparwal](https://github.com/ekankchhaparwal)
