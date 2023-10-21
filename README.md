@@ -69,24 +69,53 @@ This module is your go-to resource for comprehensive animal care, offering four 
 - 📞 Directs you to nearby adoption centers and veterinary clinics.
 
 ---
-## 🛠️ Tech Stack 🛠️
-Discover the powerful technologies that fuel Gentle Guardians. Crafted for both performance and sophistication, our tech stack blends various technologies to deliver an unparalleled user experience.
+## 🛠️ Tech Stack of Gentle Guardians 🛠️
 
-### 🎨 Client-Side Technologies 🎨
-#### 🌐 HTML: Builds the structural foundation of our engaging user interface.
-#### 🎨 CSS: Adds aesthetic flair, ensuring a visually stunning user experience.
-#### 🚀 JavaScript: Enables interactive and dynamic user engagements.
+Delve into the robust technologies that power Gentle Guardians. Engineered for optimal performance and user-centric design, our sophisticated tech stack synergizes a variety of tools and frameworks.
 
-### 🎛️ Server-Side Technologies 🎛️
-#### 📡 Node.js: Acts as the backbone of our server architecture, powering the application logic.
-#### 🚂 Express.js: Manages APIs and handles incoming requests with ease.
+---
 
-### 🗃️ Database & Data Sourcing Technologies 🗃️
-#### 📊 MySQL: Connected to Node.js, serves as the central data source for all modules, ensuring data integrity and availability.
-#### 📚 SQLite: Handles secure and efficient login/signup operations.
+### Client-Side 🎨
 
-### 🖥️ Page Rendering Technologies 🖥️
-#### 🛤️ Ruby on Rails: Responsible for HTML page rendering, providing a seamless browsing experience.
+#### HTML 🌐
+- **Role**: Creates the structural layout for an interactive UI.
+
+#### CSS 🎨
+- **Role**: Stylizes the interface, enhancing visual aesthetics.
+
+#### JavaScript 🚀
+- **Role**: Facilitates dynamic interactions within the application.
+
+---
+
+### Server-Side 🎛️
+
+#### Node.js 📡
+- **Role**: Functions as the core of our server-side logic.
+
+#### Express.js 🚂
+- **Role**: Streamlines API management and request handling.
+
+---
+
+### Database Management 🗃️
+
+#### MySQL 📊
+- **Role**: Integrated with Node.js, serves as the primary database for all modules.
+- **Features**: Ensures high availability and data integrity.
+
+#### SQLite 📚
+- **Role**: Manages secure and efficient user authentication.
+- **Used For**: Login and Signup operations.
+
+---
+
+### Page Rendering 🖥️
+
+#### Ruby on Rails 🛤️
+- **Role**: Handles HTML page rendering.
+- **Advantage**: Offers a seamless and intuitive browsing experience.
+
 ---
 
 ## Authors
