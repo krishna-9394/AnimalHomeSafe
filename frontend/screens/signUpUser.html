@@ -1,64 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/signUpUser.css">
-    <script src="script.js" defer></script>
-    <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
-    <title>Gentle Guardians - Sign Up</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/signUpUser.css">
+  <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
+  <title>Gentle Guardians - Sign Up</title>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Welcome to Gentle Guardians</h1>
-        <p>We're excited to have you join our community. Please fill in the details below to create your account.</p>
-        <form id="signupForm">
-            <!-- User Details -->
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <input type="tel" placeholder="Contact No." required>
-            <input type="text" placeholder="Address Line" required>
-            <input type="text" placeholder="City" required>
-            <input type="text" placeholder="State" required>
-            <input type="text" placeholder="Country" required>
+  <div class="container" style="width: 50%;">
+    <center><h1>Welcome to Gentle Guardians</h1></center>
+    <p>We're excited to have you join our community. Please fill in the details below to create your account.</p>
+    <form id="signupForm">
+      <!-- User Details -->
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input id="email" type="email" placeholder="Email" required>
+      <input id="password" type="password" placeholder="Password" required>
+      <input type="tel" id="contact" placeholder="Contact No." required>
+      <button id="submitButton" type="submit" class="btn primary">Sign Up</button>
+      <button type="button" class="btn secondary" onclick="location.href='index.html'">Log In</button>
+    </form>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const submitButton = document.getElementById("submitButton");
 
-            <button type="submit" class="btn primary">Sign Up</button>
-            <button type="button" class="btn secondary" onclick="location.href='loginUser.html'">Log In</button>
+      submitButton.addEventListener("click",  async function(event) {
+        event.preventDefault();
 
-        </form>
-    </div>
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const name = document.getElementById("name");
+        const contact = document.getElementById("contact");
 
-    <script>
-        document.getElementById('hasPetToggle').addEventListener('change', function() {
-            const petDetails = document.getElementById('petDetails');
-            const individualPets = document.getElementById('individualPets');
+        if (!email.value.endsWith("@gmail.com")) {
+          alert("Email should end with '@gmail.com'");
+          return;
+        }
 
-            if (this.checked) {
-                petDetails.classList.remove('hidden');
-            } else {
-                petDetails.classList.add('hidden');
-                individualPets.innerHTML = '';
+        if (password.value.length < 8) {
+          alert("Password should be at least 8 characters long.");
+          return;
+        }
+
+        var payload = {
+            email: email.value,
+            password: password.value,
+            name : name.value,
+            contact : contact.value
+        };
+
+        try {
+            const response = await fetch('http://localhost:3000/routes/authentication/signUp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+            const message = data.status;
+            if(message == 'Account created successfully'){
+                alert("Account created successfully");
+                window.location.href = 'loginUser.html';
+            }else{
+                alert(message);
             }
-        });
-
-        document.getElementById('numPets').addEventListener('input', function() {
-            const individualPets = document.getElementById('individualPets');
-            individualPets.innerHTML = '';
-
-            for (let i = 0; i < this.value; i++) {
-                individualPets.innerHTML += `
-                    <h3>Pet ${i + 1} Details:</h3>
-                    <input type="text" placeholder="Animal Name">
-                    <input type="text" placeholder="Color">
-                    <input type="text" placeholder="Size">
-                    <input type="text" placeholder="Breed">
-                `;
-            }
-        });
-    </script>
+        } catch (error) {
+            console.error('Error:', error);
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>

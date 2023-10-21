@@ -23,6 +23,7 @@ const customer = require('./routes/customer');
 const retailStore = require('./routes/retail_store');
 const animalList = require('./routes/animal');
 const adoptionCenterList = require('./routes/adoption_center');
+const authentication = require('./routes/authentication');
 
 app.use('/routes/pet_clinic/',pet_clinic);
 app.use('/routes/zoos/',zoos);
@@ -31,6 +32,7 @@ app.use('/routes/customer/',customer);
 app.use('/routes/retail_store/',retailStore);
 app.use('/routes/animal/',animalList);
 app.use('/routes/adoption_center/',adoptionCenterList);
+app.use('/routes/authentication/',authentication);
 
 app.get('/', (req,res) => {
     res.send("You have entered common url");
