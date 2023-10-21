@@ -1,12 +1,12 @@
+// Import the required modules
 const express = require('express')
 const router = express.Router();
-
-
 const connection = require('../db');
 
-
+// Define base SQL queries to be used later
 const baseQuery = "select rs.shop_id as id, rs.shop_name as shop_name, rs.owner_name as owner_name, rs.contact_number as contact_number, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from retail_store as rs join address as adr on adr.address_id = rs.address_id";
 
+// Get all the stores
 router.get('/', (req, res) => {
     const sql_query = baseQuery+";";
     connection.query(sql_query, (err, results) => {
@@ -31,6 +31,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// get the stores by id
 router.get('/id', (req, res) => {
     const userId = req.query.id;
     const sql_query = baseQuery+" and rs.shop_id = " + userId + ";";
@@ -54,6 +55,7 @@ router.get('/id', (req, res) => {
     });
 });
 
+// Get stores by searching city or part of city name
 router.get('/city', (req, res) => {
     const city_name = req.query.city;
     const sql_query = baseQuery+" where adr.city LIKE '" + city_name + "%' OR adr.city LIKE '%"+city_name+"' OR adr.city LIKE '%"+city_name+"%';";
@@ -78,6 +80,7 @@ router.get('/city', (req, res) => {
     });
 });
 
+// Get stores details by state name
 router.get('/state', (req, res) => {
     const state_name = req.query.state;
     console.log(state_name)
@@ -103,6 +106,8 @@ router.get('/state', (req, res) => {
         res.json(modifiedData);
     });
 });
+
+// Get the store details by searching their store name 
 router.get('/store_name', (req, res) => {
     const storeName = req.query.store_name;
     const sql_query = "select rs.shop_id as id, rs.shop_name as shop_name, rs.owner_name as owner_name, rs.contact_number as contact_number, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from retail_store as rs join address as adr on adr.address_id = rs.address_id"+" where rs.shop_name LIKE '" + storeName + "%' OR rs.shop_name LIKE '%"+storeName+"' OR rs.shop_name LIKE '%"+storeName+"%';";
@@ -127,6 +132,7 @@ router.get('/store_name', (req, res) => {
     });
 });
 
+// Get the store details by searching for the product you want and find all the stores that has that product you are searching   
 router.get('/product_name',(req,res) =>{
     const productName = req.query.product_name;
     const customQuery = `select  rs.shop_id as id, rs.shop_name as shop_name, rs.owner_name as owner_name, rs.contact_number as contact_number, adr.street_name as street_name, adr.city as city, adr.state as state, adr.pincode from products_list_of_all_shops list join product p join retail_store rs join address adr on list.product_id = p.product_id and rs.shop_id = list.shop_id and rs.address_id = adr.address_id where p.product_name Like '%${productName}' or p.product_name like '${productName}%' or p.product_name Like '%${productName}%';`;
@@ -164,5 +170,6 @@ router.get('/id/products',(req,res) => {
     });
 });
 
+// Export the router to be used in other modules
 module.exports = router;
 

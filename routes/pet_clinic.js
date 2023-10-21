@@ -1,11 +1,16 @@
+// Import the required modules
 const express = require('express')
 const router = express.Router();
 const connection = require('../db');
 
+// Define base SQL queries to be used later
 const baseQuery = "select c.clinic_id as id, c.clinic_name as clinicName, c.doctor_name as doctorName, c.contact_number as contactNumber, a.street_name as streetName, a.city, a.state, a.pincode from pet_clinic as c join address as a on a.address_id = c.address_id";
 
+// Route to fetch all records
 router.get('/', (req, res) => {
     const sql_query = baseQuery+";";
+
+    // Execute the SQL query
     connection.query(sql_query, (err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
@@ -29,6 +34,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// Route to fetch records by ID
 router.get('/id', (req, res) => {
     const userId = req.query.id;
     const sql_query = baseQuery+" where c.clinic_id = " + userId + ";";
@@ -53,6 +59,7 @@ router.get('/id', (req, res) => {
     });
 });
 
+// Route to fetch records by name
 router.get('/name', (req, res) => {
     const clinicName = req.query.name;
     const sql_query = baseQuery+" where c.clinic_name LIKE '" + clinicName + "%' OR c.clinic_name LIKE '%"+clinicName+"' OR c.clinic_name LIKE '%"+clinicName+"%';";
@@ -76,6 +83,7 @@ router.get('/name', (req, res) => {
     });
 });
 
+// Route to fetch records by city name
 router.get('/city', (req, res) => {
     const city = req.query.city;
     const sql_query = baseQuery+" where a.city LIKE '" + city + "%' OR a.city LIKE '%"+city+"' OR a.city LIKE '%"+city+"%';"
@@ -100,6 +108,7 @@ router.get('/city', (req, res) => {
     });
 });
 
+// Route to fetch records by entering the state name
 router.get('/state', (req, res) => {
     const state = req.query.state;
     const sql_query = baseQuery+" where a.state LIKE '" + state + "%' OR a.state LIKE '%"+state+"' OR a.state LIKE '%"+state+"%';"
@@ -123,5 +132,5 @@ router.get('/state', (req, res) => {
     });
 });
 
-
+// Export the router to be used in other modules
 module.exports = router;
