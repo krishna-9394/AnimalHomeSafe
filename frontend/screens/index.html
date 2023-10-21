@@ -4,53 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animal Care Homepage</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/loginUser.css">
+    <script src="script.js" defer></script>
     <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
+    <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
+    <title>Login Page</title>
 </head>
 
 <body>
-    <div class="header">
-        <h1 style="font-family: 'Poppins', Arial, sans-serif;">Welcome to Gentle Guardians</h1>
-    </div>
-
-    <div class="navbar">
-        <a href="main.html" class="active"><i class="fas fa-home"></i> Gentle Guardian</a>
-        <a href="aboutUs.html"><i class="fas fa-info-circle"></i> About Us</a>
-        <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
-        <a href="index.html" class="logout"><i class="fas fa-sign-in"></i> &nbsp; LOG-OUT</a>
-    </div>
-    
     <div class="container">
-        <div class="services">
-            <a href="AnimalWellBeing_screen.html" class="service" target="_blank">
-                <h2>Animal Well-being</h2>
-                <p>We care for our animals</p>
-                <img src="../resources/images/animalWellBeing.jpg" alt="Image for Service A">
-            </a>
+        <div class="login-section">
+            <h1>Login</h1>
+            <form id="loginForm">
+                <input id="email" type="email" placeholder="Enter your Email" required>
+                <input id="password" type="password" placeholder="Password" required>
+                <div class="button-group">
+                    <button type="submit" class="btn primary">Login</button>
+                    <button type="button" class="btn secondary" onclick="location.href='signUpUser.html'">New User?</button>
+                </div>
+            </form>
+        </div>
 
-            <a href="endangered.html" class="service">
-                <h2> Endangered animals Protection</h2>
-                <p>Know About Organization who work for protecting endangered species</p>
-                <img src="../resources/images/endangeredAnimalControl.jpg" alt="Image for Service B">
-            </a>
-
-            <a href="sponsorManagement.html" class="service">
-                <h2>Sponsor a Animal Place</h2>
-                <p>Help animals in need.</p>
-                <img src="../resources/images/sponsorAnAnimal.avif" alt="Image for Service C">
-            </a>
-
-            <a href="strayAnimals.html" class="service">
-                <h2>Stray Animals Management</h2>
-                <p>Inform us if you find any stray animal that needs help</p>
-                <img src="../resources/images/strayAnimalsManagement.jpg" alt="Image for Service D">
-            </a>
+        <div class="image-section">
+            <img src="../resources/images/loginPageDisplayImage.jpg" alt="animal picture">
+            <p>"Animals are nature's reminder of love's purest form."</p>
         </div>
     </div>
 </body>
 
-</html>
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
 
+    loginForm.addEventListener('submit', async function(event) {
+        event.preventDefault();  // Prevent the default form submission
+
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        var payload = {
+            email: email,
+            password: password
+        };
+
+        try {
+            const response = await fetch('http://localhost:3000/routes/authentication/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+            const message = data.status;
+            if(message == 'Logged in successfully'){
+                alert("Logged in successfully");
+                window.location.href = 'main.html';
+            }else{
+                alert(message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+});
+
+</script>
+</html>
