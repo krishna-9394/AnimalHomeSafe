@@ -8,17 +8,6 @@ Gentle Guardians is a comprehensive platform dedicated to animal welfare, unique
 
 
 
-## Authors
-
-- [@Ekank Chhaparwal](https://github.com/ekankchhaparwal)
-
-- [@Krishna Kumar](https://github.com/krishna-9394)
-
-- [@Minank K P](https://github.com/Minank-KP)
-
-- [@Prasanna Kumar Bali ](https://github.com/prasannakumarbali)# 🐾 Gentle Guardians 🐾
-
-Elevate your animal care experience with Gentle Guardians, your one-stop platform for a kinder, more compassionate world for all animals.
 
 ---
 
@@ -79,3 +68,16 @@ This module is your go-to resource for comprehensive animal care, offering four 
 - 📋 Provides best practice guidelines for helping stray animals.
 - 📞 Directs you to nearby adoption centers and veterinary clinics.
 
+---
+
+## Authors
+
+- [@Ekank Chhaparwal](https://github.com/ekankchhaparwal)
+
+- [@Krishna Kumar](https://github.com/krishna-9394)
+
+- [@Minank K P](https://github.com/Minank-KP)
+
+- [@Prasanna Kumar Bali ](https://github.com/prasannakumarbali)# 🐾 Gentle Guardians 🐾
+
+Elevate your animal care experience with Gentle Guardians, your one-stop platform for a kinder, more compassionate world for all animals.
