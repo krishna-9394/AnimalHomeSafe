@@ -717,7 +717,6 @@ END;
 //
 DELIMITER ;
 
-CALL AddCustomerAndCredentials('John Doe', '1234567890', 'john.doe@gmail.com', 'securepassword');
 
 
 
