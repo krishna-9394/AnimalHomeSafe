@@ -42,7 +42,7 @@ router.post('/signUp', (req, res) => {
 
     const query = "SELECT * FROM login_credentials WHERE email = \'"+email + "\'";
     console.log(query);
-
+    var ans = 0;
     connection.query(query,(err, results) => {
         if (err) {
             console.error('Error fetching data:', err);
@@ -51,15 +51,17 @@ router.post('/signUp', (req, res) => {
         console.log(results)
         if (results.length !== 0) {
             return res.status(401).json({ status: 'Email already exists' });
-        } else {
-            const procedureQuery = "CALL AddCustomerAndCredentials(" + name +", " + contact +", " + email + ", " + password +") ;" ;
-            connection.query(procedureQuery,(err,results) => {
-                if(err) {
-                    return results;
-                }else {
-                    res.status(200).json({ status: 'Account created successfully' });
-                }
-            });
+        } 
+    });
+
+    const procedureQuery = `CALL AddCustomerAndCredentials('${name}', '${contact}', '${email}', '${password}');`;
+
+    console.log(procedureQuery);
+    connection.query(procedureQuery,(err,results) => {
+        if(err) {
+            return results;
+        }else {
+            return res.status(200).json({ status: 'Account created successfully' });
         }
     });
 });
