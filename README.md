@@ -69,6 +69,25 @@ This module is your go-to resource for comprehensive animal care, offering four 
 - 📞 Directs you to nearby adoption centers and veterinary clinics.
 
 ---
+## 🛠️ Tech Stack 🛠️
+Discover the powerful technologies that fuel Gentle Guardians. Crafted for both performance and sophistication, our tech stack blends various technologies to deliver an unparalleled user experience.
+
+### 🎨 Client-Side Technologies 🎨
+#### 🌐 HTML: Builds the structural foundation of our engaging user interface.
+#### 🎨 CSS: Adds aesthetic flair, ensuring a visually stunning user experience.
+#### 🚀 JavaScript: Enables interactive and dynamic user engagements.
+
+### 🎛️ Server-Side Technologies 🎛️
+#### 📡 Node.js: Acts as the backbone of our server architecture, powering the application logic.
+#### 🚂 Express.js: Manages APIs and handles incoming requests with ease.
+
+### 🗃️ Database & Data Sourcing Technologies 🗃️
+#### 📊 MySQL: Connected to Node.js, serves as the central data source for all modules, ensuring data integrity and availability.
+#### 📚 SQLite: Handles secure and efficient login/signup operations.
+
+### 🖥️ Page Rendering Technologies 🖥️
+#### 🛤️ Ruby on Rails: Responsible for HTML page rendering, providing a seamless browsing experience.
+---
 
 ## Authors
 
