@@ -48,7 +48,7 @@
 
                 <div class="form-group">
                     <label for="Description">Description:</label>
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="Description" name="Description">
                 </div>
                 
                 <div class="form-group">
@@ -56,7 +56,8 @@
                 </div>
             </form>
         </div>
-     
+        
+          
 
     <div class="social-links">
         <h2>Connect with us on Social Media</h2>
@@ -66,5 +67,45 @@
         <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
     </div>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const description = document.getElementById("Description").value; // Note: The 'id' should be 'Description' to match the HTML
+    
+    const payload = {
+      name,
+      email,
+      phone,
+      description,
+    };
+    
+    try {
+      const response = await fetch("http://localhost:3000/routes/customer/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      
+      if (response.ok) {
+        alert("Contact Sent Successfully!");
+      } else {
+        console.error("Failed to submit form");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  });
+});
+
+</script>
 
 </html>

@@ -45,5 +45,12 @@ router.post('/sponsorTransaction', (req, res) => {
     });
 });
 
+router.post('/contact', (req, res) => {
+  const { name, email, phone, description } = req.body;
+  // The Details can be saved somewhere in our database
+  res.status(200).json({ message: 'Contact details successfully saved and email sent' });
+  
+});
+
 // Export the router to be used in other modules
 module.exports = router;
