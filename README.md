@@ -111,8 +111,6 @@ Delve into the robust technologies that power Gentle Guardians. Engineered for o
 ---
 ## 🛠️ Development Tools 🛠️
 
-Unlock the full potential of your development process with these collaborative and debugging tools. They are integral to ensuring seamless coordination and effective testing across the team.
-
 ---
 
 ### 🎯 Core Tools 🎯
@@ -146,6 +144,4 @@ Unlock the full potential of your development process with these collaborative a
 
 - [@Minank K P](https://github.com/Minank-KP)
 
-- [@Prasanna Kumar Bali ](https://github.com/prasannakumarbali)# 🐾 Gentle Guardians 🐾
-
-Elevate your animal care experience with Gentle Guardians, your one-stop platform for a kinder, more compassionate world for all animals.
+- [@Prasanna Kumar Bali ](https://github.com/prasannakumarbali)
