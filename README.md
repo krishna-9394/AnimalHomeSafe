@@ -142,6 +142,4 @@ Delve into the robust technologies that power Gentle Guardians. Engineered for o
 
 - [@Krishna Kumar](https://github.com/krishna-9394)
 
-- [@Minank K P](https://github.com/Minank-KP)
-
 - [@Prasanna Kumar Bali ](https://github.com/prasannakumarbali)
