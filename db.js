@@ -1,13 +1,13 @@
 // Import the required modules
 const mysql = require('mysql2'); // Import the MySQL for Node.js library
-const credentials = require('./credentials'); // Import database credentials
+require('dotenv').config(); // Import database credentials
 
 // Create a new database connection
 const db = mysql.createConnection({
-    host: credentials.hostname,        // Hostname from the credentials file
-    user: credentials.username,        // Username from the credentials file
-    password: credentials.password,    // Password from the credentials file
-    database: credentials.databasename // Database name from the credentials file
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 
 // Connect to the database
