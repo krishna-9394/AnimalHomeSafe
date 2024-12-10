@@ -5,7 +5,7 @@ const app = express(); // Initialize Express app
 const cors = require('cors');  // CORS middleware for handling cross-origin requests
 
 // Define whitelist for acceptable origins
-const whitelist = ['http://127.0.0.1:5500'];
+const whitelist = ['http://127.0.0.1:5500', 'https://your-app.vercel.app'];
 const corsOptions = {
   origin: function (origin, callback) {
     // Check if origin is in whitelist
